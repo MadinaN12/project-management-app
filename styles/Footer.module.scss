@@ -1,0 +1,12 @@
+.footer {
+  transition: background-color 300ms;
+  background-color: #01649e;
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  height: 100px;
+  max-height: 100px;
+  padding: 6px 4px;
+}

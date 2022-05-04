@@ -1,0 +1,12 @@
+.header {
+  transition: background-color 300ms;
+  background-color: #026aa7;
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  height: 44px;
+  max-height: 44px;
+  padding: 6px 4px;
+}

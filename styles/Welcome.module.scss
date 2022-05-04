@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+
+.welcomeHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 20px;
+  padding: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 1s ease 0s;
+  background-color: rgba(255, 255, 255, 0);
+
+  .logBtns {
+    .btns {
+      cursor: pointer;
+      color: white;
+      padding: 0.25rem 0.5rem;
+      font-size: 1.09375rem;
+      line-height: 1.5;
+      border-radius: 0.2rem;
+      background-color: #0065ff;
+      border: none;
+      &:first-child {
+        background-color: rgba(255, 255, 255, 0);
+        margin-right: 10px;
+        color: #0065ff;
+        border: 0;
+      }
+    }
+  }
+}
+
+#hero {
+  background: linear-gradient(0deg, #fff, #eae6ff 100%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  .container {
+    width: 1140px;
+    padding: 112px 15px 80px;
+    display: flex;
+    justify-content: space-between;
+    .heroLeftPart {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      text-align: left;
+      width: 635px;
+      .heroTitle {
+        font-family: 'Hammersmith One', sans-serif;
+        width: 100%;
+        text-align: left;
+        font-size: 3rem;
+        line-height: 1.25;
+      }
+      .heroParagraph {
+        font-family: 'Hammersmith One', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #091e42;
+      }
+    }
+    .heroRightPart {
+      width: 445px;
+      height: 575px;
+    }
+  }
+}
