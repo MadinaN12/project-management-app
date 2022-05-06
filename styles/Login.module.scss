@@ -1,5 +1,11 @@
 .loginHeader {
   padding: 40px 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .trelloImage {
+    cursor: pointer;
+  }
 }
 .bottomImages {
   position: absolute;

@@ -40,6 +40,7 @@
     width: 100%;
     background: #5aac44;
     color: #fff;
+    font-size: 1.15rem;
     font-weight: bold;
     margin-bottom: 0.8em;
     padding: 0.6em 1.3em;
@@ -47,6 +48,9 @@
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
+  }
+  .submitBtn.signup {
+    background: #2d31ff;
   }
   .separateLine {
     margin: 15px;

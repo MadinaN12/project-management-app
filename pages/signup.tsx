@@ -8,7 +8,7 @@ import styles from '../styles/Login.module.scss';
 import Form from '../components/Form';
 import { useRouter } from 'next/router';
 
-const Login: NextPage = () => {
+const Signup: NextPage = () => {
   const router = useRouter();
   return (
     <>
@@ -22,7 +22,7 @@ const Login: NextPage = () => {
         ></Image>
       </header>
       <section>
-        <Form isFull={false} email={''}></Form>
+        <Form isFull={true} email={router.query.email as string}></Form>
       </section>
       <div className={styles.bottomImages}>
         <Image src={Table2Image} width={480} height={300}></Image>
@@ -33,4 +33,4 @@ const Login: NextPage = () => {
   );
 };
 
-export default Login;
+export default Signup;

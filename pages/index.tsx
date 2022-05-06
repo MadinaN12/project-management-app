@@ -4,10 +4,13 @@ import TrelloImage from '../images/Trello.svg';
 import HeroImage from '../images/hero.png';
 import BoardImage from '../images/board.png';
 import styles from '../styles/Welcome.module.scss';
-import { DOMAttributes, UIEventHandler, useEffect, useRef, useState } from 'react';
+import { DOMAttributes, MouseEventHandler, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const Welcome: NextPage = () => {
   const [header, setHeader] = useState('');
+  const [inputData, setInputData] = useState('');
+  const router = useRouter();
   useEffect(() => {
     const onScroll = () => {
       if (window.pageYOffset > 70) {
@@ -19,14 +22,24 @@ const Welcome: NextPage = () => {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
+  function handleSubmitBtn(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    router.push({
+      pathname: '/signup',
+      query: { email: inputData },
+    });
+  }
   return (
     <>
       <header className={`${styles.welcomeHeader} ${styles[header]}`}>
         <Image src={TrelloImage} width={126} height={36}></Image>
         <div className={styles.logBtns}>
-          <button className={styles.btns}>Log in</button>
-          <button className={styles.btns}>Sign up</button>
+          <button className={styles.btns} onClick={() => router.push('/login')}>
+            Log in
+          </button>
+          <button className={styles.btns} onClick={() => router.push('/signup')}>
+            Sign up
+          </button>
         </div>
       </header>
       <section id={styles.hero}>
@@ -38,8 +51,14 @@ const Welcome: NextPage = () => {
               home office, the way your team works is unique—accomplish it all with Trello.
             </p>
             <form action="" className={styles.heroForm}>
-              <input type="email" className={styles.heroForm_input} placeholder="Email"></input>
-              <button type="submit" className={styles.heroForm_btn}>
+              <input
+                type="email"
+                className={styles.heroForm_input}
+                placeholder="Email"
+                value={inputData}
+                onChange={(e) => setInputData(e.target.value)}
+              ></input>
+              <button type="button" className={styles.heroForm_btn} onClick={handleSubmitBtn}>
                 Sign up — it’s free!
               </button>
             </form>
@@ -60,9 +79,7 @@ const Welcome: NextPage = () => {
               as your teamwork grows. Manage projects, organize tasks, and build team spirit—all in
               one place.
             </p>
-            <a href="" className={styles.topPart_btn}>
-              Start doing →
-            </a>
+            <button className={styles.topPart_btn}>Start doing →</button>
             <Image src={BoardImage}></Image>
           </div>
         </div>
