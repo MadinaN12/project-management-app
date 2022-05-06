@@ -121,6 +121,11 @@
           transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
             border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
           cursor: pointer;
+          &:hover {
+            background-color: rgba(255, 255, 255, 0);
+            border: 1px solid #0065ff;
+            color: #0065ff;
+          }
         }
       }
     }
@@ -169,6 +174,12 @@
         line-height: 1.5;
         border-radius: 6px;
         margin-bottom: 24px;
+        transition: 0.3s linear;
+        cursor: pointer;
+        &:hover {
+          background-color: #0065ff;
+          color: white;
+        }
       }
     }
   }

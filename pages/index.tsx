@@ -79,7 +79,9 @@ const Welcome: NextPage = () => {
               as your teamwork grows. Manage projects, organize tasks, and build team spirit—all in
               one place.
             </p>
-            <button className={styles.topPart_btn}>Start doing →</button>
+            <button className={styles.topPart_btn} onClick={() => router.push('/signup')}>
+              Start doing →
+            </button>
             <Image src={BoardImage}></Image>
           </div>
         </div>
