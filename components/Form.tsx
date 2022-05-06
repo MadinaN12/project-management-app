@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
+import { LoginUser, PostUser } from '../api/user';
 import styles from '../styles/Form.module.scss';
+import { ErrorTypeKind, FormError } from '../utils/error';
 import { emailValidator, nameValidator, passwordValidator } from '../utils/validator';
 
 interface IForm {
@@ -23,26 +25,30 @@ const Form: React.FC<IForm> = ({ isFull, email }) => {
     e.preventDefault();
     const type = router.pathname.split('/')[1];
     const emailCur = emailInput.current.value;
-    const nameCur = nameInput.current.value;
     const passwordCur = password.current.value;
-    const rePasswordCur = rePassword.current.value;
+
     try {
       switch (type) {
         case RouteEnum.LOGIN:
-          console.log(1);
+          await LoginUser(emailCur, passwordCur);
           break;
         case RouteEnum.SIGNUP:
+          const nameCur = nameInput.current.value;
+          const rePasswordCur = rePassword.current.value;
           const { isValid: emailValid, validMessage: emailMessage } = emailValidator(emailCur);
           const { isValid: nameValid, validMessage: nameMessage } = nameValidator(nameCur);
           const { isValid: passwordValid, validMessage: passwordMessage } = passwordValidator(
             passwordCur,
             rePasswordCur
           );
-          if (!passwordValid) throw new Error(passwordMessage);
+          if (!emailValid) throw new FormError(ErrorTypeKind.email, emailMessage);
+          if (!nameValid) throw new FormError(ErrorTypeKind.name, nameMessage);
+          if (!passwordValid) throw new FormError(ErrorTypeKind.password, passwordMessage);
+          await PostUser(nameCur, emailCur, passwordCur);
       }
     } catch (e) {
-      if (e instanceof Error) {
-        console.log(e.message);
+      if (e instanceof FormError) {
+        console.log(e.message, e.type);
       }
     }
   }
