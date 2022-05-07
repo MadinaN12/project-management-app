@@ -1,23 +1,26 @@
-import { Button } from '@mui/material';
+import { AppBar, Button, Toolbar } from '@mui/material';
 import { createColumn } from '../../pages/api/createColumn';
-import styles from '../../styles/board/Board.module.css';
 import Logo from '../Logo';
 
 const BoardControls = () => {
-  const handleClick = async () => {
+  const handleClick = () => {
     const column = {
       title: 'First',
       order: 1,
     };
-    await createColumn(column);
+    createColumn(column);
   };
 
   return (
-    <header className={styles.header}>
-      <Logo />
-      <Button variant="contained" onClick={handleClick}>
-        + add column
-      </Button>
+    <header>
+      <AppBar sx={{ bgcolor: '#bbdefb' }} position="static">
+        <Toolbar variant="dense">
+          <Logo />
+          <Button variant="contained" onClick={handleClick} sx={{ margin: 1 }}>
+            + add column
+          </Button>
+        </Toolbar>
+      </AppBar>
     </header>
   );
 };
