@@ -12,10 +12,22 @@
     z-index: 4;
     margin: 7% auto 0;
     border-radius: 1%;
-    padding: 3%;
+    padding: 3% 34% 3% 3%;
     width: 70%;
     height: 80vh;
     background-color: white;
+
+    &:after {
+      content: '';
+      position: absolute;
+      z-index: 5;
+      right: 0;
+      top: 0%;
+      width: 40%;
+      height: 100%;
+      background: url('../images/board.png') no-repeat center;
+      background-size: contain;
+    }
   }
 
   pre {
