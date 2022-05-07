@@ -1,14 +1,20 @@
 import { AppBar, Button, Toolbar } from '@mui/material';
+import { useAppDispatch } from '../../hooks/redux';
 import { createColumn } from '../../pages/api/createColumn';
+import { storeSlice } from '../../store/reducers/storeSlice';
 import Logo from '../Logo';
 
 const BoardControls = () => {
+  const { setColumns } = storeSlice.actions;
+  const dispatch = useAppDispatch();
+
   const handleClick = () => {
     const column = {
       title: 'First',
       order: 1,
     };
-    createColumn(column);
+    const res = createColumn(column);
+    res && dispatch(setColumns(res));
   };
 
   return (
