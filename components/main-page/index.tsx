@@ -1,14 +1,16 @@
 import MainBoard from './MainBoard';
 import styles from '../../styles/MainPage.module.scss';
 import { useEffect, useState } from 'react';
-import CreateBoardPopUp from './CreateBoardPopUp';
-import { ThemeProvider } from '@mui/material';
-import theme from '../material-ui/theme';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { store } from '../../stores/boards/store';
 import Button from '@mui/material/Button';
+import CreateBoardPopUp from './CreateBoardPopUp';
 
 export default function MainPageComponent() {
-  const [markedStatus, setMarkedStatus] = useState(false);
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const select = useSelector((state) => state.refreshBoard);
+  console.log();
 
   useEffect(() => {
     async function fetchs() {
@@ -19,27 +21,20 @@ export default function MainPageComponent() {
           Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNTc5ZWIwMC01ODk1LTQ0YWUtOWQ4NC1iYjMxYjgwZjQzYmQiLCJsb2dpbiI6Im5hbWUiLCJpYXQiOjE2NTE4ODY4MjF9.uh1bOO9rPHP7N03ok0DRPMUO1EVwtil5ALbi9VTQmgI`,
         },
       });
-      const res = await response.json();
+      const data = await response.json();
 
-      setData(res);
-      return res;
+      setData(data);
+      return data;
     }
     fetchs();
-  }, []);
+  }, [select]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className={styles.boards}>
-        <Button variant="contained">Create</Button>
-        <h1>Your Workspace</h1>
-        <CreateBoardPopUp />
-        <section>
-          {data.map((board) => {
-            return <MainBoard board={board} key={board.id} />;
-          }) || ''}
-        </section>
-      </div>
-    </ThemeProvider>
+    <div className={styles.boards}>
+      <Button variant="contained">Create</Button>
+      <h1>Your Workspace</h1>
+      <section>{data.map((board) => <MainBoard board={board} key={board.id} />) || ''}</section>
+    </div>
   );
 }
 

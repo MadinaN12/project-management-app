@@ -17,3 +17,14 @@ export async function postDataBoard(obj: Board, token: string) {
     console.log(data);
   }
 }
+
+export async function deleteBoard(obj: Board, token: string) {
+  const res = await fetch(`https://morning-spire-63546.herokuapp.com/boards/${obj.id}`, {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  console.log(res);
+}
