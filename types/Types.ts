@@ -6,4 +6,5 @@ export interface PropMain {
 export type Board = {
   title?: string;
   id?: number | string;
+  info?: string;
 };
