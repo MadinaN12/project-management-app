@@ -1,10 +1,11 @@
 import MainBoard from './MainBoard';
 import styles from '../../styles/MainPage.module.scss';
 import { useEffect, useState } from 'react';
-import { Provider, useDispatch, useSelector } from 'react-redux';
-import { store } from '../../stores/boards/store';
+import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import CreateBoardPopUp from './CreateBoardPopUp';
+import { Board } from '../../types/Types';
+import { Typography, OutlinedInput } from '@mui/material';
 
 export default function MainPageComponent() {
   const [data, setData] = useState([]);
@@ -22,18 +23,37 @@ export default function MainPageComponent() {
         },
       });
       const data = await response.json();
-
       setData(data);
-      return data;
+      setFilteredData(data);
     }
+
     fetchs();
   }, [select]);
+
+  const handleChangeInput = (e) => {
+    const elLength = e.target.value.length;
+    if (elLength) {
+      setFilteredData(data.filter((el: Board) => el.title.slice(0, elLength) === e.target.value));
+    } else {
+      setFilteredData(data);
+    }
+  };
 
   return (
     <div className={styles.boards}>
       <Button variant="contained">Create</Button>
-      <h1>Your Workspace</h1>
-      <section>{data.map((board) => <MainBoard board={board} key={board.id} />) || ''}</section>
+      <Typography variant="h1" sx={{ mt: 2 }}>
+        Your Workspace
+      </Typography>
+      <OutlinedInput
+        placeholder="Search boards"
+        sx={{ mt: 2, mb: 2 }}
+        onChange={handleChangeInput}
+      />
+
+      <section>
+        {filteredData.map((board) => <MainBoard board={board} key={board.id} />) || ''}
+      </section>
     </div>
   );
 }
