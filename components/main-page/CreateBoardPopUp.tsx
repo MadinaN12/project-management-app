@@ -1,5 +1,5 @@
 import styles from '../../styles/CreatePagePopUp.module.scss';
-import { TextareaAutosize, InputLabel, Input, FormHelperText, Button } from '@mui/material';
+import { InputLabel, Input, FormHelperText, Button } from '@mui/material';
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import InputLabelPart from './InputLabelPart';
 import { postDataBoard } from './PostNewBoard';
@@ -8,7 +8,6 @@ type InputRef = {
 };
 
 export default function CreateBoardPopUp() {
-  const [boardInfo, setBoardInfo] = useState({});
   const [isEmpty, setIsEmpty] = useState(false);
   const inputRef = useRef(null);
   const textAreaRef = useRef(null);

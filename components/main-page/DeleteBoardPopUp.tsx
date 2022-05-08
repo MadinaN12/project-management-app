@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { Board } from '../../types/Types';
 import { deleteBoard } from './PostNewBoard';
 import { refreshBoard } from '../../stores/boards/slices';
-import { SetStateAction } from 'react';
 
 export default function DeleteBoardPopUp({
   setStatus,

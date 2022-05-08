@@ -2,7 +2,6 @@ import MainBoard from './MainBoard';
 import styles from '../../styles/MainPage.module.scss';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Button from '@mui/material/Button';
 import { Board, StoreMainPage } from '../../types/Types';
 import { Typography, OutlinedInput } from '@mui/material';
 
