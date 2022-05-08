@@ -7,6 +7,7 @@ import { addBoard } from '../../stores/boards/slices';
 import { useEffect, useState } from 'react';
 import DeleteBoardPopUp from './DeleteBoardPopUp';
 import Link from 'next/link';
+import { Typography } from '@mui/material';
 
 export default function MainBoard({ board }: PropMain) {
   const [statusPop, setStatusPop] = useState(false);
@@ -14,18 +15,24 @@ export default function MainBoard({ board }: PropMain) {
 
   const handleClickBin = () => setStatusPop(true);
 
+  const titleStyle = { fontSize: 16, fontWeight: '700', cursor: 'pointer' };
+
   useEffect(() => {
     dispatch(addBoard(board));
   }, []);
 
   return (
-    <Link href="/board">
+    <>
       <div className={styles.board}>
-        <h5>{(board as Board).title}</h5>
+        <Link href={'/board'}>
+          <Typography variant="h5" sx={titleStyle}>
+            {(board as Board).title}
+          </Typography>
+        </Link>
         {/* <FontAwesomeIcon icon={faStar} className={styles.star} /> */}
         <FontAwesomeIcon icon={faTrash} className={styles.trash} onClick={handleClickBin} />
         {statusPop ? <DeleteBoardPopUp setStatus={setStatusPop} board={board as Board} /> : ''}
       </div>
-    </Link>
+    </>
   );
 }
