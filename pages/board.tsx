@@ -9,13 +9,11 @@ const Board = () => {
       <BoardControls />
       <main>
         <Grid container spacing={2}>
-          {columns.map(({ id, title }) => {
-            return (
-              <Grid key={id} item>
-                {title}
-              </Grid>
-            );
-          })}
+          {columns.map(({ id, title }) => (
+            <Grid key={id} item>
+              {title}
+            </Grid>
+          ))}
         </Grid>
       </main>
     </>

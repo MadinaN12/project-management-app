@@ -11,7 +11,7 @@ export const storeSlice = createSlice({
   initialState,
   reducers: {
     setColumns(state, action: PayloadAction<ColumnResponse>) {
-      state.columns = state.columns.concat(action.payload);
+      if (state.columns.length < 10) state.columns = state.columns.concat(action.payload);
     },
   },
 });
