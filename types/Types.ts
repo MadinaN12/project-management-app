@@ -8,3 +8,7 @@ export type Board = {
   id?: number | string | undefined;
   info?: string;
 };
+
+export type StoreMainPage = {
+  refreshBoard: VoidFunction | unknown;
+};

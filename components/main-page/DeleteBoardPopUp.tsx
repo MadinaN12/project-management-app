@@ -3,19 +3,20 @@ import { useDispatch } from 'react-redux';
 import { Board } from '../../types/Types';
 import { deleteBoard } from './PostNewBoard';
 import { refreshBoard } from '../../stores/boards/slices';
+import { SetStateAction } from 'react';
 
 export default function DeleteBoardPopUp({
   setStatus,
   board,
 }: {
-  setStatus: unknown;
+  setStatus: React.Dispatch<React.SetStateAction<boolean>>;
   board: Board;
 }) {
   const token =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNTc5ZWIwMC01ODk1LTQ0YWUtOWQ4NC1iYjMxYjgwZjQzYmQiLCJsb2dpbiI6Im5hbWUiLCJpYXQiOjE2NTE4ODY4MjF9.uh1bOO9rPHP7N03ok0DRPMUO1EVwtil5ALbi9VTQmgI';
   const dispatch = useDispatch();
 
-  const handleClose = () => {
+  const handleSubmit = () => {
     deleteBoard(board, token);
     setStatus(false);
     dispatch(refreshBoard('a'));
@@ -27,6 +28,8 @@ export default function DeleteBoardPopUp({
     backgroundColor: 'rgb(255 255 255)',
     m: '10% auto',
   };
+
+  const handleClose = () => setStatus(false);
 
   return (
     <>
@@ -43,7 +46,7 @@ export default function DeleteBoardPopUp({
           <Typography id="modal-modal-description" sx={{ mt: 2, mb: 2 }}>
             Are you sure to delete the current board?
           </Typography>
-          <Button variant="contained" onClick={handleClose}>
+          <Button variant="contained" onClick={handleSubmit}>
             DElete
           </Button>
         </Box>

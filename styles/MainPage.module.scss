@@ -1,14 +1,12 @@
 .boards {
   padding: 2% 7%;
 
-  h1 {
-    font-size: 18px;
+  h6 {
     text-transform: uppercase;
     font-weight: 700;
     text-shadow: 0 0 1.2px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
       'Open Sans', 'Helvetica Neue', sans-serif;
-    margin-bottom: 2%;
   }
 
   section {
@@ -21,7 +19,7 @@
 }
 
 .boards * {
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .board {
@@ -33,10 +31,7 @@
   border-radius: 10px;
   padding: 1%;
   margin-bottom: 1%;
-
-  h5 {
-    font-size: 16px;
-  }
+  cursor: pointer;
 }
 
 .star,

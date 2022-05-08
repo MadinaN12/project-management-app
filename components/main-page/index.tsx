@@ -1,17 +1,15 @@
 import MainBoard from './MainBoard';
 import styles from '../../styles/MainPage.module.scss';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
-import CreateBoardPopUp from './CreateBoardPopUp';
-import { Board } from '../../types/Types';
+import { Board, StoreMainPage } from '../../types/Types';
 import { Typography, OutlinedInput } from '@mui/material';
 
 export default function MainPageComponent() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const select = useSelector((state) => state.refreshBoard);
-  console.log();
+  const select = useSelector((state) => (state as StoreMainPage).refreshBoard);
 
   useEffect(() => {
     async function fetchs() {
@@ -30,10 +28,15 @@ export default function MainPageComponent() {
     fetchs();
   }, [select]);
 
-  const handleChangeInput = (e) => {
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const elLength = e.target.value.length;
     if (elLength) {
-      setFilteredData(data.filter((el: Board) => el.title.slice(0, elLength) === e.target.value));
+      setFilteredData(
+        data.filter(
+          (el: Board) =>
+            (el.title as string).toLowerCase().slice(0, elLength) === e.target.value.toLowerCase()
+        )
+      );
     } else {
       setFilteredData(data);
     }
@@ -41,8 +44,7 @@ export default function MainPageComponent() {
 
   return (
     <div className={styles.boards}>
-      <Button variant="contained">Create</Button>
-      <Typography variant="h1" sx={{ mt: 2 }}>
+      <Typography variant="h6" sx={{ mt: 2 }}>
         Your Workspace
       </Typography>
       <OutlinedInput
@@ -50,12 +52,9 @@ export default function MainPageComponent() {
         sx={{ mt: 2, mb: 2 }}
         onChange={handleChangeInput}
       />
-
       <section>
-        {filteredData.map((board) => <MainBoard board={board} key={board.id} />) || ''}
+        {filteredData.map((board) => <MainBoard board={board} key={(board as Board).id} />) || ''}
       </section>
     </div>
   );
 }
-
-//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNTc5ZWIwMC01ODk1LTQ0YWUtOWQ4NC1iYjMxYjgwZjQzYmQiLCJsb2dpbiI6Im5hbWUiLCJpYXQiOjE2NTE4ODY4MjF9.uh1bOO9rPHP7N03ok0DRPMUO1EVwtil5ALbi9VTQmgI
