@@ -8,3 +8,8 @@ export type ColumnResponse = {
   title: string;
   order: number;
 };
+
+export type ModalProps = {
+  active: boolean;
+  setActive: (value: boolean) => void;
+};
