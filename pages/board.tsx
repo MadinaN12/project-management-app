@@ -1,16 +1,19 @@
 import { Grid } from '@mui/material';
 import BoardControls from '../components/board/controls';
+import { useAppSelector } from '../hooks/redux';
 
 const Board = () => {
+  const { columns } = useAppSelector((state) => state.boardReducer);
   return (
     <>
       <BoardControls />
       <main>
         <Grid container spacing={2}>
-          <Grid item>1 column</Grid>
-          <Grid item>2 column</Grid>
-          <Grid item>3 column</Grid>
-          <Grid item>4 column</Grid>
+          {columns.map(({ id, title }) => (
+            <Grid key={id} item>
+              {title}
+            </Grid>
+          ))}
         </Grid>
       </main>
     </>
