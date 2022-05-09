@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import Image from 'next/image';
 import router from 'next/router';
 import BoardImage from '../../images/board.png';
@@ -16,9 +17,9 @@ export const ProductsSection = () => {
             your teamwork grows. Manage projects, organize tasks, and build team spirit—all in one
             place.
           </p>
-          <button className={styles.topPart_btn} onClick={() => router.push('/signup')}>
+          <Button variant="outlined" size="large" onClick={() => router.push('/signup')}>
             Start doing →
-          </button>
+          </Button>
           <Image src={BoardImage}></Image>
         </div>
       </div>

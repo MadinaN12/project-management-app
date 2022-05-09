@@ -3,6 +3,7 @@ import router from 'next/router';
 import { useState } from 'react';
 import HeroImage from '../../images/hero.png';
 import { EmailForm } from './EmailForm';
+import { FormGroup, TextField } from '@mui/material';
 import styles from '../../styles/welcome/HeroSection.module.scss';
 
 export const HeroSection = () => {

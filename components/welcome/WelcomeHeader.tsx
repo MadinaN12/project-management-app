@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import Image from 'next/image';
 import router from 'next/router';
 import { useState, useEffect } from 'react';
@@ -21,12 +22,12 @@ export const WelcomeHeader = () => {
     <header className={`${styles.welcomeHeader} ${styles[headerTransparent]}`}>
       <Image src={TrelloImage} width={126} height={36}></Image>
       <div className={styles.logBtns}>
-        <button className={styles.btns} onClick={() => router.push('/login')}>
+        <Button variant="text" size="small" onClick={() => router.push('/login')}>
           Log in
-        </button>
-        <button className={styles.btns} onClick={() => router.push('/signup')}>
+        </Button>
+        <Button variant="contained" size="small" onClick={() => router.push('/signup')}>
           Sign up
-        </button>
+        </Button>
       </div>
     </header>
   );
