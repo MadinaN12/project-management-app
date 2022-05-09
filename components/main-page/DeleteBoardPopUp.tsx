@@ -16,9 +16,11 @@ export default function DeleteBoardPopUp({
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
+    console.log(board);
     deleteBoard(board, token);
     setStatus(false);
     dispatch(refreshBoard('a'));
+    setTimeout(() => dispatch(refreshBoard('a')), 500);
   };
 
   const boxStyle = {
