@@ -16,9 +16,7 @@ const clientSideEmotionCache = createEmotionCache();
 
 const store = setUpStore();
 
-export default function MyApp(props) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-
+export default function MyApp({ Component, emotionCache = clientSideEmotionCache, pageProps }) {
   return (
     <Provider store={store}>
       <CacheProvider value={emotionCache}>
@@ -26,7 +24,6 @@ export default function MyApp(props) {
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
         <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <Component {...pageProps} />
         </ThemeProvider>
@@ -36,7 +33,7 @@ export default function MyApp(props) {
 }
 
 MyApp.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  emotionCache: PropTypes.object,
-  pageProps: PropTypes.object.isRequired,
+  // Component: React.ReactNode | JSX.Element | React.ElementType | React.Component,
+  // emotionCache: PropTypes.object | object,
+  // pageProps: PropTypes.object.isRequired | object,
 };

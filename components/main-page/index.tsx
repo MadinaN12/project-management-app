@@ -9,7 +9,6 @@ export default function MainPageComponent() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const select = useSelector((state) => (state as StoreMainPage).refreshBoard);
-  console.log(select);
 
   useEffect(() => {
     async function fetchs() {
@@ -23,7 +22,6 @@ export default function MainPageComponent() {
       const data = await response.json();
       setData(data);
       setFilteredData(data);
-      console.log(data);
     }
 
     fetchs();
