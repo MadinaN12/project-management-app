@@ -2,7 +2,7 @@ import MainBoard from './MainBoard';
 import styles from '../../styles/MainPage.module.scss';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Board, StoreMainPage } from '../../types/Types';
+import { Board, StoreMainPage } from '../../types/types';
 import { Typography, OutlinedInput } from '@mui/material';
 
 export default function MainPageComponent() {

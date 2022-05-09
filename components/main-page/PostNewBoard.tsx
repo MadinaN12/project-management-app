@@ -1,4 +1,4 @@
-import { Board } from '../../types/Types';
+import { Board } from '../../types/types';
 
 export async function postDataBoard(obj: Board, token: string) {
   if (obj.title && obj.title.length) {

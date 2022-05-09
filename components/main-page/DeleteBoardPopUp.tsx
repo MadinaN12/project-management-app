@@ -1,6 +1,6 @@
 import { Button, Modal, Box, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { Board } from '../../types/Types';
+import { Board } from '../../types/types';
 import { deleteBoard } from './PostNewBoard';
 import { refreshBoard } from '../../stores/boards/slices';
 

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faTrash } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles/MainPage.module.scss';
-import { Board, PropMain } from '../../types/Types';
+import { Board, PropMain } from '../../types/types';
 import { useDispatch } from 'react-redux';
 import { addBoard } from '../../stores/boards/slices';
 import { useEffect, useState } from 'react';
