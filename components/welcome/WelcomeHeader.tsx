@@ -7,6 +7,7 @@ import styles from '../../styles/welcome/WelcomeHeader.module.scss';
 
 export const WelcomeHeader = () => {
   const [headerTransparent, setHeaderTransparent] = useState('');
+
   useEffect(() => {
     const onScroll = () => {
       if (window.pageYOffset > 70) {
@@ -15,9 +16,12 @@ export const WelcomeHeader = () => {
         setHeaderTransparent('');
       }
     };
+
     window.addEventListener('scroll', onScroll, { passive: true });
+
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
   return (
     <header className={`${styles.welcomeHeader} ${styles[headerTransparent]}`}>
       <Image src={TrelloImage} width={126} height={36}></Image>
