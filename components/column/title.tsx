@@ -15,7 +15,7 @@ const ColumnTitle = ({ title }: { title: string }) => {
           <FontAwesomeIcon icon={faTrash} />
         </IconButton>
       </Grid>
-      <ConfirmModal active={modalActive} setActive={setModalActive} />
+      <ConfirmModal title={title} active={modalActive} setActive={setModalActive} />
     </>
   );
 };

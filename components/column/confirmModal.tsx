@@ -6,10 +6,18 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
-import { ModalProps } from '../../types/types';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { storeSlice } from '../../store/reducers/storeSlice';
+import { ConfirmModalProps } from '../../types/types';
 
-const ConfirmModal = ({ active, setActive }: ModalProps) => {
+const ConfirmModal = ({ title, active, setActive }: ConfirmModalProps) => {
+  const { columns } = useAppSelector((state) => state.boardReducer);
+  const { deleteColumns } = storeSlice.actions;
+  const dispatch = useAppDispatch();
+
   const handleClose = () => {
+    const res = columns.filter((item) => item.id !== title);
+    dispatch(deleteColumns(res));
     setActive(false);
   };
 
@@ -27,10 +35,10 @@ const ConfirmModal = ({ active, setActive }: ModalProps) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button variant="outlined" color="error" onClick={() => setActive(false)}>
+        <Button variant="outlined" color="error" onClick={handleClose}>
           Delete
         </Button>
-        <Button variant="contained" onClick={handleClose} autoFocus>
+        <Button variant="contained" onClick={() => setActive(false)} autoFocus>
           Close
         </Button>
       </DialogActions>
