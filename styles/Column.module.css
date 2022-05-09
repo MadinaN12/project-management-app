@@ -1,6 +1,13 @@
-.column {
+.columnGrid {
   min-width: 272px;
   max-width: 272px;
-  min-height: 80%;
+  min-height: calc(100vh - 150px);
   margin-left: 8px;
+  box-shadow: none;
+  background-color: '#eceff1';
+}
+
+.column {
+  max-height: calc(100vh - 200px);
+  overflow: auto;
 }
