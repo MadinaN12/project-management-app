@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles/MainPage.module.scss';
 import { Board, PropMain } from '../../types/types';
 import { useDispatch } from 'react-redux';
@@ -19,12 +19,12 @@ export default function MainBoard({ board }: PropMain) {
 
   useEffect(() => {
     dispatch(addBoard(board));
-  }, [dispatch]);
+  }, []);
 
   return (
     <>
       <div className={styles.board}>
-        <Link href={'/board'}>
+        <Link href={'/board'} passHref>
           <Typography variant="h5" sx={titleStyle}>
             {(board as Board).title}
           </Typography>
