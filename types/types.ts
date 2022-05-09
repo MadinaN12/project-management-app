@@ -21,5 +21,5 @@ export type Board = {
 };
 
 export type StoreMainPage = {
-  refreshBoard: VoidFunction | unknown;
+  refreshBoard: VoidFunction | unknown | undefined;
 };
