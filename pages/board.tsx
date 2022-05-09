@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material';
+import BoardColumn from '../components/board/column';
 import BoardControls from '../components/board/controls';
 import { useAppSelector } from '../hooks/redux';
 
@@ -15,6 +16,7 @@ const Board = () => {
             </Grid>
           ))}
         </Grid>
+        <BoardColumn />
       </main>
     </>
   );
