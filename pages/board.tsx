@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import BoardColumn from '../components/board/column';
+import BoardColumn from '../components/column/column';
 import BoardControls from '../components/board/controls';
 import { useAppSelector } from '../hooks/redux';
 
