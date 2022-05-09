@@ -8,7 +8,7 @@ const BoardControls = () => {
 
   return (
     <>
-      <AppBar sx={{ bgcolor: '#bbdefb', minHeight: '55px' }} position="static">
+      <AppBar sx={{ bgcolor: '#bbdefb', maxHeight: '55px' }} position="static">
         <Toolbar variant="dense">
           <Logo />
           <Button variant="contained" onClick={() => setModalActive(true)} sx={{ margin: 1 }}>

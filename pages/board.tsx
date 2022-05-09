@@ -5,10 +5,19 @@ import { useAppSelector } from '../hooks/redux';
 
 const Board = () => {
   const { columns } = useAppSelector((state) => state.boardReducer);
+
+  const gridSx = {
+    gap: 2,
+    backgroundColor: '#448aff',
+    flexWrap: 'nowrap',
+    maxWidth: '100vw',
+    overflow: 'auto',
+  };
+
   return (
-    <Grid container>
+    <Grid container sx={{ backgroundColor: '#448aff', height: '100vh' }}>
       <BoardControls />
-      <Grid container sx={{ gap: 2, backgroundColor: '#448aff' }}>
+      <Grid container sx={gridSx}>
         {columns.map(({ id, title }) => (
           <Grid key={id} item>
             <BoardColumn title={title} />
