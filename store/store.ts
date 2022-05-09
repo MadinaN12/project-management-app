@@ -1,8 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import boardReducer from './reducers/storeSlice';
+import boardSlice, { boardRef } from '../stores/boards/slices';
 
 export const rootReducer = combineReducers({
   boardReducer,
+  boards: boardSlice,
+  refreshBoard: boardRef,
 });
 
 export const setUpStore = () => {

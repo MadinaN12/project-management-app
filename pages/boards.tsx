@@ -5,9 +5,7 @@ import { store } from '../stores/boards/store';
 export default function MainPage() {
   return (
     <div>
-      <Provider store={store}>
-        <MainPageComponent />
-      </Provider>
+      <MainPageComponent />
     </div>
   );
 }
