@@ -8,15 +8,13 @@ const Board = () => {
   return (
     <Grid container>
       <BoardControls />
-      <main style={{ minHeight: '100vh' }}>
-        <Grid container sx={{ gap: 2, backgroundColor: '#448aff' }}>
-          {columns.map(({ id, title }) => (
-            <Grid key={id} item>
-              <BoardColumn title={title} />
-            </Grid>
-          ))}
-        </Grid>
-      </main>
+      <Grid container sx={{ gap: 2, backgroundColor: '#448aff' }}>
+        {columns.map(({ id, title }) => (
+          <Grid key={id} item>
+            <BoardColumn title={title} />
+          </Grid>
+        ))}
+      </Grid>
     </Grid>
   );
 };
