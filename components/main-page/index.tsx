@@ -23,6 +23,7 @@ export default function MainPageComponent() {
       const data = await response.json();
       setData(data);
       setFilteredData(data);
+      console.log(data);
     }
 
     fetchs();

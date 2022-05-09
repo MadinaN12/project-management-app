@@ -19,7 +19,7 @@ export default function MainBoard({ board }: PropMain) {
 
   useEffect(() => {
     dispatch(addBoard(board));
-  }, []);
+  }, [board, dispatch]);
 
   return (
     <>
