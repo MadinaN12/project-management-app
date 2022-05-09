@@ -5,3 +5,13 @@ export interface IEmailForm {
   emailInput: string;
   handleSubmitBtn: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
+export type Column = {
+  title: string;
+  order: number;
+};
+
+export type ColumnResponse = {
+  id: string;
+  title: string;
+  order: number;
+};
