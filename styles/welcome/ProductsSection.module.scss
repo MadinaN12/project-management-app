@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+
+#products {
+  .container {
+    width: 1140px;
+    padding: 80px 15px;
+    .products__topPart {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .topPart_title {
+        width: 80%;
+        font-size: 2.25rem;
+        line-height: 1.33333333;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-family: 'Hammersmith One', sans-serif;
+        font-weight: 400;
+        text-align: center;
+      }
+      .topPart_paragraph {
+        width: 80%;
+        text-align: center;
+        font-family: 'Hammersmith One', sans-serif;
+        font-size: 20px;
+        font-weight: 200;
+        line-height: 1.5;
+        color: #091e42;
+      }
+    }
+  }
+}

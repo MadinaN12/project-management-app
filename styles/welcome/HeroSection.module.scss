@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+
+#hero {
+  background: linear-gradient(0deg, #fff, #eae6ff 100%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  .container {
+    width: 1140px;
+    padding: 112px 15px 80px;
+    display: flex;
+    justify-content: space-between;
+    .heroLeftPart {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      text-align: left;
+      width: 635px;
+      .heroTitle {
+        font-family: 'Hammersmith One', sans-serif;
+        font-weight: 400;
+        width: 100%;
+        text-align: left;
+        font-size: 3rem;
+        line-height: 1.25;
+      }
+      .heroParagraph {
+        font-family: 'Hammersmith One', sans-serif;
+        font-size: 20px;
+        font-weight: 200;
+        line-height: 1.5;
+        color: #091e42;
+      }
+      .heroForm {
+        display: flex;
+        width: 100%;
+        gap: 20px;
+        box-sizing: border-box;
+      }
+    }
+    .heroRightPart {
+      width: 445px;
+      height: 575px;
+    }
+  }
+}

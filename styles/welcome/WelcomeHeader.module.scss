@@ -1,0 +1,18 @@
+.welcomeHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 20px;
+  padding: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 1s ease 0s;
+  background-color: rgba(255, 255, 255, 0);
+}
+.white {
+  background-color: white;
+  box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+  z-index: 4;
+}
