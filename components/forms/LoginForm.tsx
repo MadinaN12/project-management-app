@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { Alert, AlertTitle, Button, Collapse, Slide, TextField, Typography } from '@mui/material';
-import styles from '../../styles/form/Form.module.scss';
 import { LoginUser } from '../../api/user';
-import { FormError } from '../../utils/error';
+import styles from '../../styles/form/Form.module.scss';
 
 const LoginForm = () => {
   const emailInput = useRef() as React.MutableRefObject<HTMLInputElement>;

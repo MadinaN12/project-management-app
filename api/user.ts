@@ -1,10 +1,12 @@
 import { ILoginResponse } from '../types/userApiTypes';
 
 const API_URL = 'https://morning-spire-63546.herokuapp.com/';
+
 enum API_ENDPOINTS {
   SIGNUP = 'signup',
   SIGNIN = 'signin',
 }
+
 export const PostUser = async (name: string, login: string, password: string) => {
   const response = await fetch(`${API_URL}${API_ENDPOINTS.SIGNUP}`, {
     method: 'POST',
