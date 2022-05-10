@@ -1,7 +1,9 @@
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button, TextField, Typography } from '@mui/material';
 import styles from '../../styles/form/Form.module.scss';
+import { LoginUser } from '../../api/user';
+import { FormError } from '../../utils/error';
 
 const LoginForm = () => {
   const emailInput = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -14,6 +16,14 @@ const LoginForm = () => {
     const emailCur = emailInput.current.value;
     const passwordCur = passwordInput.current.value;
     checkEmptyFields(emailCur, passwordCur);
+    try {
+      const response = await LoginUser(emailCur, passwordCur);
+      console.log(response);
+      if ('message' in response) {
+        throw new Error(response.message);
+      }
+      localStorage.setItem('token', response.token);
+    } catch (error) {}
   }
 
   function checkEmptyFields(email: string, password: string) {

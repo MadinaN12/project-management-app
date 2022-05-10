@@ -1,3 +1,5 @@
+import { ILoginResponse } from '../types/userApiTypes';
+
 const API_URL = 'https://morning-spire-63546.herokuapp.com/';
 enum API_ENDPOINTS {
   SIGNUP = 'signup',
@@ -15,8 +17,7 @@ export const PostUser = async (name: string, login: string, password: string) =>
   console.log(response);
 };
 
-export const LoginUser = async (login: string, password: string) => {
-  console.log({ login, password });
+export const LoginUser = async (login: string, password: string): Promise<ILoginResponse> => {
   const response = await fetch(`${API_URL}${API_ENDPOINTS.SIGNIN}`, {
     method: 'POST',
     headers: {
@@ -25,6 +26,6 @@ export const LoginUser = async (login: string, password: string) => {
     },
     body: JSON.stringify({ login, password }),
   });
-  const data = await response.json();
-  console.log(data);
+  const data: ILoginResponse = await response.json();
+  return data;
 };
