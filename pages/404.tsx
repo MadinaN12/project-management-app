@@ -18,7 +18,7 @@ export default function ErrorPage() {
   useEffect(() => {
     setTimeout(() => router.push('/'), 3000);
     if (seconds) setInterval(() => setSeconds((e) => e - 0.5), 1000);
-  }, []);
+  }, [router, seconds]);
 
   return (
     <>
