@@ -89,7 +89,7 @@ const LoginForm = () => {
         </Button>
         <hr className={styles.separateLine} />
         <ul className={styles.formLinks}>
-          <li className={styles.formLinkText}>Don't have an account ?</li>
+          <li className={styles.formLinkText}>Don&apos;t have an account ?</li>
           <li className={styles.formLinkText}>
             <Link href={'/signup'}>Sign up</Link>
           </li>
@@ -98,7 +98,7 @@ const LoginForm = () => {
           <Slide in={errorNotification} direction="left">
             <Alert severity="error" style={{ position: 'fixed', top: 20, right: 20 }}>
               <AlertTitle>
-                <strong>Error:</strong> {errorMessage}
+                <strong>Error: </strong> {errorMessage}
               </AlertTitle>
             </Alert>
           </Slide>
