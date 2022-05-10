@@ -1,11 +1,6 @@
-import { Button, InputBase } from '@mui/material';
+import { Button, Grid, InputBase } from '@mui/material';
 import React, { useState } from 'react';
-
-export type TitleInputProps = {
-  title: string;
-  setOpen: (value: boolean) => void;
-  setNewTitle: (value: string) => void;
-};
+import { TitleInputProps } from '../../types/types';
 
 const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
   const [titleInput, setTitleInput] = useState(title);
@@ -22,12 +17,27 @@ const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
     backgroundColor: 'white',
   };
 
+  const gridSx = {
+    displayFlex: 'space-between',
+    justifyContent: 'space-around',
+  };
+
+  const btnSx = {
+    fontSize: '10px',
+    maxWidth: '20px',
+    padding: '6px 0px',
+  };
+
   return (
     <>
-      <div>
-        <Button onClick={() => setOpen(false)}>Colose</Button>
-        <Button onClick={handleSubmit}>Submit</Button>
-      </div>
+      <Grid container sx={gridSx}>
+        <Button variant="contained" sx={btnSx} onClick={() => setOpen(false)}>
+          Close
+        </Button>
+        <Button variant="contained" sx={btnSx} size="small" color="success" onClick={handleSubmit}>
+          Submit
+        </Button>
+      </Grid>
       <InputBase
         sx={inputSx}
         autoFocus

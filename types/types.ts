@@ -19,3 +19,9 @@ export type ConfirmModalProps = {
   active: boolean;
   setActive: (value: boolean) => void;
 };
+
+export type TitleInputProps = {
+  title: string;
+  setOpen: (value: boolean) => void;
+  setNewTitle: (value: string) => void;
+};

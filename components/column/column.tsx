@@ -1,4 +1,5 @@
 import { Grid, Paper } from '@mui/material';
+import ColumnFooter from './columnFooter';
 import ColumnHeader from './columnHeader';
 
 const BoardColumn = ({ title }: { title: string }) => {
@@ -35,6 +36,7 @@ const BoardColumn = ({ title }: { title: string }) => {
         velit commodi perspiciatis, earum aut fugiat veniam deserunt eos fugit laudantium, beatae
         incidunt, recusandae repellendus pariatur.
       </Paper>
+      <ColumnFooter title={title} />
     </Grid>
   );
 };
