@@ -1,5 +1,6 @@
 import {
   Button,
+  CssBaseline,
   Dialog,
   DialogActions,
   DialogContent,
@@ -35,8 +36,10 @@ const Modal = ({ active, setActive }: ModalProps) => {
   return (
     <Dialog open={active}>
       <DialogTitle>Create column</DialogTitle>
+      <CssBaseline />
       <DialogContent>
         <TextField
+          margin="dense"
           id="outlined-basic"
           label="Title"
           variant="outlined"

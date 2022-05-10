@@ -1,23 +1,22 @@
-import { Grid, IconButton, Typography } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import ConfirmModal from './confirmModal';
-import { useState } from 'react';
+import { Typography } from '@mui/material';
+import React, { useState } from 'react';
+import TitleInput from './titleInput';
 
-const ColumnTitle = ({ title }: { title: string }) => {
-  const [modalActive, setModalActive] = useState(false);
+const Title = ({ title }: { title: string }) => {
+  const [open, setOpen] = useState(false);
+  const [newTitle, setNewTitle] = useState(title);
 
   return (
     <>
-      <Grid container sx={{ displayFlex: 'space-between', justifyContent: 'space-between' }}>
-        <Typography>{title}</Typography>
-        <IconButton aria-label="delete" size="small" onClick={() => setModalActive(true)}>
-          <FontAwesomeIcon icon={faTrash} />
-        </IconButton>
-      </Grid>
-      <ConfirmModal title={title} active={modalActive} setActive={setModalActive} />
+      {open ? (
+        <TitleInput title={newTitle} setOpen={setOpen} setNewTitle={setNewTitle} />
+      ) : (
+        <Typography onClick={() => setOpen(!open)} sx={{ width: '40%', cursor: 'pointer' }}>
+          {newTitle}
+        </Typography>
+      )}
     </>
   );
 };
 
-export default ColumnTitle;
+export default Title;

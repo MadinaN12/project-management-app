@@ -1,5 +1,5 @@
 import { Grid, Paper } from '@mui/material';
-import ColumnTitle from './title';
+import ColumnHeader from './columnHeader';
 
 const BoardColumn = ({ title }: { title: string }) => {
   const columSx = {
@@ -7,7 +7,7 @@ const BoardColumn = ({ title }: { title: string }) => {
     maxWidth: '272px',
     borderRadius: 2,
     boxShadow: 'none',
-    marginLeft: '8px',
+    margin: '0 8px 0 8px',
     backgroundColor: '#eceff1',
     padding: 1,
   };
@@ -19,7 +19,7 @@ const BoardColumn = ({ title }: { title: string }) => {
 
   return (
     <Grid container direction="column" sx={columSx}>
-      <ColumnTitle title={title} />
+      <ColumnHeader title={title} />
       <Paper sx={columnInner}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus odit dicta enim at impedit
         velit commodi perspiciatis, earum aut fugiat veniam deserunt eos fugit laudantium, beatae

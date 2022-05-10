@@ -11,7 +11,7 @@ const BoardControls = () => {
       <AppBar sx={{ bgcolor: '#bbdefb', maxHeight: '55px' }} position="static">
         <Toolbar variant="dense">
           <Logo />
-          <Button variant="contained" onClick={() => setModalActive(true)} sx={{ margin: 1 }}>
+          <Button variant="contained" onClick={() => setModalActive(true)} sx={{ m: 1 }}>
             + add column
           </Button>
         </Toolbar>
