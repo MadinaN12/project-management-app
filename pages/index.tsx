@@ -1,5 +1,16 @@
 import type { NextPage } from 'next';
+import { WelcomeHeader } from '../components/welcome/WelcomeHeader';
+import { HeroSection } from '../components/welcome/HeroSection';
+import { ProductsSection } from '../components/welcome/ProductsSection';
 
-const Home: NextPage = () => <h1>Project management app</h1>;
+const Welcome: NextPage = () => {
+  return (
+    <>
+      <WelcomeHeader />
+      <HeroSection />
+      <ProductsSection />
+    </>
+  );
+};
 
-export default Home;
+export default Welcome;

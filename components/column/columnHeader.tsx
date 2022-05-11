@@ -12,11 +12,9 @@ const ColumnHeader = ({ title }: { title: string }) => {
   };
 
   return (
-    <>
-      <Grid container sx={columnSx}>
-        <Title title={title} />
-      </Grid>
-    </>
+    <Grid container sx={columnSx}>
+      <Title title={title} />
+    </Grid>
   );
 };
 
