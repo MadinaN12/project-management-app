@@ -21,7 +21,7 @@ const BoardControls = () => {
     <header>
       <AppBar sx={{ bgcolor: '#bbdefb' }} position="static">
         <Toolbar variant="dense">
-          <Logo />
+          <Logo width={126} height={36} onClick={() => undefined} />
           <Button variant="contained" onClick={handleClick} sx={{ margin: 1 }}>
             + add column
           </Button>
