@@ -1,10 +1,4 @@
-export enum ErrorTypeKind {
-  name = 'name',
-  email = 'email',
-  password = 'password',
-}
-
-type ErrorType = ErrorTypeKind.name | ErrorTypeKind.email | ErrorTypeKind.password;
+import { ErrorType } from '../types/types';
 
 export class FormError extends Error {
   type: string;
