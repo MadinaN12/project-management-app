@@ -1,4 +1,4 @@
-import { ILoginResponse } from '../types/userApiTypes';
+import { ILoginResponse } from '../types/types';
 
 const API_URL = 'https://morning-spire-63546.herokuapp.com/';
 
@@ -16,7 +16,6 @@ export const PostUser = async (name: string, login: string, password: string) =>
     },
     body: JSON.stringify({ name, login, password }),
   });
-  console.log(response);
 };
 
 export const LoginUser = async (login: string, password: string): Promise<ILoginResponse> => {

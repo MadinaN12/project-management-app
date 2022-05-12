@@ -19,7 +19,6 @@ const LoginForm = () => {
     checkEmptyFields(emailCur, passwordCur);
     try {
       const response = await LoginUser(emailCur, passwordCur);
-      console.log(response);
       if ('message' in response) {
         throw new Error(response.message);
       }
@@ -28,83 +27,73 @@ const LoginForm = () => {
       if (error instanceof Error) {
         setErrorMessage(error.message);
         setErrorNotification(true);
-        setTimeout(() => {
-          setErrorNotification(false);
-        }, 2000);
+        setTimeout(() => setErrorNotification(false), 2000);
       }
     }
   }
 
   function checkEmptyFields(email: string, password: string) {
-    if (email === '') {
-      setEmptyEmailError(true);
-    } else {
-      setEmptyEmailError(false);
-    }
+    if (email === '') setEmptyEmailError(true);
+    else setEmptyEmailError(false);
 
-    if (password === '') {
-      setEmptyPswError(true);
-    } else {
-      setEmptyPswError(false);
-    }
+    if (password === '') setEmptyPswError(true);
+    else setEmptyPswError(false);
   }
 
   return (
-    <>
-      <form action="" className={styles.formAuth}>
-        <Typography variant="h5" gutterBottom component="h2">
-          Log in to Trello
-        </Typography>
-        <TextField
-          required
-          error={emptyEmailError}
-          id="outlined-required"
-          label="Email"
-          defaultValue=""
-          inputRef={emailInput}
-          helperText={emptyEmailError ? 'Please, enter your email' : ''}
-          fullWidth
-        />
-        <TextField
-          error={emptyPswError}
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          helperText={emptyPswError ? 'Please, enter your password' : ''}
-          inputRef={passwordInput}
-          fullWidth
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          color="success"
-          size="large"
-          fullWidth
-          onClick={(e) => {
-            submitHandler(e);
-          }}
-        >
-          Log in
-        </Button>
-        <hr className={styles.separateLine} />
-        <ul className={styles.formLinks}>
-          <li className={styles.formLinkText}>Don&apos;t have an account ?</li>
-          <li className={styles.formLinkText}>
-            <Link href={'/signup'}>Sign up</Link>
-          </li>
-        </ul>
-        <Collapse in={errorNotification}>
-          <Slide in={errorNotification} direction="left">
-            <Alert severity="error" style={{ position: 'fixed', top: 20, right: 20 }}>
-              <AlertTitle>
-                <strong>Error: </strong> {errorMessage}
-              </AlertTitle>
-            </Alert>
-          </Slide>
-        </Collapse>
-      </form>
-    </>
+    <form action="" className={styles.formAuth}>
+      <Typography variant="h5" gutterBottom component="h2">
+        Log in to Trello
+      </Typography>
+      <TextField
+        required
+        error={emptyEmailError}
+        id="outlined-required"
+        label="Email"
+        defaultValue=""
+        inputRef={emailInput}
+        helperText={emptyEmailError ? 'Please, enter your email' : ''}
+        fullWidth
+      />
+      <TextField
+        error={emptyPswError}
+        id="outlined-password-input"
+        label="Password"
+        type="password"
+        autoComplete="current-password"
+        helperText={emptyPswError ? 'Please, enter your password' : ''}
+        inputRef={passwordInput}
+        fullWidth
+      />
+      <Button
+        type="submit"
+        variant="contained"
+        color="success"
+        size="large"
+        fullWidth
+        onClick={(e) => {
+          submitHandler(e);
+        }}
+      >
+        Log in
+      </Button>
+      <hr className={styles.separateLine} />
+      <ul className={styles.formLinks}>
+        <li className={styles.formLinkText}>Don&apos;t have an account ?</li>
+        <li className={styles.formLinkText}>
+          <Link href={'/signup'}>Sign up</Link>
+        </li>
+      </ul>
+      <Collapse in={errorNotification}>
+        <Slide in={errorNotification} direction="left">
+          <Alert severity="error" style={{ position: 'fixed', top: 20, right: 20 }}>
+            <AlertTitle>
+              <strong>Error: </strong> {errorMessage}
+            </AlertTitle>
+          </Alert>
+        </Slide>
+      </Collapse>
+    </form>
   );
 };
 
