@@ -4,6 +4,7 @@ import router from 'next/router';
 import { useState, useEffect } from 'react';
 import TrelloImage from '../../images/Trello.svg';
 import styles from '../../styles/welcome/WelcomeHeader.module.scss';
+import CreateBtn from './CreateBtnHeader';
 
 export const WelcomeHeader = () => {
   const [headerTransparent, setHeaderTransparent] = useState('');
@@ -26,6 +27,7 @@ export const WelcomeHeader = () => {
     <header className={`${styles.welcomeHeader} ${styles[headerTransparent]}`}>
       <Image src={TrelloImage} width={126} height={36}></Image>
       <div className={styles.logBtns}>
+        <CreateBtn />
         <Button variant="text" size="small" onClick={() => router.push('/login')}>
           Log in
         </Button>

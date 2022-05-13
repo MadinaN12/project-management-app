@@ -1,0 +1,13 @@
+// import styles from '../../styles/header/Header.module.scss';
+// import LogoHeader from './Logo';
+// import { WelcomeHeader } from './WelcomeHeader';
+
+// export default function Header() {
+//   return (
+//     <header>
+//       <nav>
+//         <WelcomeHeader />
+//       </nav>
+//     </header>
+//   );
+// }
