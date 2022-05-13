@@ -32,7 +32,7 @@ export const HeroSection = () => {
           />
         </div>
         <div className={styles.heroRightPart}>
-          <Image src={HeroImage} alt="hero image"></Image>
+          <Image src={HeroImage} alt="hero"></Image>
         </div>
       </div>
     </section>
