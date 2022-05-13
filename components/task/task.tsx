@@ -7,7 +7,7 @@ const Task = ({ title }: { title: string }) => {
     <Paper sx={task.task}>
       <Grid container sx={{ justifyContent: 'space-between' }}>
         {title}
-        <TaskControls />
+        <TaskControls title={title} />
       </Grid>
     </Paper>
   );

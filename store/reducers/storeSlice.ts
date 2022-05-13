@@ -20,6 +20,9 @@ export const storeSlice = createSlice({
     setTasks(state, action: PayloadAction<TaskResponse>) {
       state.tasks = state.tasks.concat(action.payload);
     },
+    deleteTasks(state, action: PayloadAction<TaskResponse[]>) {
+      state.tasks = action.payload;
+    },
   },
 });
 
