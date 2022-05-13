@@ -19,7 +19,7 @@ const ColumnFooter = ({ title }: { title: string }) => {
         >
           Delete
         </Button>
-        <Button variant="contained" sx={btnSx} onClick={() => setTaskModalActive(true)}>
+        <Button variant="contained" sx={column.btn} onClick={() => setTaskModalActive(true)}>
           + Add task
         </Button>
       </Grid>
