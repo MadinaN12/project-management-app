@@ -12,6 +12,6 @@ export async function getBoards(token: string) {
     });
     if (res.status < 300) return await res.json();
   } catch (err) {
-    console.log(err);
+    return null;
   }
 }
