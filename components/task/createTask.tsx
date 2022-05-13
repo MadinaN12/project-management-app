@@ -7,11 +7,13 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { ModalProps } from '../../types/types';
 import { useState } from 'react';
 
 const TaskModal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
 
   const handleClick = () => {
     setActive(false);
@@ -20,6 +22,11 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
   const onTextChanged = (e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
     setTitle(target.value);
+  };
+
+  const onDescriptionChanged = (e: React.ChangeEvent) => {
+    const target = e.target as HTMLInputElement;
+    setDescription(target.value);
   };
 
   return (
@@ -35,6 +42,16 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
           style={{ width: 250 }}
           value={title}
           onChange={onTextChanged}
+        />
+      </DialogContent>
+      <DialogContent>
+        <TextareaAutosize
+          maxRows={4}
+          aria-label="maximum height"
+          placeholder="Description"
+          style={{ width: 250, height: 66, overflow: 'auto' }}
+          value={description}
+          onChange={onDescriptionChanged}
         />
       </DialogContent>
       <DialogContent>
