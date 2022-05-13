@@ -1,6 +1,5 @@
 export const task = {
   taskGrid: {
-    flexDirection: 'column',
     gap: 1,
     padding: 1,
   },
