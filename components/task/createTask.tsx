@@ -10,13 +10,28 @@ import {
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { ModalProps } from '../../types/types';
 import { useState } from 'react';
+import { storeSlice } from '../../store/reducers/storeSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { createTask } from '../../pages/api/createTask';
 
 const TaskModal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const { setTasks } = storeSlice.actions;
+  const dispatch = useAppDispatch();
+  const { tasks, columns } = useAppSelector((state) => state.boardReducer);
 
   const handleClick = () => {
+    const task = {
+      title: title,
+      order: 0,
+      description: description,
+      userId: '1234',
+    };
+    const res = createTask(task);
+    res && dispatch(setTasks(res));
     setActive(false);
+    console.log(tasks, columns);
   };
 
   const onTextChanged = (e: React.ChangeEvent) => {

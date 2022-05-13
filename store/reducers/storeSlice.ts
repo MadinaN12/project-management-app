@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { StoreState } from '../../types/storeTypes';
-import { ColumnResponse } from '../../types/types';
+import { ColumnResponse, TaskResponse } from '../../types/types';
 
 export const initialState: StoreState = {
   columns: [],
+  tasks: [],
 };
 
 export const storeSlice = createSlice({
@@ -15,6 +16,9 @@ export const storeSlice = createSlice({
     },
     deleteColumns(state, action: PayloadAction<ColumnResponse[]>) {
       state.columns = action.payload;
+    },
+    setTasks(state, action: PayloadAction<TaskResponse>) {
+      state.tasks = state.tasks.concat(action.payload);
     },
   },
 });
