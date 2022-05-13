@@ -4,30 +4,34 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Board, StoreMainPage } from '../../types/types';
 import { Typography, OutlinedInput } from '@mui/material';
+import { getBoards } from '../ApiController/getBoards';
+import { useRouter } from 'next/router';
 
 export default function MainPageComponent() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const select = useSelector((state) => (state as StoreMainPage).refreshBoard);
+  const router = useRouter();
+  let token = '';
+
+  if (typeof window !== 'undefined') {
+    token = localStorage.getItem('token') as string;
+  }
 
   useEffect(() => {
-    async function fetchs() {
-      const response = await fetch('https://morning-spire-63546.herokuapp.com/boards', {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNTc5ZWIwMC01ODk1LTQ0YWUtOWQ4NC1iYjMxYjgwZjQzYmQiLCJsb2dpbiI6Im5hbWUiLCJpYXQiOjE2NTE4ODY4MjF9.uh1bOO9rPHP7N03ok0DRPMUO1EVwtil5ALbi9VTQmgI`,
-        },
-      });
-      const data = await response.json();
-      setData(data);
-      setFilteredData(data);
-    }
+    (async function getData() {
+      let res;
+      if (token) {
+        res = await getBoards(token);
+      }
+      if (res) {
+        setData(res);
+        setFilteredData(res);
+      } else router.push('/');
+    })();
+  }, [router, select, token]);
 
-    fetchs();
-  }, [select]);
-
-  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const elLength = e.target.value.length;
     if (elLength) {
       setFilteredData(
@@ -49,10 +53,12 @@ export default function MainPageComponent() {
       <OutlinedInput
         placeholder="Search boards"
         sx={{ mt: 2, mb: 2 }}
-        onChange={handleChangeInput}
+        onChange={handleChangeSearch}
       />
       <section>
-        {filteredData.map((board) => <MainBoard board={board} key={(board as Board).id} />) || ''}
+        {filteredData.length
+          ? filteredData.map((board) => <MainBoard board={board} key={(board as Board).id} />)
+          : ''}
       </section>
     </div>
   );

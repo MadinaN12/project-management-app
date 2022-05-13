@@ -1,8 +1,9 @@
 import { Board } from '../../types/types';
+import { URL, PATH } from '../../utils';
 
 export async function postDataBoard(obj: Board, token: string) {
   if (obj.title && obj.title.length) {
-    const res = await fetch(`https://morning-spire-63546.herokuapp.com/boards`, {
+    const res = await fetch(`${URL}/${PATH.BOARDS}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -15,7 +16,7 @@ export async function postDataBoard(obj: Board, token: string) {
 }
 
 export async function deleteBoard(obj: Board, token: string) {
-  await fetch(`https://morning-spire-63546.herokuapp.com/boards/${obj.id}`, {
+  await fetch(`${URL}/${PATH.BOARDS}/${obj.id}`, {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',

@@ -23,16 +23,15 @@ export default function MainBoard({ board }: PropMain) {
 
   return (
     <>
-      <div className={styles.board}>
+      <figure className={styles.board}>
         <Link href={'/board'} passHref>
           <Typography variant="h5" sx={titleStyle}>
             {(board as Board).title}
           </Typography>
         </Link>
-        {/* <FontAwesomeIcon icon={faStar} className={styles.star} /> */}
         <FontAwesomeIcon icon={faTrash} className={styles.trash} onClick={handleClickBin} />
         {statusPop ? <DeleteBoardPopUp setStatus={setStatusPop} board={board as Board} /> : ''}
-      </div>
+      </figure>
     </>
   );
 }

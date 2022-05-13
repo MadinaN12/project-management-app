@@ -7,6 +7,20 @@
     text-shadow: 0 0 1.2px;
   }
 
+  figure {
+    margin: 1% 0;
+
+    h5 {
+      &:hover {
+        color: white;
+      }
+    }
+
+    &:hover {
+      box-shadow: 2px 2px 20px 4px;
+    }
+  }
+
   section {
     display: flex;
     align-items: center;

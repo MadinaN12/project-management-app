@@ -1,7 +1,7 @@
 import { Button, Modal, Box, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { Board } from '../../types/types';
-import { deleteBoard } from './PostNewBoard';
+import { deleteBoard } from '../ApiController/PostNewBoard';
 import { refreshBoard } from '../../stores/boards/slices';
 
 export default function DeleteBoardPopUp({
