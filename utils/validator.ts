@@ -1,4 +1,4 @@
-import { IValidator } from '../types/types';
+import { IValidator } from '../types/utilsTypes';
 
 export function passwordValidator(pass: string, rePass: string): IValidator {
   if (pass.length === 0) return generateValidatorAnswer(false, 'Please, enter password');
