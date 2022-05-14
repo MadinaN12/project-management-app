@@ -1,6 +1,6 @@
 import { TextField, Button } from '@mui/material';
+import { IEmailForm } from '../../types/registrationTypes';
 import styles from '../../styles/welcome/HeroSection.module.scss';
-import { IEmailForm } from '../../types/types';
 
 export const EmailForm = ({ setEmailInput, emailInput, handleSubmitBtn }: IEmailForm) => {
   return (
