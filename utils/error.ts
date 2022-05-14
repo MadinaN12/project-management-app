@@ -1,4 +1,4 @@
-import { ErrorType } from '../types/types';
+import { ErrorType } from '../types/utilsTypes';
 
 export class FormError extends Error {
   type: string;
