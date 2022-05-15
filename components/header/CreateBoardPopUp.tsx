@@ -1,6 +1,6 @@
 import styles from '../../styles/header/CreatePagePopUp.module.scss';
 import { InputLabel, Input, FormHelperText, Button } from '@mui/material';
-import React, { ChangeEvent, SetStateAction, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import InputLabelPart from './InputLabelPart';
 import { postDataBoard } from '../ApiController/PostNewBoard';
 import { InputRef } from '../../types/types';

@@ -9,7 +9,6 @@ import styles from '../../styles/welcome/WelcomeHeader.module.scss';
 import CreateBtn from './CreateBtnHeader';
 import { StoreMainPage } from '../../types/types';
 import { refreshBoard } from '../../stores/boards/slices';
-import Link from 'next/link';
 
 export const WelcomeHeader = () => {
   const [headerTransparent, setHeaderTransparent] = useState('');
