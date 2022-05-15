@@ -12,6 +12,6 @@ export function updateTask(task: Task) {
       columnId: '1',
     };
   } catch (error) {
-    console.log(error);
+    throw new Error('task not updated');
   }
 }

@@ -12,6 +12,6 @@ export function createTask(task: Task) {
       columnId: task.title,
     };
   } catch (error) {
-    console.log(error);
+    throw new Error('task not created');
   }
 }
