@@ -1226,9 +1226,9 @@
       }
     },
     "node_modules/@types/react-dom": {
-      "version": "18.0.4",
-      "resolved": "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.0.4.tgz",
-      "integrity": "sha512-FgTtbqPOCI3dzZPZoC2T/sx3L34qxy99ITWn4eoSA95qPyXDMH0ALoAqUp49ITniiJFsXUVBtalh/KffMpg21Q==",
+      "version": "18.0.3",
+      "resolved": "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.0.3.tgz",
+      "integrity": "sha512-1RRW9kst+67gveJRYPxGmVy8eVJ05O43hg77G2j5m76/RFJtMbcfAs2viQ2UNsvvDg8F7OfQZx8qQcl6ymygaQ==",
       "devOptional": true,
       "dependencies": {
         "@types/react": "*"
@@ -1616,12 +1616,12 @@
       "dev": true
     },
     "node_modules/axe-core": {
-      "version": "4.4.2",
-      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.4.2.tgz",
-      "integrity": "sha512-LVAaGp/wkkgYJcjmHsoKx4juT1aQvJyPcW09MLCjVTh3V2cc6PnyempiLMNH5iMdfIX/zdbjUx2KDjMLCTdPeA==",
+      "version": "4.4.1",
+      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.4.1.tgz",
+      "integrity": "sha512-gd1kmb21kwNuWr6BQz8fv6GNECPBnUasepcoLbekws23NVBLODdsClRZ+bQ8+9Uomf3Sm3+Vwn0oYG9NvwnJCw==",
       "dev": true,
       "engines": {
-        "node": ">=12"
+        "node": ">=4"
       }
     },
     "node_modules/axobject-query": {
@@ -5528,9 +5528,9 @@
       }
     },
     "@types/react-dom": {
-      "version": "18.0.4",
-      "resolved": "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.0.4.tgz",
-      "integrity": "sha512-FgTtbqPOCI3dzZPZoC2T/sx3L34qxy99ITWn4eoSA95qPyXDMH0ALoAqUp49ITniiJFsXUVBtalh/KffMpg21Q==",
+      "version": "18.0.3",
+      "resolved": "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.0.3.tgz",
+      "integrity": "sha512-1RRW9kst+67gveJRYPxGmVy8eVJ05O43hg77G2j5m76/RFJtMbcfAs2viQ2UNsvvDg8F7OfQZx8qQcl6ymygaQ==",
       "devOptional": true,
       "requires": {
         "@types/react": "*"
@@ -5776,9 +5776,9 @@
       "dev": true
     },
     "axe-core": {
-      "version": "4.4.2",
-      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.4.2.tgz",
-      "integrity": "sha512-LVAaGp/wkkgYJcjmHsoKx4juT1aQvJyPcW09MLCjVTh3V2cc6PnyempiLMNH5iMdfIX/zdbjUx2KDjMLCTdPeA==",
+      "version": "4.4.1",
+      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.4.1.tgz",
+      "integrity": "sha512-gd1kmb21kwNuWr6BQz8fv6GNECPBnUasepcoLbekws23NVBLODdsClRZ+bQ8+9Uomf3Sm3+Vwn0oYG9NvwnJCw==",
       "dev": true
     },
     "axobject-query": {

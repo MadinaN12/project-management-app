@@ -1,0 +1,74 @@
+.boards {
+  padding: 2% 7%;
+
+  h6 {
+    text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: 0 0 1.2px;
+  }
+
+  figure {
+    margin: 1% 0;
+
+    h5 {
+      &:hover {
+        color: white;
+      }
+    }
+
+    &:hover {
+      box-shadow: 2px 2px 20px 4px;
+    }
+  }
+
+  section {
+    display: flex;
+    align-items: center;
+    gap: 2%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.boards * {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.board {
+  width: 200px;
+  height: 100px;
+  background: url('../images/bg-1.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  border-radius: 10px;
+  padding: 1%;
+  margin-bottom: 1%;
+}
+
+.star,
+.trash {
+  opacity: 0.2;
+  position: absolute;
+  right: 9%;
+  bottom: 12%;
+  font-size: 20px;
+  color: white;
+  transition: 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.trash {
+  opacity: 0.2;
+  left: 9%;
+  padding: 6% 6% 0 0;
+}
+
+.active {
+  opacity: 1;
+}

@@ -13,6 +13,9 @@ export const storeSlice = createSlice({
     setColumns(state, action: PayloadAction<ColumnResponse>) {
       if (state.columns.length < 10) state.columns = state.columns.concat(action.payload);
     },
+    deleteColumns(state, action: PayloadAction<ColumnResponse[]>) {
+      state.columns = action.payload;
+    },
   },
 });
 
