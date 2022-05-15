@@ -1,5 +1,5 @@
 import { Grid, Paper } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch } from '../../hooks/redux';
 import { storeSlice } from '../../store/reducers/storeSlice';
 import { task } from '../../styles/styledTask';
 import TaskControls from './taskControls';
@@ -7,11 +7,9 @@ import TaskControls from './taskControls';
 const Task = ({ title }: { title: string }) => {
   const { setTaskId } = storeSlice.actions;
   const dispatch = useAppDispatch();
-  const { taskId } = useAppSelector((state) => state.boardReducer);
 
   const handleClick = (title: string) => {
     dispatch(setTaskId(title));
-    console.log(taskId);
   };
 
   return (

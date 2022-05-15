@@ -26,6 +26,7 @@ const Modal = ({ active, setActive }: ModalProps) => {
     const res = createColumn(column);
     res && dispatch(setColumns(res));
     setActive(false);
+    setTitle('');
   };
 
   const onTextChanged = (e: React.ChangeEvent) => {

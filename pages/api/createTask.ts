@@ -9,7 +9,7 @@ export function createTask(task: Task) {
       description: task.description,
       userId: '1234',
       boardId: '1',
-      columnId: '1',
+      columnId: task.title,
     };
   } catch (error) {
     console.log(error);
