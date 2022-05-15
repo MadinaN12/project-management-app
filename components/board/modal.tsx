@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { ModalProps } from '../../types/types';
 import { useAppDispatch } from '../../hooks/redux';
-import { createColumn } from '../../pages/api/createColumn';
+import { createColumn } from '../../api/column/createColumn';
 import { storeSlice } from '../../store/reducers/storeSlice';
 import { useState } from 'react';
 
