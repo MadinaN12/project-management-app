@@ -1,21 +1,17 @@
-import {
-  Alert,
-  AlertTitle,
-  Button,
-  Collapse,
-  Link,
-  Slide,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 import { useRef, useState } from 'react';
 import { LoginUser, PostUser } from '../../api/user';
 import { ErrorTypeKind } from '../../types/utilsTypes';
 import { FormError } from '../../utils/error';
 import { emailValidator, nameValidator, passwordValidator } from '../../utils/validator';
+import AdditionalMenu from './AdditionalMenu';
+import PopupNotification from '../PopupNotification';
+import { useRouter } from 'next/router';
 import styles from '../../styles/form/Form.module.scss';
 
 const RegistrationForm = () => {
+  const router = useRouter();
+
   const nameInput = useRef() as React.MutableRefObject<HTMLInputElement>;
   const emailInput = useRef() as React.MutableRefObject<HTMLInputElement>;
   const passwordInput = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -56,6 +52,7 @@ const RegistrationForm = () => {
       if ('message' in loginResponse) throw new Error(loginResponse.message);
 
       localStorage.setItem('token', loginResponse.token);
+      router.push('/boards');
     } catch (error) {
       if (!(error instanceof Error)) return;
       setErrorMessage(error.message);
@@ -139,21 +136,8 @@ const RegistrationForm = () => {
         Sign up
       </Button>
       <hr className={styles.separateLine} />
-      <ul className={styles.formLinks}>
-        <li className={styles.formLinkText}>Already have an account ?</li>
-        <li className={styles.formLinkText}>
-          <Link href={'/login'}>Log in</Link>
-        </li>
-      </ul>
-      <Collapse in={errorNotification}>
-        <Slide in={errorNotification} direction="left">
-          <Alert severity="error" style={{ position: 'fixed', top: 20, right: 20 }}>
-            <AlertTitle>
-              <strong>Error: </strong> {errorMessage}
-            </AlertTitle>
-          </Alert>
-        </Slide>
-      </Collapse>
+      <AdditionalMenu isLogin={false}>Already have an account ?</AdditionalMenu>
+      <PopupNotification errorNotification={errorNotification} errorMessage={errorMessage} />
     </form>
   );
 };

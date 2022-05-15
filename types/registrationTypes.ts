@@ -24,3 +24,8 @@ export interface ISignupSuccess {
 }
 
 export type ISignupResponse = IRegError | ISignupSuccess;
+
+export interface IAdditionalMenu {
+  isLogin: boolean;
+  children: string;
+}

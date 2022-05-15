@@ -10,3 +10,8 @@ export interface IValidator {
   isValid: boolean;
   validMessage: string;
 }
+
+export interface IPopupNotification {
+  errorNotification: boolean;
+  errorMessage: string;
+}

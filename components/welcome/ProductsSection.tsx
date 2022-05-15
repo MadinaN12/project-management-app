@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import Image from 'next/image';
 import router from 'next/router';
-import BoardImage from '../../images/board.png';
+import BoardImage from '../../images/welcome-board.png';
 import styles from '../../styles/welcome/ProductsSection.module.scss';
 
 export const ProductsSection = () => {
