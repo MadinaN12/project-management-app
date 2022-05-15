@@ -10,22 +10,17 @@ import {
 import { ModalProps } from '../../types/types';
 import { useAppDispatch } from '../../hooks/redux';
 import { createColumn } from '../../api/column/createColumn';
-import { storeSlice } from '../../store/reducers/storeSlice';
 import { useState } from 'react';
 
 const Modal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
-  const { setColumns } = storeSlice.actions;
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
-    const column = {
-      title: title,
-      order: 1,
-    };
-    const res = createColumn(column);
-    res && dispatch(setColumns(res));
+    const column = { title: title, order: 1 };
+    dispatch(createColumn(column));
     setActive(false);
+    setTitle('');
   };
 
   const onTextChanged = (e: React.ChangeEvent) => {

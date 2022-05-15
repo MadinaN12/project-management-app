@@ -30,6 +30,8 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
     const res = createTask(task);
     res && dispatch(setTasks(res));
     setActive(false);
+    setTitle('');
+    setDescription('');
   };
 
   const onTextChanged = (e: React.ChangeEvent) => {
