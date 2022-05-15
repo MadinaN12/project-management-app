@@ -1,9 +1,8 @@
-import { Link } from '@mui/material';
+import { Link, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Image from 'next/image';
 import { footerStyle } from '../../styles/footer';
 import Logo from '../../images/rs_school_js.svg';
-import { Typography } from '@mui/material';
 
 export default function Footer() {
   const dataUsers = [
