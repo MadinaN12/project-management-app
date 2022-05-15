@@ -5,6 +5,7 @@ import { ColumnResponse, TaskResponse } from '../../types/types';
 export const initialState: StoreState = {
   columns: [],
   tasks: [],
+  taskId: '',
 };
 
 export const storeSlice = createSlice({
@@ -22,6 +23,9 @@ export const storeSlice = createSlice({
     },
     deleteTasks(state, action: PayloadAction<TaskResponse[]>) {
       state.tasks = action.payload;
+    },
+    setTaskId(state, action: PayloadAction<string>) {
+      state.taskId = action.payload;
     },
   },
 });

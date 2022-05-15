@@ -3,25 +3,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import ConfirmTask from './confirmTask';
 import { useState } from 'react';
+import UpdateTask from './updateTask';
 
-const TaskControls = ({ title }: { title: string }) => {
-  const [modalActive, setModalActive] = useState(false);
+const TaskControls = () => {
+  const [confirmActive, setConfirmActive] = useState(false);
+  const [updateActive, setUpdateActive] = useState(false);
 
   return (
     <>
       <Grid container sx={{ justifyContent: 'space-between', width: '30%' }}>
-        <Tooltip title="Edit">
+        <Tooltip title="Edit" onClick={() => setUpdateActive(true)}>
           <IconButton size="small">
             <FontAwesomeIcon icon={faPen} />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Delete" onClick={() => setModalActive(true)}>
+        <Tooltip title="Delete" onClick={() => setConfirmActive(true)}>
           <IconButton size="small">
             <FontAwesomeIcon icon={faTrashCan} />
           </IconButton>
         </Tooltip>
       </Grid>
-      <ConfirmTask title={title} active={modalActive} setActive={setModalActive} />
+      <ConfirmTask active={confirmActive} setActive={setConfirmActive} />
+      <UpdateTask active={updateActive} setActive={setUpdateActive} />
     </>
   );
 };
