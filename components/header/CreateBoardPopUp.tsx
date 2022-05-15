@@ -4,6 +4,8 @@ import React, { ChangeEvent, SetStateAction, useEffect, useRef, useState } from 
 import InputLabelPart from './InputLabelPart';
 import { postDataBoard } from '../ApiController/PostNewBoard';
 import { InputRef } from '../../types/types';
+import { useDispatch } from 'react-redux';
+import { refreshBoard } from '../../stores/boards/slices';
 
 export default function CreateBoardPopUp({
   setPopUpStatus,
@@ -14,6 +16,7 @@ export default function CreateBoardPopUp({
   const inputRef = useRef(null);
   const textAreaRef = useRef(null);
   const [token, setToken] = useState('');
+  const dispatch = useDispatch();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     (e.target as HTMLInputElement).value.length < 1 ? setIsEmpty(true) : setIsEmpty(false);
@@ -24,7 +27,12 @@ export default function CreateBoardPopUp({
       title: ((inputRef.current as unknown as InputRef).firstChild as HTMLInputElement).value,
     };
 
-    if (token) postDataBoard(newBoard, token);
+    if (token) {
+      postDataBoard(newBoard, token);
+      dispatch(refreshBoard('a'));
+      setTimeout(() => dispatch(refreshBoard('a')), 200);
+    }
+    setPopUpStatus(false);
   };
 
   useEffect(() => {

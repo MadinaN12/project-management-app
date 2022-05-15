@@ -7,7 +7,5 @@ export function createColumn(column: Column) {
       title: column.title,
       order: 1,
     };
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }

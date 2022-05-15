@@ -2,8 +2,6 @@ import { Board } from '../../types/types';
 import { URL, PATH } from '../../utils';
 
 export async function postDataBoard(obj: Board, token: string) {
-  console.log(obj, token);
-
   if (obj.title && obj.title.length) {
     const res = await fetch(`${URL}/${PATH.BOARDS}`, {
       method: 'POST',
