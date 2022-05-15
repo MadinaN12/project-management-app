@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import Image from 'next/image';
 import { footerStyle } from '../../styles/footer';
 import Logo from '../../images/rs_school_js.svg';
+import { Typography } from '@mui/material';
 
 export default function Footer() {
   const dataUsers = [
@@ -24,6 +25,7 @@ export default function Footer() {
           <Link href="https://rs.school/react/" sx={{ width: '100px' }}>
             <Image style={footerStyle.img} src={Logo} alt="rs" />
           </Link>
+          <Typography sx={{ m: '14px' }}>2022.05</Typography>
         </Box>
       </footer>
     </>
