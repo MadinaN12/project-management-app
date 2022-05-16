@@ -12,11 +12,11 @@ export default function ErrorPage() {
   const router = useRouter();
 
   useEffect(() => {
+    setCountStatus(true);
     if (!countStatus) {
       setTimeout(() => router.push('/'), 3000);
       if (seconds) setInterval(() => setSeconds((e) => e - 0.5), 1000);
     }
-    setCountStatus(true);
   }, [countStatus, router, seconds]);
 
   return (
