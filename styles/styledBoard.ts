@@ -7,6 +7,7 @@ export const column = {
     flexWrap: 'nowrap',
     maxWidth: '100vw',
     overflow: 'auto',
+    height: 'calc(100vh - 100px)',
   },
   column: {
     minWidth: '272px',

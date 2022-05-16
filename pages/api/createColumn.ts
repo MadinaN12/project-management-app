@@ -7,5 +7,7 @@ export function createColumn(column: Column) {
       title: column.title,
       order: 1,
     };
-  } catch (error) {}
+  } catch (error) {
+    throw new Error('column not created');
+  }
 }
