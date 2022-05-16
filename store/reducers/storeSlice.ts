@@ -1,14 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { createColumn } from '../../api/column/createColumn';
+import { getColumns } from '../../api/column/getAllColumns';
 import { StoreState } from '../../types/storeTypes';
 import { ColumnResponse, TaskResponse } from '../../types/types';
 
 export const initialState: StoreState = {
   columns: [],
-  column: { id: '', title: '', order: 1 },
   tasks: [],
   taskId: '',
-  isLoading: false,
   error: '',
 };
 
@@ -16,6 +14,9 @@ export const storeSlice = createSlice({
   name: 'store',
   initialState,
   reducers: {
+    setColumn(state, action: PayloadAction<ColumnResponse[]>) {
+      state.columns = action.payload;
+    },
     deleteColumns(state, action: PayloadAction<ColumnResponse[]>) {
       state.columns = action.payload;
     },
@@ -30,16 +31,10 @@ export const storeSlice = createSlice({
     },
   },
   extraReducers: {
-    [createColumn.pending.type]: (state) => {
-      state.isLoading = true;
+    [getColumns.fulfilled.type]: (state, action: PayloadAction<ColumnResponse[]>) => {
+      state.columns = action.payload;
     },
-    [createColumn.fulfilled.type]: (state, action: PayloadAction<ColumnResponse>) => {
-      state.isLoading = false;
-      state.error = '';
-      state.column = action.payload;
-    },
-    [createColumn.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.isLoading = false;
+    [getColumns.rejected.type]: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
     },
   },
