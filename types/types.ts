@@ -84,3 +84,20 @@ export type TitleInputProps = {
   setOpen: (value: boolean) => void;
   setNewTitle: (value: string) => void;
 };
+
+export type Task = {
+  title: string;
+  order: number;
+  description: string;
+  userId: string;
+};
+
+export type TaskResponse = {
+  id: string;
+  title: string;
+  order: number;
+  description: string;
+  userId: string;
+  boardId: string;
+  columnId: string;
+};
