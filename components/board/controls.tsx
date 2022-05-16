@@ -2,6 +2,7 @@ import { AppBar, Button, Toolbar } from '@mui/material';
 import { useAppDispatch } from '../../hooks/redux';
 import { createColumn } from '../../pages/api/createColumn';
 import { storeSlice } from '../../store/reducers/storeSlice';
+import { ColumnResponse } from '../../types/types';
 import Logo from '../Logo';
 
 const BoardControls = () => {
@@ -14,7 +15,7 @@ const BoardControls = () => {
       order: 1,
     };
     const res = createColumn(column);
-    res && dispatch(setColumns(res));
+    res && dispatch(setColumns(res as ColumnResponse));
   };
 
   return (

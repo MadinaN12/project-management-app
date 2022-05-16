@@ -8,6 +8,6 @@ export function createColumn(column: Column) {
       order: 1,
     };
   } catch (error) {
-    console.log(error);
+    return new Error('error while creating column');
   }
 }
