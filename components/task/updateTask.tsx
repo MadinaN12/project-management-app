@@ -11,7 +11,7 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { ModalProps } from '../../types/types';
 import { useState } from 'react';
 import { useAppSelector } from '../../hooks/redux';
-import { updateTask } from '../../api/column/updateTask';
+import { updateTask } from '../../api/task/updateTask';
 
 const UpdateTask = ({ active, setActive }: ModalProps) => {
   const { taskId } = useAppSelector((state) => state.boardReducer);

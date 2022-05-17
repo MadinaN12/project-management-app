@@ -7,18 +7,20 @@ export const initialState: StoreState = {
   columns: [],
   tasks: [],
   taskId: '',
+  columnId: '',
   error: '',
+  colOrder: 1,
 };
 
 export const storeSlice = createSlice({
   name: 'store',
   initialState,
   reducers: {
-    setColumn(state, action: PayloadAction<ColumnResponse[]>) {
-      state.columns = action.payload;
+    setColumnId(state, action: PayloadAction<string>) {
+      state.columnId = action.payload;
     },
-    deleteColumns(state, action: PayloadAction<ColumnResponse[]>) {
-      state.columns = action.payload;
+    setColOrder(state, action: PayloadAction<number>) {
+      state.colOrder = action.payload;
     },
     setTasks(state, action: PayloadAction<TaskResponse>) {
       state.tasks = state.tasks.concat(action.payload);

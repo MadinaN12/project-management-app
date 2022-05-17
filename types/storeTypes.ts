@@ -5,4 +5,6 @@ export interface StoreState {
   tasks: TaskResponse[];
   taskId: string;
   error: string;
+  columnId: string;
+  colOrder: number;
 }

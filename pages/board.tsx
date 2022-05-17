@@ -18,9 +18,9 @@ const Board = () => {
     <Grid container sx={{ backgroundColor: '#448aff', height: '100vh' }}>
       <BoardControls />
       <Grid container sx={column.boardGrid}>
-        {columns.map(({ id, title }) => (
-          <Grid key={id} item>
-            <BoardColumn title={title} />
+        {columns.map((item) => (
+          <Grid key={item.id} item>
+            <BoardColumn col={item} />
           </Grid>
         ))}
       </Grid>

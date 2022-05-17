@@ -12,7 +12,7 @@ import { ModalProps } from '../../types/types';
 import { useState } from 'react';
 import { storeSlice } from '../../store/reducers/storeSlice';
 import { useAppDispatch } from '../../hooks/redux';
-import { createTask } from '../../api/column/createTask';
+import { createTask } from '../../api/task/createTask';
 
 const TaskModal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');

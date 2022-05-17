@@ -2,11 +2,15 @@ import { Button, Grid, InputBase } from '@mui/material';
 import React, { useState } from 'react';
 import { TitleInputProps } from '../../types/types';
 import { column } from '../../styles/styledBoard';
+import { updateColumn } from '../../api/column/updateColumn';
+import { useAppSelector } from '../../hooks/redux';
 
 const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
   const [titleInput, setTitleInput] = useState(title);
+  const { columnId, colOrder } = useAppSelector((state) => state.boardReducer);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    await updateColumn({ title: titleInput, order: colOrder }, columnId);
     setNewTitle(titleInput);
     setOpen(false);
   };

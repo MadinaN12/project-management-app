@@ -6,18 +6,18 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
+import { deleteColumn } from '../../api/column/deleteColumn';
+import { getColumns, token } from '../../api/column/getAllColumns';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { storeSlice } from '../../store/reducers/storeSlice';
-import { ConfirmModalProps } from '../../types/types';
+import { ModalProps } from '../../types/types';
 
-const ConfirmModal = ({ title, active, setActive }: ConfirmModalProps) => {
-  const { columns } = useAppSelector((state) => state.boardReducer);
-  const { deleteColumns } = storeSlice.actions;
+const ConfirmModal = ({ active, setActive }: ModalProps) => {
+  const { columnId } = useAppSelector((state) => state.boardReducer);
   const dispatch = useAppDispatch();
 
-  const handleClose = () => {
-    const res = columns.filter((item) => item.id !== title);
-    dispatch(deleteColumns(res));
+  const handleClose = async () => {
+    await deleteColumn(columnId);
+    await dispatch(getColumns(token));
     setActive(false);
   };
 
