@@ -1,10 +1,10 @@
 import { Grid } from '@mui/material';
-import BoardColumn from '../components/column/column';
 import BoardControls from '../components/board/controls';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { column } from '../styles/styledBoard';
 import { useEffect } from 'react';
 import { getBoard } from '../api/board/getBoard';
+import ColumnList from '../components/column/columnList';
 
 const Board = () => {
   const { board } = useAppSelector((state) => state.boardReducer);
@@ -18,11 +18,7 @@ const Board = () => {
     <Grid container sx={{ backgroundColor: '#448aff', height: '100vh' }}>
       <BoardControls />
       <Grid container sx={column.boardGrid}>
-        {board.columns.map((item) => (
-          <Grid key={item.id} item>
-            <BoardColumn col={item} />
-          </Grid>
-        ))}
+        <ColumnList columns={board.columns} />
       </Grid>
     </Grid>
   );

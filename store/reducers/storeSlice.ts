@@ -36,6 +36,7 @@ export const initialState: StoreState = {
   colId: '',
   error: '',
   colOrder: 1,
+  isLoading: false,
 };
 
 export const storeSlice = createSlice({
@@ -50,11 +51,17 @@ export const storeSlice = createSlice({
     },
   },
   extraReducers: {
+    [getBoard.pending.type]: (state) => {
+      state.isLoading = true;
+    },
     [getBoard.fulfilled.type]: (state, action: PayloadAction<BoardResponse>) => {
       state.board = action.payload;
+      state.isLoading = false;
+      state.error = '';
     },
     [getBoard.rejected.type]: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
+      state.isLoading = false;
     },
   },
 });

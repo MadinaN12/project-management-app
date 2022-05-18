@@ -28,7 +28,7 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
       userId: 'ae26d810-ca02-4d08-af57-adf092a9ebc4',
     };
     await createTask(task, colId);
-    dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
+    await dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
     setActive(false);
     setTitle('');
     setDescription('');

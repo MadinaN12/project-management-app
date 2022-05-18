@@ -5,4 +5,5 @@ export interface StoreState {
   error: string;
   colId: string;
   colOrder: number;
+  isLoading: boolean;
 }

@@ -15,9 +15,9 @@ const ConfirmTask = ({ tasks, active, setActive }: TaskModalProps) => {
   const { colId } = useAppSelector((state) => state.boardReducer);
   const dispatch = useAppDispatch();
 
-  const handleClose = () => {
-    deleteTask(colId, tasks.id);
-    dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
+  const handleClose = async () => {
+    await deleteTask(colId, tasks.id);
+    await dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
     setActive(false);
   };
 

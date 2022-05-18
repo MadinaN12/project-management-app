@@ -30,7 +30,7 @@ const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
       columnId: colId,
     };
     await updateTask(task, colId, tasks.id);
-    dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
+    await dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
     setActive(false);
   };
 

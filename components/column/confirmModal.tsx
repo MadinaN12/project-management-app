@@ -17,7 +17,7 @@ const ConfirmModal = ({ active, setActive }: ModalProps) => {
 
   const handleClose = async () => {
     await deleteColumn(colId);
-    dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
+    await dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
     setActive(false);
   };
 
