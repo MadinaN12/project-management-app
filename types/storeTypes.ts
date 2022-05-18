@@ -5,6 +5,7 @@ export interface StoreState {
   error: string;
   colId: string;
   colOrder: number;
+  columnId: string;
 }
 
 export interface TaskState {

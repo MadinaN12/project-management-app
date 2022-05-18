@@ -37,6 +37,7 @@ export const initialState: StoreState = {
   colId: '',
   error: '',
   colOrder: 1,
+  columnId: '',
 };
 
 export const storeSlice = createSlice({
