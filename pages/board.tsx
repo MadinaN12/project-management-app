@@ -1,12 +1,14 @@
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import BoardControls from '../components/board/controls';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { column } from '../styles/styledBoard';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getBoard } from '../api/board/getBoard';
 import ColumnList from '../components/column/columnList';
+import Modal from '../components/board/modal';
 
 const Board = () => {
+  const [modalActive, setModalActive] = useState(false);
   const { board } = useAppSelector((state) => state.boardReducer);
   const dispatch = useAppDispatch();
 
@@ -15,12 +17,18 @@ const Board = () => {
   }, [dispatch]);
 
   return (
-    <Grid container sx={{ backgroundColor: '#448aff', height: '100vh' }}>
-      <BoardControls />
-      <Grid container sx={column.boardGrid}>
-        <ColumnList columns={board.columns} />
+    <>
+      <Grid container sx={{ backgroundColor: '#448aff', height: '100vh' }}>
+        <BoardControls />
+        <Grid container sx={column.boardGrid}>
+          <ColumnList columns={board.columns} />
+          <Button variant="contained" onClick={() => setModalActive(true)} sx={column.addBtn}>
+            + add column
+          </Button>
+        </Grid>
       </Grid>
-    </Grid>
+      <Modal active={modalActive} setActive={setModalActive} />
+    </>
   );
 };
 
