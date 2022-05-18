@@ -101,3 +101,53 @@ export type TaskResponse = {
   boardId: string;
   columnId: string;
 };
+
+export type BoardResponse = {
+  id: string;
+  title: string;
+  columns: [
+    {
+      id: string;
+      title: string;
+      order: number;
+      tasks: [
+        {
+          id: string;
+          title: string;
+          order: number;
+          done: boolean;
+          description: string;
+          userId: string;
+          files: [
+            {
+              filename: string;
+              fileSize: number;
+            }
+          ];
+        }
+      ];
+    }
+  ];
+};
+
+export type Col = {
+  id: string;
+  title: string;
+  order: number;
+  tasks: [
+    {
+      id: string;
+      title: string;
+      order: number;
+      done: boolean;
+      description: string;
+      userId: string;
+      files: [
+        {
+          filename: string;
+          fileSize: number;
+        }
+      ];
+    }
+  ];
+};

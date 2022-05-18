@@ -4,21 +4,21 @@ import BoardControls from '../components/board/controls';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { column } from '../styles/styledBoard';
 import { useEffect } from 'react';
-import { getColumns, token } from '../api/column/getAllColumns';
+import { getBoard } from '../api/board/getBoard';
 
 const Board = () => {
-  const { columns } = useAppSelector((state) => state.boardReducer);
+  const { board } = useAppSelector((state) => state.boardReducer);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getColumns(token));
+    dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
   }, [dispatch]);
 
   return (
     <Grid container sx={{ backgroundColor: '#448aff', height: '100vh' }}>
       <BoardControls />
       <Grid container sx={column.boardGrid}>
-        {columns.map((item) => (
+        {board.columns.map((item) => (
           <Grid key={item.id} item>
             <BoardColumn col={item} />
           </Grid>

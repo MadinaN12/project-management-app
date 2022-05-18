@@ -6,18 +6,18 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { storeSlice } from '../../store/reducers/storeSlice';
+// import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+// import { storeSlice } from '../../store/reducers/storeSlice';
 import { ModalProps } from '../../types/types';
 
 const ConfirmTask = ({ active, setActive }: ModalProps) => {
-  const { tasks, taskId } = useAppSelector((state) => state.boardReducer);
-  const { deleteTasks } = storeSlice.actions;
-  const dispatch = useAppDispatch();
+  // const { tasks, taskId } = useAppSelector((state) => state.boardReducer);
+  // const { deleteTasks } = storeSlice.actions;
+  // const dispatch = useAppDispatch();
 
   const handleClose = () => {
-    const res = tasks.filter((item) => item.id !== taskId);
-    dispatch(deleteTasks(res));
+    // const res = tasks.filter((item) => item.id !== taskId);
+    // dispatch(deleteTasks(res));
     setActive(false);
   };
 

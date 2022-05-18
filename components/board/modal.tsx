@@ -14,12 +14,12 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getColumns, token } from '../../api/column/getAllColumns';
 
 const Modal = ({ active, setActive }: ModalProps) => {
-  const { columns } = useAppSelector((state) => state.boardReducer);
+  const { board } = useAppSelector((state) => state.boardReducer);
   const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
 
   const handleClick = async () => {
-    const column = { title: title, order: columns.length + 1 };
+    const column = { title: title, order: board.columns.length + 1 };
     await createColumn(column);
     dispatch(getColumns(token));
     setActive(false);

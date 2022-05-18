@@ -14,7 +14,7 @@ import { useAppSelector } from '../../hooks/redux';
 import { updateTask } from '../../api/task/updateTask';
 
 const UpdateTask = ({ active, setActive }: ModalProps) => {
-  const { taskId } = useAppSelector((state) => state.boardReducer);
+  const { taskId } = useAppSelector((state) => state.taskReducer);
   const [title, setTitle] = useState(taskId);
   const [description, setDescription] = useState('');
 

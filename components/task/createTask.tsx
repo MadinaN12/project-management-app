@@ -10,25 +10,26 @@ import {
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { ModalProps } from '../../types/types';
 import { useState } from 'react';
-import { storeSlice } from '../../store/reducers/storeSlice';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { createTask } from '../../api/task/createTask';
+import { getTasks } from '../../api/task/getAllTasks';
 
 const TaskModal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const { setTasks } = storeSlice.actions;
+  const { colId } = useAppSelector((state) => state.boardReducer);
+  const { tasks } = useAppSelector((state) => state.taskReducer);
   const dispatch = useAppDispatch();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const task = {
       title: title,
-      order: 0,
+      order: tasks.length + 1,
       description: description,
-      userId: '1234',
+      userId: 'ae26d810-ca02-4d08-af57-adf092a9ebc4',
     };
-    const res = createTask(task);
-    res && dispatch(setTasks(res));
+    await createTask(task, colId);
+    dispatch(getTasks(colId));
     setActive(false);
     setTitle('');
     setDescription('');
