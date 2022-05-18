@@ -6,18 +6,18 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
-// import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-// import { storeSlice } from '../../store/reducers/storeSlice';
-import { ModalProps } from '../../types/types';
+import { getBoard } from '../../api/board/getBoard';
+import { deleteTask } from '../../api/task/deleteTask';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { TaskModalProps } from '../../types/types';
 
-const ConfirmTask = ({ active, setActive }: ModalProps) => {
-  // const { tasks, taskId } = useAppSelector((state) => state.boardReducer);
-  // const { deleteTasks } = storeSlice.actions;
-  // const dispatch = useAppDispatch();
+const ConfirmTask = ({ tasks, active, setActive }: TaskModalProps) => {
+  const { colId } = useAppSelector((state) => state.boardReducer);
+  const dispatch = useAppDispatch();
 
   const handleClose = () => {
-    // const res = tasks.filter((item) => item.id !== taskId);
-    // dispatch(deleteTasks(res));
+    deleteTask(colId, tasks.id);
+    dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
     setActive(false);
   };
 

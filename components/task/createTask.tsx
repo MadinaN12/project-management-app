@@ -12,24 +12,23 @@ import { ModalProps } from '../../types/types';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { createTask } from '../../api/task/createTask';
-import { getTasks } from '../../api/task/getAllTasks';
+import { getBoard } from '../../api/board/getBoard';
 
 const TaskModal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const { colId } = useAppSelector((state) => state.boardReducer);
-  const { tasks } = useAppSelector((state) => state.taskReducer);
   const dispatch = useAppDispatch();
 
   const handleClick = async () => {
     const task = {
       title: title,
-      order: tasks.length + 1,
+      order: 1,
       description: description,
       userId: 'ae26d810-ca02-4d08-af57-adf092a9ebc4',
     };
     await createTask(task, colId);
-    dispatch(getTasks(colId));
+    dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
     setActive(false);
     setTitle('');
     setDescription('');

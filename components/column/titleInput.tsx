@@ -7,10 +7,10 @@ import { useAppSelector } from '../../hooks/redux';
 
 const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
   const [titleInput, setTitleInput] = useState(title);
-  const { columnId, colOrder } = useAppSelector((state) => state.boardReducer);
+  const { colId, colOrder } = useAppSelector((state) => state.boardReducer);
 
   const handleSubmit = async () => {
-    await updateColumn({ title: titleInput, order: colOrder }, columnId);
+    await updateColumn({ title: titleInput, order: colOrder }, colId);
     setNewTitle(titleInput);
     setOpen(false);
   };

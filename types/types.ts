@@ -151,3 +151,33 @@ export type Col = {
     }
   ];
 };
+
+export type UpdateTask = {
+  title: string;
+  order: number;
+  description: string;
+  userId: string;
+  boardId: string;
+  columnId: string;
+};
+
+export type TaskProps = {
+  id: string;
+  title: string;
+  order: number;
+  done: boolean;
+  description: string;
+  userId: string;
+  files: [
+    {
+      filename: string;
+      fileSize: number;
+    }
+  ];
+};
+
+export type TaskModalProps = {
+  tasks: TaskProps;
+  active: boolean;
+  setActive: (value: boolean) => void;
+};

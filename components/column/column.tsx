@@ -4,11 +4,16 @@ import ColumnHeader from './columnHeader';
 import { column } from '../../styles/styledBoard';
 import TaskList from '../task/taskList';
 import { Col } from '../../types/types';
+import { useAppDispatch } from '../../hooks/redux';
+import { storeSlice } from '../../store/reducers/storeSlice';
 
 const BoardColumn = ({ col }: { col: Col }) => {
+  const dispatch = useAppDispatch();
+  const { setColumnId, setColOrder } = storeSlice.actions;
+
   const handleClick = () => {
-    //dispatch(setColumnId(col.id));
-    //dispatch(setColOrder(col.order));
+    dispatch(setColumnId(col.id));
+    dispatch(setColOrder(col.order));
   };
 
   return (

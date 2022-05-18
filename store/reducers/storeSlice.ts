@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getBoard } from '../../api/board/getBoard';
-//import { getColumns } from '../../api/column/getAllColumns';
 import { StoreState } from '../../types/storeTypes';
 import { BoardResponse } from '../../types/types';
 
@@ -37,7 +36,6 @@ export const initialState: StoreState = {
   colId: '',
   error: '',
   colOrder: 1,
-  columnId: '',
 };
 
 export const storeSlice = createSlice({

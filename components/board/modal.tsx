@@ -11,7 +11,7 @@ import { ModalProps } from '../../types/types';
 import { createColumn } from '../../api/column/createColumn';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { getColumns, token } from '../../api/column/getAllColumns';
+import { getBoard } from '../../api/board/getBoard';
 
 const Modal = ({ active, setActive }: ModalProps) => {
   const { board } = useAppSelector((state) => state.boardReducer);
@@ -21,7 +21,7 @@ const Modal = ({ active, setActive }: ModalProps) => {
   const handleClick = async () => {
     const column = { title: title, order: board.columns.length + 1 };
     await createColumn(column);
-    dispatch(getColumns(token));
+    dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
     setActive(false);
     setTitle('');
   };

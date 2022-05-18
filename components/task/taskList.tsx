@@ -6,8 +6,8 @@ import { Col } from '../../types/types';
 const TaskList = ({ col }: { col: Col }) => {
   return (
     <Grid container sx={task.taskGrid}>
-      {col.tasks.map(({ id, title }) => (
-        <Task key={id} title={title} />
+      {col.tasks.map((item) => (
+        <Task key={item.id} tasks={item} />
       ))}
     </Grid>
   );

@@ -8,24 +8,29 @@ import {
   TextField,
 } from '@mui/material';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import { ModalProps } from '../../types/types';
+import { TaskModalProps } from '../../types/types';
 import { useState } from 'react';
-import { useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { updateTask } from '../../api/task/updateTask';
+import { getBoard } from '../../api/board/getBoard';
 
-const UpdateTask = ({ active, setActive }: ModalProps) => {
-  const { taskId } = useAppSelector((state) => state.taskReducer);
-  const [title, setTitle] = useState(taskId);
-  const [description, setDescription] = useState('');
+const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
+  const { colId } = useAppSelector((state) => state.boardReducer);
+  const [title, setTitle] = useState(tasks.title);
+  const [description, setDescription] = useState(tasks.description);
+  const dispatch = useAppDispatch();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const task = {
       title: title,
-      order: 0,
+      order: 1,
       description: description,
-      userId: '1234',
+      userId: 'ae26d810-ca02-4d08-af57-adf092a9ebc4',
+      boardId: '66fef433-3dcc-4501-9bbd-e990dab1c68e',
+      columnId: colId,
     };
-    updateTask(task);
+    await updateTask(task, colId, tasks.id);
+    dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
     setActive(false);
   };
 
