@@ -26,7 +26,12 @@ export const WelcomeHeader = () => {
     <header className={`${styles.welcomeHeader} ${styles[headerTransparent]}`}>
       <Image src={TrelloImage} width={126} height={36} alt="trello"></Image>
       <div className={styles.logBtns}>
-        <Button variant="text" size="small" onClick={() => router.push('/login')}>
+        <Button
+          className={styles.logBtn}
+          variant="text"
+          size="small"
+          onClick={() => router.push('/login')}
+        >
           Log in
         </Button>
         <Button variant="contained" size="small" onClick={() => router.push('/signup')}>
