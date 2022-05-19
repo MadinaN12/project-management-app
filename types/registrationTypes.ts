@@ -29,3 +29,19 @@ export interface IAdditionalMenu {
   isLogin: boolean;
   children: string;
 }
+
+export interface ISignupInputs {
+  [key: string]: string;
+  nameInput: string;
+  emailInput: string;
+  passwordInput: string;
+  rePasswordInput: string;
+}
+
+export interface IEmtyErrorsInputs {
+  [key: string]: boolean;
+  nameInput: boolean;
+  emailInput: boolean;
+  passwordInput: boolean;
+  rePasswordInput: boolean;
+}
