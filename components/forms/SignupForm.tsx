@@ -9,8 +9,35 @@ import PopupNotification from '../PopupNotification';
 import { useRouter } from 'next/router';
 import styles from '../../styles/form/Form.module.scss';
 
+interface ISignupInputs {
+  nameInput: string;
+  emailInput: string;
+  passwordInput: string;
+  rePasswordInput: string;
+}
+
+interface IEmtyErrorsInputs {
+  emptyNameError: boolean;
+  emptyEmailError: boolean;
+  emptyPswError: boolean;
+  emptyRePswError: boolean;
+}
 const RegistrationForm = () => {
   const router = useRouter();
+
+  const [inputs, setInputs] = useState<ISignupInputs>({
+    nameInput: '',
+    emailInput: '',
+    passwordInput: '',
+    rePasswordInput: '',
+  });
+
+  const [emptyErrors, setEmptyErrors] = useState<IEmtyErrorsInputs>({
+    emptyNameError: false,
+    emptyEmailError: false,
+    emptyPswError: false,
+    emptyRePswError: false,
+  });
 
   const nameInput = useRef() as React.MutableRefObject<HTMLInputElement>;
   const emailInput = useRef() as React.MutableRefObject<HTMLInputElement>;
