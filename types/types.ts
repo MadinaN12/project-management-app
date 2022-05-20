@@ -85,6 +85,10 @@ export type TitleInputProps = {
   setNewTitle: (value: string) => void;
 };
 
+export type InputRef = {
+  firstChild?: HTMLElement;
+};
+
 export type Task = {
   title: string;
   order: number;
