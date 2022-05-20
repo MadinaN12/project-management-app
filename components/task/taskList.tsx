@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import { task } from '../../styles/styledTask';
+import { task } from '../../styles/board/styledTask';
 import Task from './task';
 import { Col } from '../../types/types';
 

@@ -5,3 +5,10 @@ export enum PATH {
   COLUMNS = 'columns',
   TASKS = 'tasks',
 }
+
+export function getToken() {
+  if (typeof window !== 'undefined' && localStorage.getItem('token')) {
+    return localStorage.getItem('token');
+  }
+  return null;
+}

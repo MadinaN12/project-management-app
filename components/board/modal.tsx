@@ -12,6 +12,7 @@ import { createColumn } from '../../api/column/createColumn';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getBoard } from '../../api/board/getBoard';
+import { getToken } from '../../utils';
 
 const Modal = ({ active, setActive }: ModalProps) => {
   const { board } = useAppSelector((state) => state.boardReducer);
@@ -19,9 +20,10 @@ const Modal = ({ active, setActive }: ModalProps) => {
   const dispatch = useAppDispatch();
 
   const handleClick = async () => {
+    const token = getToken();
     const column = { title: title, order: board.columns.length + 1 };
     await createColumn(column);
-    dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
+    token && dispatch(getBoard({ boardId: '66fef433-3dcc-4501-9bbd-e990dab1c68e', token: token }));
     setActive(false);
     setTitle('');
   };

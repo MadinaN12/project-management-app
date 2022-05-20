@@ -1,5 +1,5 @@
 import { Grid, Paper } from '@mui/material';
-import { task } from '../../styles/styledTask';
+import { task } from '../../styles/board/styledTask';
 import { TaskProps } from '../../types/types';
 import TaskControls from './taskControls';
 

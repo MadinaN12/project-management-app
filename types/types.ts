@@ -181,3 +181,7 @@ export type TaskModalProps = {
   active: boolean;
   setActive: (value: boolean) => void;
 };
+
+export interface AuthProps {
+  children: JSX.Element;
+}

@@ -10,6 +10,7 @@ import { getBoard } from '../../api/board/getBoard';
 import { deleteColumn } from '../../api/column/deleteColumn';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { ModalProps } from '../../types/types';
+import { getToken } from '../../utils';
 
 const ConfirmModal = ({ active, setActive }: ModalProps) => {
   const { colId } = useAppSelector((state) => state.boardReducer);
@@ -17,7 +18,8 @@ const ConfirmModal = ({ active, setActive }: ModalProps) => {
 
   const handleClose = async () => {
     await deleteColumn(colId);
-    await dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
+    const token = getToken();
+    token && dispatch(getBoard({ boardId: '66fef433-3dcc-4501-9bbd-e990dab1c68e', token: token }));
     setActive(false);
   };
 

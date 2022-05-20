@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { updateTask } from '../../api/task/updateTask';
 import { getBoard } from '../../api/board/getBoard';
+import { getToken } from '../../utils';
 
 const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
   const { colId } = useAppSelector((state) => state.boardReducer);
@@ -30,7 +31,8 @@ const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
       columnId: colId,
     };
     await updateTask(task, colId, tasks.id);
-    await dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
+    const token = getToken();
+    token && dispatch(getBoard({ boardId: '66fef433-3dcc-4501-9bbd-e990dab1c68e', token: token }));
     setActive(false);
   };
 

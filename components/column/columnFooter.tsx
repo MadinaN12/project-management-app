@@ -2,7 +2,7 @@ import { Button, Grid } from '@mui/material';
 import ConfirmModal from './confirmModal';
 import TaskModal from '../task/createTask';
 import { useState } from 'react';
-import { column } from '../../styles/styledBoard';
+import { column } from '../../styles/board/styledBoard';
 
 const ColumnFooter = () => {
   const [modalActive, setModalActive] = useState(false);

@@ -1,9 +1,9 @@
 import { Button, Grid, InputBase } from '@mui/material';
 import React, { useState } from 'react';
 import { TitleInputProps } from '../../types/types';
-import { column } from '../../styles/styledBoard';
 import { updateColumn } from '../../api/column/updateColumn';
 import { useAppSelector } from '../../hooks/redux';
+import { column } from '../../styles/board/styledBoard';
 
 const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
   const [titleInput, setTitleInput] = useState(title);

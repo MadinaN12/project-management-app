@@ -1,11 +1,11 @@
 import { Grid, Box } from '@mui/material';
 import ColumnFooter from './columnFooter';
 import ColumnHeader from './columnHeader';
-import { column } from '../../styles/styledBoard';
 import TaskList from '../task/taskList';
 import { Col } from '../../types/types';
 import { useAppDispatch } from '../../hooks/redux';
 import { storeSlice } from '../../store/reducers/storeSlice';
+import { column } from '../../styles/board/styledBoard';
 
 const BoardColumn = ({ col }: { col: Col }) => {
   const dispatch = useAppDispatch();

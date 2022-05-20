@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { createTask } from '../../api/task/createTask';
 import { getBoard } from '../../api/board/getBoard';
+import { getToken } from '../../utils';
 
 const TaskModal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
@@ -28,7 +29,8 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
       userId: 'ae26d810-ca02-4d08-af57-adf092a9ebc4',
     };
     await createTask(task, colId);
-    await dispatch(getBoard('66fef433-3dcc-4501-9bbd-e990dab1c68e'));
+    const token = getToken();
+    token && dispatch(getBoard({ boardId: '66fef433-3dcc-4501-9bbd-e990dab1c68e', token: token }));
     setActive(false);
     setTitle('');
     setDescription('');
