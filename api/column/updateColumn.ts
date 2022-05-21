@@ -4,7 +4,7 @@ import { PATH, URL } from '../../utils';
 export async function updateColumn(
   column: Column,
   columnId: string,
-  boardId: string,
+  boardId: string | string[],
   token: string
 ) {
   try {

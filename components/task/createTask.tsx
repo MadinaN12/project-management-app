@@ -14,24 +14,27 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { createTask } from '../../api/task/createTask';
 import { getBoard } from '../../api/board/getBoard';
 import { getToken } from '../../utils';
+import { useRouter } from 'next/router';
 
 const TaskModal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const { colId, boardId } = useAppSelector((state) => state.boardReducer);
+  const { colId } = useAppSelector((state) => state.boardReducer);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const { id } = router.query;
 
   const handleClick = async () => {
     const task = {
       title: title,
       order: 1,
       description: description,
-      userId: 'ae26d810-ca02-4d08-af57-adf092a9ebc4',
+      userId: 'b0c79d80-66b0-4117-803b-cb4507013085',
     };
     const token = getToken();
-    if (token) {
-      await createTask(task, colId, boardId, token);
-      dispatch(getBoard({ boardId: boardId, token: token }));
+    if (token && id) {
+      await createTask(task, colId, id, token);
+      dispatch(getBoard({ boardId: id, token: token }));
     }
     setActive(false);
     setTitle('');

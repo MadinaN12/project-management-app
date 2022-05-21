@@ -6,5 +6,4 @@ export interface StoreState {
   colId: string;
   colOrder: number;
   isLoading: boolean;
-  boardId: string;
 }

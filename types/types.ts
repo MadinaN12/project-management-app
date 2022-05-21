@@ -44,7 +44,6 @@ export interface IEmailForm {
 
 export type Column = {
   title: string;
-  order: number;
 };
 
 export type ColumnResponse = {
@@ -87,7 +86,6 @@ export type TitleInputProps = {
 
 export type Task = {
   title: string;
-  order: number;
   description: string;
   userId: string;
 };
@@ -157,7 +155,7 @@ export type UpdateTask = {
   order: number;
   description: string;
   userId: string;
-  boardId: string;
+  boardId: string | string[];
   columnId: string;
 };
 

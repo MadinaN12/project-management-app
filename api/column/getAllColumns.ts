@@ -3,7 +3,7 @@ import { PATH, URL } from '../../utils';
 
 export const getColumns = createAsyncThunk(
   'cards/fetchAll',
-  async ({ boardId, token }: { boardId: string; token: string }, thunkAPI) => {
+  async ({ boardId, token }: { boardId: string | string[]; token: string }, thunkAPI) => {
     try {
       const response = await fetch(`${URL}/${PATH.BOARDS}/${boardId}/${PATH.COLUMNS}`, {
         method: 'GET',

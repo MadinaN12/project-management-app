@@ -5,7 +5,7 @@ export async function updateTask(
   task: UpdateTask,
   columnId: string,
   taskId: string,
-  boardId: string,
+  boardId: string | string[],
   token: string
 ) {
   try {

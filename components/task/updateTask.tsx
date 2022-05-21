@@ -14,26 +14,29 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { updateTask } from '../../api/task/updateTask';
 import { getBoard } from '../../api/board/getBoard';
 import { getToken } from '../../utils';
+import { useRouter } from 'next/router';
 
 const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
-  const { colId, boardId } = useAppSelector((state) => state.boardReducer);
+  const { colId } = useAppSelector((state) => state.boardReducer);
   const [title, setTitle] = useState(tasks.title);
   const [description, setDescription] = useState(tasks.description);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const { id } = router.query;
 
   const handleClick = async () => {
-    const task = {
-      title: title,
-      order: 1,
-      description: description,
-      userId: 'ae26d810-ca02-4d08-af57-adf092a9ebc4',
-      boardId: boardId,
-      columnId: colId,
-    };
     const token = getToken();
-    if (token) {
-      await updateTask(task, colId, tasks.id, boardId, token);
-      dispatch(getBoard({ boardId: boardId, token: token }));
+    if (token && id) {
+      const task = {
+        title: title,
+        order: 1,
+        description: description,
+        userId: 'ae26d810-ca02-4d08-af57-adf092a9ebc4',
+        boardId: id,
+        columnId: colId,
+      };
+      await updateTask(task, colId, tasks.id, id, token);
+      dispatch(getBoard({ boardId: id, token: token }));
     }
     setActive(false);
   };

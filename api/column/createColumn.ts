@@ -1,7 +1,7 @@
 import { Column } from '../../types/types';
 import { PATH, URL } from '../../utils';
 
-export async function createColumn(column: Column, boardId: string, token: string) {
+export async function createColumn(column: Column, boardId: string | string[], token: string) {
   try {
     const response = await fetch(`${URL}/${PATH.BOARDS}/${boardId}/${PATH.COLUMNS}`, {
       method: 'POST',

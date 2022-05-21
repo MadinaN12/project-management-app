@@ -1,6 +1,11 @@
 import { PATH, URL } from '../../utils';
 
-export async function deleteTask(columnId: string, taskId: string, boardId: string, token: string) {
+export async function deleteTask(
+  columnId: string,
+  taskId: string,
+  boardId: string | string[],
+  token: string
+) {
   try {
     await fetch(
       `${URL}/${PATH.BOARDS}/${boardId}/${PATH.COLUMNS}/${columnId}/${PATH.TASKS}/${taskId}`,

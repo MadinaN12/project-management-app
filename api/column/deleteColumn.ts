@@ -1,6 +1,6 @@
 import { PATH, URL } from '../../utils';
 
-export async function deleteColumn(columnId: string, boardId: string, token: string) {
+export async function deleteColumn(columnId: string, boardId: string | string[], token: string) {
   try {
     await fetch(`${URL}/${PATH.BOARDS}/${boardId}/${PATH.COLUMNS}/${columnId}`, {
       method: 'DELETE',

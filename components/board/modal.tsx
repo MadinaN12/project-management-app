@@ -10,21 +10,23 @@ import {
 import { ModalProps } from '../../types/types';
 import { createColumn } from '../../api/column/createColumn';
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch } from '../../hooks/redux';
 import { getBoard } from '../../api/board/getBoard';
 import { getToken } from '../../utils';
+import { useRouter } from 'next/router';
 
 const Modal = ({ active, setActive }: ModalProps) => {
-  const { board, boardId } = useAppSelector((state) => state.boardReducer);
   const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const { id } = router.query;
 
   const handleClick = async () => {
     const token = getToken();
-    const column = { title: title, order: board.columns.length + 1 };
-    if (token) {
-      await createColumn(column, boardId, token);
-      dispatch(getBoard({ boardId: boardId, token: token }));
+    const column = { title: title };
+    if (token && id) {
+      await createColumn(column, id, token);
+      dispatch(getBoard({ boardId: id, token: token }));
     }
     setActive(false);
     setTitle('');

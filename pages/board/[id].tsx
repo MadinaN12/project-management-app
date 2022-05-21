@@ -1,22 +1,25 @@
 import { Button, Grid } from '@mui/material';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { getBoard } from '../../api/board/getBoard';
+import BoardControls from '../../components/board/controls';
+import Modal from '../../components/board/modal';
+import ColumnList from '../../components/column/columnList';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { column } from '../../styles/board/styledBoard';
 import { getToken } from '../../utils';
-import ColumnList from '../column/columnList';
-import BoardControls from './controls';
-import Modal from './modal';
 
 const Board = () => {
   const [modalActive, setModalActive] = useState(false);
-  const { board, boardId } = useAppSelector((state) => state.boardReducer);
+  const { board } = useAppSelector((state) => state.boardReducer);
+  const router = useRouter();
+  const { id } = router.query;
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const token = getToken();
-    token && dispatch(getBoard({ boardId: boardId, token: token }));
-  }, [dispatch, boardId]);
+    token && id && dispatch(getBoard({ boardId: id, token: token }));
+  }, [dispatch, id]);
 
   return (
     <>

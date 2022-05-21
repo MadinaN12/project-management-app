@@ -5,15 +5,18 @@ import { updateColumn } from '../../api/column/updateColumn';
 import { useAppSelector } from '../../hooks/redux';
 import { column } from '../../styles/board/styledBoard';
 import { getToken } from '../../utils';
+import { useRouter } from 'next/router';
 
 const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
   const [titleInput, setTitleInput] = useState(title);
-  const { colId, colOrder, boardId } = useAppSelector((state) => state.boardReducer);
+  const { colId, colOrder } = useAppSelector((state) => state.boardReducer);
+  const router = useRouter();
+  const { id } = router.query;
 
   const handleSubmit = async () => {
     const column = { title: titleInput, order: colOrder };
     const token = getToken();
-    token && (await updateColumn(column, colId, boardId, token));
+    token && id && (await updateColumn(column, colId, id, token));
     setNewTitle(titleInput);
     setOpen(false);
   };
