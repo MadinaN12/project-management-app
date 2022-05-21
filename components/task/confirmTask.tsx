@@ -13,13 +13,15 @@ import { TaskModalProps } from '../../types/types';
 import { getToken } from '../../utils';
 
 const ConfirmTask = ({ tasks, active, setActive }: TaskModalProps) => {
-  const { colId } = useAppSelector((state) => state.boardReducer);
+  const { colId, boardId } = useAppSelector((state) => state.boardReducer);
   const dispatch = useAppDispatch();
 
   const handleClose = async () => {
-    await deleteTask(colId, tasks.id);
     const token = getToken();
-    token && dispatch(getBoard({ boardId: '66fef433-3dcc-4501-9bbd-e990dab1c68e', token: token }));
+    if (token) {
+      await deleteTask(colId, tasks.id, boardId, token);
+      dispatch(getBoard({ boardId: boardId, token: token }));
+    }
     setActive(false);
   };
 

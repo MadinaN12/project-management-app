@@ -10,13 +10,13 @@ import Modal from './modal';
 
 const Board = () => {
   const [modalActive, setModalActive] = useState(false);
-  const { board } = useAppSelector((state) => state.boardReducer);
+  const { board, boardId } = useAppSelector((state) => state.boardReducer);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const token = getToken();
-    token && dispatch(getBoard({ boardId: '66fef433-3dcc-4501-9bbd-e990dab1c68e', token: token }));
-  }, [dispatch]);
+    token && dispatch(getBoard({ boardId: boardId, token: token }));
+  }, [dispatch, boardId]);
 
   return (
     <>

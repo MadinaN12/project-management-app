@@ -1,7 +1,7 @@
 import { AuthCheck } from '../components/AuthCheck';
 import Board from '../components/board';
 
-const MyApp = () => {
+const AuthBoard = () => {
   return (
     <AuthCheck>
       <Board />
@@ -9,4 +9,4 @@ const MyApp = () => {
   );
 };
 
-export default MyApp;
+export default AuthBoard;

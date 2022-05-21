@@ -4,13 +4,16 @@ import { TitleInputProps } from '../../types/types';
 import { updateColumn } from '../../api/column/updateColumn';
 import { useAppSelector } from '../../hooks/redux';
 import { column } from '../../styles/board/styledBoard';
+import { getToken } from '../../utils';
 
 const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
   const [titleInput, setTitleInput] = useState(title);
-  const { colId, colOrder } = useAppSelector((state) => state.boardReducer);
+  const { colId, colOrder, boardId } = useAppSelector((state) => state.boardReducer);
 
   const handleSubmit = async () => {
-    await updateColumn({ title: titleInput, order: colOrder }, colId);
+    const column = { title: titleInput, order: colOrder };
+    const token = getToken();
+    token && (await updateColumn(column, colId, boardId, token));
     setNewTitle(titleInput);
     setOpen(false);
   };

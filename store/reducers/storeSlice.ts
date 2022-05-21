@@ -37,6 +37,7 @@ export const initialState: StoreState = {
   error: '',
   colOrder: 1,
   isLoading: false,
+  boardId: '',
 };
 
 export const storeSlice = createSlice({
@@ -48,6 +49,9 @@ export const storeSlice = createSlice({
     },
     setColOrder(state, action: PayloadAction<number>) {
       state.colOrder = action.payload;
+    },
+    setBoardId(state, action: PayloadAction<string>) {
+      state.boardId = action.payload;
     },
   },
   extraReducers: {

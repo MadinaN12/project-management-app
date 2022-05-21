@@ -18,7 +18,7 @@ import { getToken } from '../../utils';
 const TaskModal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const { colId } = useAppSelector((state) => state.boardReducer);
+  const { colId, boardId } = useAppSelector((state) => state.boardReducer);
   const dispatch = useAppDispatch();
 
   const handleClick = async () => {
@@ -28,9 +28,11 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
       description: description,
       userId: 'ae26d810-ca02-4d08-af57-adf092a9ebc4',
     };
-    await createTask(task, colId);
     const token = getToken();
-    token && dispatch(getBoard({ boardId: '66fef433-3dcc-4501-9bbd-e990dab1c68e', token: token }));
+    if (token) {
+      await createTask(task, colId, boardId, token);
+      dispatch(getBoard({ boardId: boardId, token: token }));
+    }
     setActive(false);
     setTitle('');
     setDescription('');

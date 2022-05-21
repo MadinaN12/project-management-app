@@ -15,15 +15,17 @@ import { getBoard } from '../../api/board/getBoard';
 import { getToken } from '../../utils';
 
 const Modal = ({ active, setActive }: ModalProps) => {
-  const { board } = useAppSelector((state) => state.boardReducer);
+  const { board, boardId } = useAppSelector((state) => state.boardReducer);
   const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
 
   const handleClick = async () => {
     const token = getToken();
     const column = { title: title, order: board.columns.length + 1 };
-    await createColumn(column);
-    token && dispatch(getBoard({ boardId: '66fef433-3dcc-4501-9bbd-e990dab1c68e', token: token }));
+    if (token) {
+      await createColumn(column, boardId, token);
+      dispatch(getBoard({ boardId: boardId, token: token }));
+    }
     setActive(false);
     setTitle('');
   };

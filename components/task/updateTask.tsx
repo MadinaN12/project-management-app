@@ -16,7 +16,7 @@ import { getBoard } from '../../api/board/getBoard';
 import { getToken } from '../../utils';
 
 const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
-  const { colId } = useAppSelector((state) => state.boardReducer);
+  const { colId, boardId } = useAppSelector((state) => state.boardReducer);
   const [title, setTitle] = useState(tasks.title);
   const [description, setDescription] = useState(tasks.description);
   const dispatch = useAppDispatch();
@@ -27,12 +27,14 @@ const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
       order: 1,
       description: description,
       userId: 'ae26d810-ca02-4d08-af57-adf092a9ebc4',
-      boardId: '66fef433-3dcc-4501-9bbd-e990dab1c68e',
+      boardId: boardId,
       columnId: colId,
     };
-    await updateTask(task, colId, tasks.id);
     const token = getToken();
-    token && dispatch(getBoard({ boardId: '66fef433-3dcc-4501-9bbd-e990dab1c68e', token: token }));
+    if (token) {
+      await updateTask(task, colId, tasks.id, boardId, token);
+      dispatch(getBoard({ boardId: boardId, token: token }));
+    }
     setActive(false);
   };
 
