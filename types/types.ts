@@ -84,3 +84,14 @@ export type TitleInputProps = {
   setOpen: (value: boolean) => void;
   setNewTitle: (value: string) => void;
 };
+
+export type UserProfile = {
+  id?: string;
+  name?: string;
+  login?: string;
+  password?: string;
+};
+
+export interface UserProfileData extends UserProfile {
+  token: string;
+}

@@ -4,4 +4,5 @@ export enum PATH {
   BOARDS = 'boards',
   COLUMNS = 'columns',
   TASKS = 'tasks',
+  USERS = 'users',
 }
