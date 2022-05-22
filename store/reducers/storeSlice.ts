@@ -37,6 +37,8 @@ export const initialState: StoreState = {
   error: '',
   colOrder: 1,
   isLoading: false,
+  taskId: '',
+  taskOrder: 1,
 };
 
 export const storeSlice = createSlice({
@@ -48,6 +50,12 @@ export const storeSlice = createSlice({
     },
     setColOrder(state, action: PayloadAction<number>) {
       state.colOrder = action.payload;
+    },
+    setTaskId(state, action: PayloadAction<string>) {
+      state.taskId = action.payload;
+    },
+    setTaskOrder(state, action: PayloadAction<number>) {
+      state.taskOrder = action.payload;
     },
   },
   extraReducers: {

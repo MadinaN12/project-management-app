@@ -6,4 +6,6 @@ export interface StoreState {
   colId: string;
   colOrder: number;
   isLoading: boolean;
+  taskId: string;
+  taskOrder: number;
 }

@@ -1,4 +1,4 @@
-export const URL = 'https://morning-spire-63546.herokuapp.com';
+export const URL = 'https://frozen-shelf-23662.herokuapp.com';
 
 export enum PATH {
   BOARDS = 'boards',
@@ -6,6 +6,7 @@ export enum PATH {
   TASKS = 'tasks',
   SIGNUP = 'signup',
   SIGNIN = 'signin',
+  USERS = 'users',
 }
 
 export function getToken() {

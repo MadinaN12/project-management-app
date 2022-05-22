@@ -183,3 +183,14 @@ export type TaskModalProps = {
 export interface AuthProps {
   children: JSX.Element;
 }
+
+export type Users = {
+  id: string;
+  name: string;
+  login: string;
+};
+
+export type SelectProps = {
+  user: string;
+  setUser: (value: string) => void;
+};

@@ -15,10 +15,12 @@ import { createTask } from '../../api/task/createTask';
 import { getBoard } from '../../api/board/getBoard';
 import { getToken } from '../../utils';
 import { useRouter } from 'next/router';
+import UserList from './userList';
 
 const TaskModal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [user, setUser] = useState('');
   const { colId } = useAppSelector((state) => state.boardReducer);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -27,9 +29,8 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
   const handleClick = async () => {
     const task = {
       title: title,
-      order: 1,
       description: description,
-      userId: 'b0c79d80-66b0-4117-803b-cb4507013085',
+      userId: user,
     };
     const token = getToken();
     if (token && id) {
@@ -39,6 +40,7 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
     setActive(false);
     setTitle('');
     setDescription('');
+    setUser('');
   };
 
   const onTextChanged = (e: React.ChangeEvent) => {
@@ -66,6 +68,7 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
           onChange={onTextChanged}
         />
       </DialogContent>
+      <UserList user={user} setUser={setUser} />
       <DialogContent>
         <TextareaAutosize
           maxRows={4}

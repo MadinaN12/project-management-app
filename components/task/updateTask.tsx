@@ -15,10 +15,12 @@ import { updateTask } from '../../api/task/updateTask';
 import { getBoard } from '../../api/board/getBoard';
 import { getToken } from '../../utils';
 import { useRouter } from 'next/router';
+import UserList from './userList';
 
 const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
-  const { colId } = useAppSelector((state) => state.boardReducer);
+  const { colId, taskOrder } = useAppSelector((state) => state.boardReducer);
   const [title, setTitle] = useState(tasks.title);
+  const [user, setUser] = useState(tasks.userId);
   const [description, setDescription] = useState(tasks.description);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -29,9 +31,9 @@ const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
     if (token && id) {
       const task = {
         title: title,
-        order: 1,
+        order: taskOrder,
         description: description,
-        userId: 'ae26d810-ca02-4d08-af57-adf092a9ebc4',
+        userId: user,
         boardId: id,
         columnId: colId,
       };
@@ -66,6 +68,7 @@ const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
           onChange={onTextChanged}
         />
       </DialogContent>
+      <UserList user={user} setUser={setUser} />
       <DialogContent>
         <TextareaAutosize
           maxRows={4}
