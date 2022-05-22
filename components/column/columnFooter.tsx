@@ -2,9 +2,9 @@ import { Button, Grid } from '@mui/material';
 import ConfirmModal from './confirmModal';
 import TaskModal from '../task/createTask';
 import { useState } from 'react';
-import { column } from '../../styles/styledBoard';
+import { column } from '../../styles/board/styledBoard';
 
-const ColumnFooter = ({ title }: { title: string }) => {
+const ColumnFooter = () => {
   const [modalActive, setModalActive] = useState(false);
   const [taskModalActive, setTaskModalActive] = useState(false);
 
@@ -23,7 +23,7 @@ const ColumnFooter = ({ title }: { title: string }) => {
           + Add task
         </Button>
       </Grid>
-      <ConfirmModal title={title} active={modalActive} setActive={setModalActive} />
+      <ConfirmModal active={modalActive} setActive={setModalActive} />
       <TaskModal active={taskModalActive} setActive={setTaskModalActive} />
     </>
   );

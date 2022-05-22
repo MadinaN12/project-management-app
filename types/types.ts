@@ -44,7 +44,6 @@ export interface IEmailForm {
 
 export type Column = {
   title: string;
-  order: number;
 };
 
 export type ColumnResponse = {
@@ -91,7 +90,6 @@ export type InputRef = {
 
 export type Task = {
   title: string;
-  order: number;
   description: string;
   userId: string;
 };
@@ -104,4 +102,99 @@ export type TaskResponse = {
   userId: string;
   boardId: string;
   columnId: string;
+};
+
+export type BoardResponse = {
+  id: string;
+  title: string;
+  columns: [
+    {
+      id: string;
+      title: string;
+      order: number;
+      tasks: [
+        {
+          id: string;
+          title: string;
+          order: number;
+          done: boolean;
+          description: string;
+          userId: string;
+          files: [
+            {
+              filename: string;
+              fileSize: number;
+            }
+          ];
+        }
+      ];
+    }
+  ];
+};
+
+export type Col = {
+  id: string;
+  title: string;
+  order: number;
+  tasks: [
+    {
+      id: string;
+      title: string;
+      order: number;
+      done: boolean;
+      description: string;
+      userId: string;
+      files: [
+        {
+          filename: string;
+          fileSize: number;
+        }
+      ];
+    }
+  ];
+};
+
+export type UpdateTask = {
+  title: string;
+  order: number;
+  description: string;
+  userId: string;
+  boardId: string | string[];
+  columnId: string;
+};
+
+export type TaskProps = {
+  id: string;
+  title: string;
+  order: number;
+  done: boolean;
+  description: string;
+  userId: string;
+  files: [
+    {
+      filename: string;
+      fileSize: number;
+    }
+  ];
+};
+
+export type TaskModalProps = {
+  tasks: TaskProps;
+  active: boolean;
+  setActive: (value: boolean) => void;
+};
+
+export interface AuthProps {
+  children: JSX.Element;
+}
+
+export type Users = {
+  id: string;
+  name: string;
+  login: string;
+};
+
+export type SelectProps = {
+  user: string;
+  setUser: (value: string) => void;
 };

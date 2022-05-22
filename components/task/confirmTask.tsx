@@ -6,18 +6,25 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
+import { useRouter } from 'next/router';
+import { getBoard } from '../../api/board/getBoard';
+import { deleteTask } from '../../api/task/deleteTask';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { storeSlice } from '../../store/reducers/storeSlice';
-import { ModalProps } from '../../types/types';
+import { TaskModalProps } from '../../types/types';
+import { getToken } from '../../utils';
 
-const ConfirmTask = ({ active, setActive }: ModalProps) => {
-  const { tasks, taskId } = useAppSelector((state) => state.boardReducer);
-  const { deleteTasks } = storeSlice.actions;
+const ConfirmTask = ({ tasks, active, setActive }: TaskModalProps) => {
+  const { colId } = useAppSelector((state) => state.boardReducer);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const { id } = router.query;
 
-  const handleClose = () => {
-    const res = tasks.filter((item) => item.id !== taskId);
-    dispatch(deleteTasks(res));
+  const handleClose = async () => {
+    const token = getToken();
+    if (token && id) {
+      await deleteTask(colId, tasks.id, id, token);
+      dispatch(getBoard({ boardId: id, token: token }));
+    }
     setActive(false);
   };
 

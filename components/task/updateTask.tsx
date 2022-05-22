@@ -8,24 +8,38 @@ import {
   TextField,
 } from '@mui/material';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import { ModalProps } from '../../types/types';
+import { TaskModalProps } from '../../types/types';
 import { useState } from 'react';
-import { useAppSelector } from '../../hooks/redux';
-import { updateTask } from '../../pages/api/updateTask';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { updateTask } from '../../api/task/updateTask';
+import { getBoard } from '../../api/board/getBoard';
+import { getToken } from '../../utils';
+import { useRouter } from 'next/router';
+import UserList from './userList';
 
-const UpdateTask = ({ active, setActive }: ModalProps) => {
-  const { taskId } = useAppSelector((state) => state.boardReducer);
-  const [title, setTitle] = useState(taskId);
-  const [description, setDescription] = useState('');
+const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
+  const { colId, taskOrder } = useAppSelector((state) => state.boardReducer);
+  const [title, setTitle] = useState(tasks.title);
+  const [user, setUser] = useState(tasks.userId);
+  const [description, setDescription] = useState(tasks.description);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const { id } = router.query;
 
-  const handleClick = () => {
-    const task = {
-      title: title,
-      order: 0,
-      description: description,
-      userId: '1234',
-    };
-    updateTask(task);
+  const handleClick = async () => {
+    const token = getToken();
+    if (token && id) {
+      const task = {
+        title: title,
+        order: taskOrder,
+        description: description,
+        userId: user,
+        boardId: id,
+        columnId: colId,
+      };
+      await updateTask(task, colId, tasks.id, id, token);
+      dispatch(getBoard({ boardId: id, token: token }));
+    }
     setActive(false);
   };
 
@@ -54,6 +68,7 @@ const UpdateTask = ({ active, setActive }: ModalProps) => {
           onChange={onTextChanged}
         />
       </DialogContent>
+      <UserList user={user} setUser={setUser} />
       <DialogContent>
         <TextareaAutosize
           maxRows={4}

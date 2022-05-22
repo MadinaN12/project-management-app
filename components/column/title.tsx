@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import React, { useState } from 'react';
+import { column } from '../../styles/board/styledBoard';
 import TitleInput from './titleInput';
-import { column } from '../../styles/styledBoard';
 
 const Title = ({ title }: { title: string }) => {
   const [open, setOpen] = useState(false);

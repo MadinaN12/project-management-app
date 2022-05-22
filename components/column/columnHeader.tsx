@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
+import { column } from '../../styles/board/styledBoard';
 import Title from './title';
-import { column } from '../../styles/styledBoard';
 
 const ColumnHeader = ({ title }: { title: string }) => {
   return (

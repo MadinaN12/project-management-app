@@ -10,28 +10,37 @@ import {
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { ModalProps } from '../../types/types';
 import { useState } from 'react';
-import { storeSlice } from '../../store/reducers/storeSlice';
-import { useAppDispatch } from '../../hooks/redux';
-import { createTask } from '../../pages/api/createTask';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { createTask } from '../../api/task/createTask';
+import { getBoard } from '../../api/board/getBoard';
+import { getToken } from '../../utils';
+import { useRouter } from 'next/router';
+import UserList from './userList';
 
 const TaskModal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const { setTasks } = storeSlice.actions;
+  const [user, setUser] = useState('');
+  const { colId } = useAppSelector((state) => state.boardReducer);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const { id } = router.query;
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const task = {
       title: title,
-      order: 0,
       description: description,
-      userId: '1234',
+      userId: user,
     };
-    const res = createTask(task);
-    res && dispatch(setTasks(res));
+    const token = getToken();
+    if (token && id) {
+      await createTask(task, colId, id, token);
+      dispatch(getBoard({ boardId: id, token: token }));
+    }
     setActive(false);
     setTitle('');
     setDescription('');
+    setUser('');
   };
 
   const onTextChanged = (e: React.ChangeEvent) => {
@@ -59,6 +68,7 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
           onChange={onTextChanged}
         />
       </DialogContent>
+      <UserList user={user} setUser={setUser} />
       <DialogContent>
         <TextareaAutosize
           maxRows={4}
