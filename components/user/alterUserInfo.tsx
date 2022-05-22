@@ -1,21 +1,13 @@
 import React, { SetStateAction, useEffect, useState } from 'react';
-import { Box, Button, Input, Modal, FormLabel, Typography } from '@mui/material';
-import { UserProfile, UserProfileData } from '../../types/types';
+import { Box, Button, Modal, FormLabel, Typography } from '@mui/material';
+import { UserProfileData, UserProfileProps } from '../../types/types';
 import { style } from '../../styles/user/UserProfile';
-// import userStyle from '../../styles/user/UserProfile.module.scss';
+import { updateUserInfo } from '../ApiController/configureUserInfo';
+import PartUserEdit from './alterUserPart';
 
-export default function AlterUser({
-  data,
-  control,
-}: {
-  data: UserProfile;
-  control: {
-    isEditing: boolean;
-    setIsEditing: (arg0: boolean) => void;
-    setData: (arg0: Array<object> | object) => void;
-  };
-}) {
-  const [userInfo, setUserinfo] = useState({ name: '', login: '', password: '' });
+export default function AlterUser({ data, control }: UserProfileProps) {
+  const defaultLoading = { name: 'Loading', login: '', password: '' };
+  const [userInfo, setUserinfo] = useState(defaultLoading);
 
   const handleChangeTitle = (e: { target: { value: SetStateAction<string> } }) =>
     setUserinfo((pre) => ({ ...pre, name: e.target.value as string }));
@@ -32,24 +24,21 @@ export default function AlterUser({
       name: (userInfo as UserProfileData).name,
       password: (userInfo as UserProfileData).password,
     };
-    updatedUser;
 
-    // const id = localStorage.getItem('userId'),
-    //   token = localStorage.getItem('token') as string;
-    // if (id && token) {
-    //   const res = updateUserInfo(token, id, updatedUser);
-    //   if (res) control.setData(res);
-    // }
-    // control.setIsEditing(false);
+    const id = localStorage.getItem('userId'),
+      token = localStorage.getItem('token') as string;
+    if (id && token) {
+      const res = updateUserInfo(token, id, updatedUser);
+      if (res) control.setData(res);
+    }
+    control.setIsEditing(false);
   };
 
   useEffect(() => {
     if (data.name)
       setUserinfo((pre) => ({ ...pre, name: data.name as string, login: data.login as string }));
-    else {
-      setUserinfo({ name: 'loading', login: 'loading', password: 'loading' });
-    }
-  }, [data, data.name]);
+    else setUserinfo({ name: 'loading', login: 'loading', password: 'loading' });
+  }, [data.login, data.name]);
 
   return (
     <>
@@ -61,22 +50,9 @@ export default function AlterUser({
       >
         <Box sx={style.popUp}>
           <Typography variant="h6">Edit profile</Typography>
-          <Input
-            value={(userInfo as UserProfileData).name}
-            sx={style.input}
-            onChange={handleChangeTitle}
-          />
-          <FormLabel sx={style.label}>name</FormLabel>
-          <Input
-            value={(userInfo as UserProfileData).login}
-            sx={style.input}
-            onChange={handleChangeLogin}
-          />
-          <FormLabel sx={style.label}>login</FormLabel>
-          <Input
-            value={(userInfo as UserProfileData).password}
-            sx={style.input}
-            onChange={handleChangePassword}
+          <PartUserEdit
+            userInfo={userInfo}
+            configureUser={{ handleChangeLogin, handleChangePassword, handleChangeTitle }}
           />
           <FormLabel sx={style.label}>password</FormLabel>
           <Button variant="contained" sx={{ m: '2% 0 0' }} onClick={handleSubmit}>

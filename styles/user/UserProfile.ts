@@ -1,6 +1,6 @@
 export const style = {
   box: {
-    height: '80px',
+    minHeight: '80px',
     background: '#c9c9c9',
     width: '100%',
     p: '0.3% 0',

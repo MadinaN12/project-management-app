@@ -10,8 +10,6 @@ export default function UserInfo({
   data: UserProfile;
   setIsEditing: (arg0: boolean) => void;
 }) {
-  //   const [name, setName] = useState('');
-
   useEffect(() => {
     // setName(name);
   }, []);
@@ -20,8 +18,10 @@ export default function UserInfo({
     <>
       {data.name ? (
         <>
-          <Box sx={style.userTitleBox}>
-            <Typography variant="h4"> {(data.name as string)[0].toUpperCase()}</Typography>
+          <Box sx={style.box}>
+            <Box sx={style.userTitleBox}>
+              <Typography variant="h4"> {(data.name as string)[0].toUpperCase()}</Typography>
+            </Box>
           </Box>
           <Typography sx={{ textAlign: 'center' }} variant="h5">
             {data.name}
@@ -34,7 +34,9 @@ export default function UserInfo({
           </Button>
         </>
       ) : (
-        ''
+        <Typography variant={'subtitle2'} sx={{ textAlign: 'center' }}>
+          Loading
+        </Typography>
       )}
     </>
   );

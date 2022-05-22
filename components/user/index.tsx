@@ -1,12 +1,9 @@
-import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { style } from '../../styles/user/UserProfile';
 import { getUserInfo } from '../ApiController/configureUserInfo';
 import AlterUser from './alterUserInfo';
 import UserInfo from './userInfo';
 
 export default function UserComponent() {
-  // const [userData, setUserData] = useState({});
   const [data, setData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
 
@@ -17,14 +14,12 @@ export default function UserComponent() {
       if (res) setData(res);
     };
     getDatas();
-  }, []);
+  }, [data]);
 
   return (
     <>
-      <Box sx={style.box}>
-        <UserInfo data={data} setIsEditing={setIsEditing} />
-        {!isEditing ? '' : <AlterUser data={data} control={{ isEditing, setIsEditing, setData }} />}
-      </Box>
+      <UserInfo data={data} setIsEditing={setIsEditing} />
+      {!isEditing ? '' : <AlterUser data={data} control={{ isEditing, setIsEditing, setData }} />}
     </>
   );
 }

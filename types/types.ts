@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { ChangeEventHandler, Dispatch, SetStateAction } from 'react';
 
 export interface IEmailForm {
   setEmailInput: Dispatch<SetStateAction<string>>;
@@ -85,7 +85,6 @@ export type TitleInputProps = {
   setNewTitle: (value: string) => void;
 };
 
-
 export type UserProfile = {
   id?: string;
   name?: string;
@@ -94,7 +93,7 @@ export type UserProfile = {
 };
 
 export interface UserProfileData extends UserProfile {
-  token: string;
+  token?: string;
 }
 
 export type InputRef = {
@@ -116,4 +115,33 @@ export type TaskResponse = {
   userId: string;
   boardId: string;
   columnId: string;
+};
+
+export type UserProfileProps = {
+  data: UserProfile;
+  control: {
+    isEditing: boolean;
+    setIsEditing: (arg0: boolean) => void;
+    setData: (arg0: Array<object> | object) => void;
+  };
+};
+
+export type ConfigureUserMethods = {
+  handleChangeTitle:
+    | VoidFunction
+    | ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+    | undefined;
+  handleChangeLogin:
+    | VoidFunction
+    | ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+    | undefined;
+  handleChangePassword:
+    | VoidFunction
+    | ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+    | undefined;
+};
+
+export type PartUserEditProps = {
+  userInfo: UserProfileData;
+  configureUser: ConfigureUserMethods;
 };
