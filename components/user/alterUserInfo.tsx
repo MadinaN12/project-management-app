@@ -1,9 +1,8 @@
 import React, { SetStateAction, useEffect, useState } from 'react';
-import { Box, Button, Input, Modal, FormLabel, Typography, FilledInput } from '@mui/material';
+import { Box, Button, Input, Modal, FormLabel, Typography } from '@mui/material';
 import { UserProfile, UserProfileData } from '../../types/types';
 import { style } from '../../styles/user/UserProfile';
 // import userStyle from '../../styles/user/UserProfile.module.scss';
-import { updateUserInfo } from '../ApiController/configureUserInfo';
 
 export default function AlterUser({
   data,
@@ -33,8 +32,7 @@ export default function AlterUser({
       name: (userInfo as UserProfileData).name,
       password: (userInfo as UserProfileData).password,
     };
-
-    console.log(updatedUser);
+    updatedUser;
 
     // const id = localStorage.getItem('userId'),
     //   token = localStorage.getItem('token') as string;
@@ -51,7 +49,6 @@ export default function AlterUser({
     else {
       setUserinfo({ name: 'loading', login: 'loading', password: 'loading' });
     }
-    console.log(data);
   }, [data, data.name]);
 
   return (

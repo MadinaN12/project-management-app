@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from '@mui/material';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { useEffect } from 'react';
 import { style } from '../../styles/user/UserProfile';
 import { UserProfile } from '../../types/types';
 
@@ -38,7 +38,4 @@ export default function UserInfo({
       )}
     </>
   );
-}
-function setIsEditing(arg0: boolean): void {
-  throw new Error('Function not implemented.');
 }

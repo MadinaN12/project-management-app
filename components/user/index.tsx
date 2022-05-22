@@ -6,10 +6,9 @@ import AlterUser from './alterUserInfo';
 import UserInfo from './userInfo';
 
 export default function UserComponent() {
-  const [userData, setUserData] = useState({});
+  // const [userData, setUserData] = useState({});
   const [data, setData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
-  console.log(data);
 
   useEffect(() => {
     const getDatas = async () => {
