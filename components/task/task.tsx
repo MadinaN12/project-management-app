@@ -73,8 +73,13 @@ export const Task = ({ colId, order, atOrder, tasks, moveCard, findCard }: CardP
   };
 
   return (
-    <Paper sx={task.task} onClick={handleClick} ref={(node) => drag(drop(node))}>
-      <Grid container sx={{ justifyContent: 'space-between', opacity: opacity }}>
+    <Paper
+      sx={task.task}
+      style={{ opacity: opacity }}
+      onClick={handleClick}
+      ref={(node) => drag(drop(node))}
+    >
+      <Grid container sx={{ justifyContent: 'space-between' }}>
         {tasks.title}
         <TaskControls tasks={tasks} />
       </Grid>
