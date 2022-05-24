@@ -12,10 +12,13 @@ import { Col } from '../../types/types';
 import { getToken } from '../../utils';
 import update from 'immutability-helper';
 import { ItemTypes } from '../../types/dndTypes';
+import { sortColumns } from '../../dndUtils.ts/tasksSort';
 
 const Board = () => {
   const [modalActive, setModalActive] = useState(false);
   const { board } = useAppSelector((state) => state.boardReducer);
+  const [cards, setCards] = useState<Col[]>(sortColumns(board.columns));
+  const [order, setOrder] = useState<number>(1);
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useAppDispatch();
@@ -25,8 +28,10 @@ const Board = () => {
     token && id && dispatch(getBoard({ boardId: id, token: token }));
   }, [dispatch, id]);
 
-  const [cards, setCards] = useState<Col[]>(board.columns);
-  const [order, setOrder] = useState<number>(1);
+  useEffect(() => {
+    setCards(sortColumns(board.columns));
+  }, [board.columns]);
+
   const findCard = useCallback(
     (order: number) => {
       const card = cards.filter((c) => c.order === order)[0] as Col;

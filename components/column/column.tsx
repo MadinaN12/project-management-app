@@ -7,10 +7,28 @@ import { storeSlice } from '../../store/reducers/storeSlice';
 import { column } from '../../styles/board/styledBoard';
 import { ColumnProps, Item, ItemTypes } from '../../types/dndTypes';
 import { useDrag, useDrop } from 'react-dnd';
+import { getToken } from '../../utils';
+import { useRouter } from 'next/router';
+import { updateColumn } from '../../api/column/updateColumn';
+import { getBoard } from '../../api/board/getBoard';
 
 const BoardColumn = ({ col, order, atOrder, moveCard, findCard }: ColumnProps) => {
   const dispatch = useAppDispatch();
   const { setColumnId, setColOrder } = storeSlice.actions;
+  const router = useRouter();
+  const { id } = router.query;
+
+  const updateOrder = async (droppedId: number) => {
+    const token = getToken();
+    if (token && id) {
+      const column = {
+        title: col.title,
+        order: droppedId + 1,
+      };
+      await updateColumn(column, col.id, id, token);
+      await dispatch(getBoard({ boardId: id, token: token }));
+    }
+  };
 
   const originalIndex = findCard(order).index;
   const [{ isDragging }, drag] = useDrag(
@@ -27,7 +45,7 @@ const BoardColumn = ({ col, order, atOrder, moveCard, findCard }: ColumnProps) =
           moveCard(droppedId, originalIndex);
         }
         if (didDrop) {
-          atOrder;
+          updateOrder(atOrder);
         }
       },
     }),
