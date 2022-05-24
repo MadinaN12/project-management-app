@@ -1,4 +1,4 @@
-export const URL = 'https://frozen-shelf-23662.herokuapp.com';
+export const URL = 'https://obscure-scrubland-34655.herokuapp.com';
 
 export enum PATH {
   BOARDS = 'boards',

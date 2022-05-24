@@ -1,6 +1,8 @@
 import { Button, Grid } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import { getBoard } from '../../api/board/getBoard';
 import BoardControls from '../../components/board/controls';
 import Modal from '../../components/board/modal';
@@ -22,7 +24,7 @@ const Board = () => {
   }, [dispatch, id]);
 
   return (
-    <>
+    <DndProvider backend={HTML5Backend}>
       <Grid container sx={{ backgroundColor: '#448aff', height: '100vh' }}>
         <BoardControls />
         <Grid container sx={column.boardGrid}>
@@ -33,7 +35,7 @@ const Board = () => {
         </Grid>
       </Grid>
       <Modal active={modalActive} setActive={setModalActive} />
-    </>
+    </DndProvider>
   );
 };
 
