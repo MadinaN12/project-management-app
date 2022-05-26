@@ -2,7 +2,7 @@ import { ILoginResponse, ISignupResponse } from '../types/registrationTypes';
 import { URL, PATH } from '../utils';
 
 export const PostUser = async (name: string, login: string, password: string) => {
-  const response = await fetch(`${URL}${PATH.SIGNUP}`, {
+  const response = await fetch(`${URL}/${PATH.SIGNUP}`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -15,7 +15,7 @@ export const PostUser = async (name: string, login: string, password: string) =>
 };
 
 export const LoginUser = async (login: string, password: string): Promise<ILoginResponse> => {
-  const response = await fetch(`${URL}${PATH.SIGNIN}`, {
+  const response = await fetch(`${URL}/${PATH.SIGNIN}`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
