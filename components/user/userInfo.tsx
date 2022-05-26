@@ -1,18 +1,18 @@
-import { Box, Button, Typography } from '@mui/material';
-import { useEffect } from 'react';
+import { Box, Typography } from '@mui/material';
+// import { useEffect } from 'react';
 import { style } from '../../styles/user/UserProfile';
-import { UserProfile } from '../../types/types';
+import { UserProfile, UserProfileProps } from '../../types/types';
 
 export default function UserInfo({
   data,
-  setIsEditing,
-}: {
+}: // setIsEditing,
+{
   data: UserProfile;
   setIsEditing: (arg0: boolean) => void;
 }) {
-  useEffect(() => {
-    // setName(name);
-  }, []);
+  // useEffect(() => {
+  //  setName(name);
+  // }, []);
 
   return (
     <>
@@ -29,9 +29,6 @@ export default function UserInfo({
           <Typography sx={{ textAlign: 'center' }} variant="subtitle1">
             @{data.login}
           </Typography>
-          <Button variant="outlined" sx={style.button} onClick={() => setIsEditing(true)}>
-            Edit
-          </Button>
         </>
       ) : (
         <Typography variant={'subtitle2'} sx={{ textAlign: 'center' }}>

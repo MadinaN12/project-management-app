@@ -30,7 +30,7 @@ export default function MyApp({
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Component {...pageProps} />
-          <Footer />
+          {/* <Footer /> */}
         </ThemeProvider>
       </CacheProvider>
     </Provider>

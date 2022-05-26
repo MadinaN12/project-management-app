@@ -28,7 +28,7 @@ export const style = {
     borderRadius: 2,
   },
 
-  button: { m: '2% 2% 0 auto', display: 'block', width: '10%' },
+  button: { m: '2% 2% 0 auto', display: 'block', width: '100px' },
 
   input: {
     width: '80%',
@@ -44,5 +44,29 @@ export const style = {
   label: {
     fontSize: '14px',
     display: 'block',
+  },
+
+  flex: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    m: '2% auto',
+    gap: 2,
+  },
+};
+
+export const removeStyle = {
+  popUp: {
+    background: 'white',
+    height: '22%',
+    width: '260px',
+    m: '27% auto',
+    p: 2,
+    borderRadius: 2,
+  },
+
+  flex: {
+    display: 'flex',
+    m: '3% auto 0%',
+    justifyContent: 'space-between',
   },
 };

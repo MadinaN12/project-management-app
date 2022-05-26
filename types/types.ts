@@ -123,19 +123,21 @@ export type UserProfileProps = {
     isEditing: boolean;
     setIsEditing: (arg0: boolean) => void;
     setData: (arg0: Array<object> | object) => void;
+    setIsRemoving?: (arg0: boolean) => void;
+    setRefresh?: (arg0: boolean) => void;
   };
 };
 
 export type ConfigureUserMethods = {
-  handleChangeTitle:
+  handleChangeTitle?:
     | VoidFunction
     | ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
     | undefined;
-  handleChangeLogin:
+  handleChangeLogin?:
     | VoidFunction
     | ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
     | undefined;
-  handleChangePassword:
+  handleChangePassword?:
     | VoidFunction
     | ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
     | undefined;

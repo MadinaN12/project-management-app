@@ -32,6 +32,7 @@ export default function AlterUser({ data, control }: UserProfileProps) {
       if (res) control.setData(res);
     }
     control.setIsEditing(false);
+    (control.setRefresh as (arg: boolean) => void)(true);
   };
 
   useEffect(() => {
@@ -59,7 +60,7 @@ export default function AlterUser({ data, control }: UserProfileProps) {
             Accept
           </Button>
           <Button
-            variant="outlined"
+            variant="contained"
             color="error"
             sx={{ m: '2% 0 0 2%' }}
             onClick={() => control.setIsEditing(false)}

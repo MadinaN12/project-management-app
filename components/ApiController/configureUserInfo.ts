@@ -45,3 +45,5 @@ export async function deleteUser(token: string, id: string) {
     return new Error('user not found');
   }
 }
+
+// export async function get
