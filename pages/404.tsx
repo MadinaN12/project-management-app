@@ -1,29 +1,28 @@
 import { Container, Typography } from '@mui/material';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { titleStyle, linkStyle } from '../styles/404/404_style';
+import img404 from '../images/404.gif';
 
 export default function ErrorPage() {
   const [seconds, setSeconds] = useState(3);
-
-  const [countStatus, setCountStatus] = useState(false);
-
   const router = useRouter();
 
   useEffect(() => {
-    setCountStatus(true);
-    if (!countStatus) {
-      setTimeout(() => router.push('/'), 3000);
-      if (seconds) setInterval(() => setSeconds((e) => e - 0.5), 1000);
-    }
-  }, [countStatus, router, seconds]);
+    const interval = setTimeout(() => setSeconds(seconds - 1), 1000);
+    return () => clearInterval(interval);
+  }, [seconds]);
+
+  useEffect(() => {
+    setTimeout(() => router.push('/'), 3000);
+  }, [router]);
 
   return (
     <>
       <Container sx={titleStyle}>
-        <Typography variant="h3">Oops, this page not found</Typography>
-
+        <Image src={img404} alt="404" style={{ width: '30%' }} />
         <Typography variant="subtitle1" sx={titleStyle}>
           Redirecting to{' '}
           <Link href={'/'} passHref>
