@@ -198,3 +198,10 @@ export type SelectProps = {
   user: string;
   setUser: (value: string) => void;
 };
+
+export type ConfirmProps = {
+  title: string;
+  active: boolean;
+  setActive: (value: boolean) => void;
+  handleClose: () => void;
+};
