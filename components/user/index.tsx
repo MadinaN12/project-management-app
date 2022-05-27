@@ -23,7 +23,7 @@ export default function UserComponent() {
       refreshed();
     };
     if (refresh) getDatas();
-  }, [data]);
+  }, [data, refresh]);
 
   return (
     <>
@@ -47,8 +47,7 @@ export default function UserComponent() {
         </Button>
       </Box>
       <RemoveUser controlRemove={{ setIsRemoving, isRemoving }} />
-      <div></div>
-      <StatisticsUser />
+      <StatisticsUser data={data} />
     </>
   );
 }

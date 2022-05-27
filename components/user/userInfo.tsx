@@ -1,29 +1,23 @@
 import { Box, Typography } from '@mui/material';
-// import { useEffect } from 'react';
 import { style } from '../../styles/user/UserProfile';
-import { UserProfile, UserProfileProps } from '../../types/types';
+import { UserProfile } from '../../types/types';
 
 export default function UserInfo({
   data,
-}: // setIsEditing,
-{
+}: {
   data: UserProfile;
   setIsEditing: (arg0: boolean) => void;
 }) {
-  // useEffect(() => {
-  //  setName(name);
-  // }, []);
-
   return (
     <>
       {data.name ? (
         <>
           <Box sx={style.box}>
             <Box sx={style.userTitleBox}>
-              <Typography variant="h4"> {(data.name as string)[0].toUpperCase()}</Typography>
+              <Typography variant="h3"> {(data.name as string)[0].toUpperCase()}</Typography>
             </Box>
           </Box>
-          <Typography sx={{ textAlign: 'center' }} variant="h5">
+          <Typography sx={style.word} variant="h2">
             {data.name}
           </Typography>
           <Typography sx={{ textAlign: 'center' }} variant="subtitle1">

@@ -10,19 +10,19 @@ export default function AlterUser({ data, control }: UserProfileProps) {
   const [userInfo, setUserinfo] = useState(defaultLoading);
 
   const handleChangeTitle = (e: { target: { value: SetStateAction<string> } }) =>
-    setUserinfo((pre) => ({ ...pre, name: e.target.value as string }));
+    setUserinfo((pre) => ({ ...pre, name: (e.target.value as string).trim() }));
 
   const handleChangeLogin = (e: { target: { value: SetStateAction<string> } }) =>
-    setUserinfo((pre) => ({ ...pre, login: e.target.value as string }));
+    setUserinfo((pre) => ({ ...pre, login: (e.target.value as string).trim() }));
 
   const handleChangePassword = (e: { target: { value: SetStateAction<string> } }) =>
-    setUserinfo((pre) => ({ ...pre, password: e.target.value as string }));
+    setUserinfo((pre) => ({ ...pre, password: (e.target.value as string).trim() as string }));
 
   const handleSubmit = () => {
     const updatedUser = {
-      login: (userInfo as UserProfileData).login,
-      name: (userInfo as UserProfileData).name,
-      password: (userInfo as UserProfileData).password,
+      login: (userInfo as UserProfileData).login?.trim(),
+      name: (userInfo as UserProfileData).name?.trim(),
+      password: (userInfo as UserProfileData).password?.trim(),
     };
 
     const id = localStorage.getItem('userId'),

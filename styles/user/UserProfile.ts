@@ -1,22 +1,31 @@
 export const style = {
   box: {
-    minHeight: '80px',
+    minHeight: '100px',
     background: '#c9c9c9',
     width: '100%',
-    p: '0.3% 0',
+    p: '0.3% 0 0.1%',
+    display: 'flex',
+    // alignItems: 'center',
   },
 
   userTitleBox: {
     borderRadius: '50%',
-    height: '70px',
-    width: '70px',
+    height: '80px',
+    width: '80px',
     background: 'blue',
     color: 'white',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    m: 'auto',
+    m: '4% auto -5%',
+  },
+
+  word: {
+    margin: '4% auto 2%',
+    fontSize: '35px',
+    fontWeight: '500',
+    textAlign: 'center',
   },
 
   popUp: {
@@ -51,6 +60,23 @@ export const style = {
     justifyContent: 'flex-end',
     m: '2% auto',
     gap: 2,
+  },
+
+  boardCount: {
+    width: '50px',
+    height: '50px',
+    display: 'flex',
+    color: 'black',
+    fontSize: '32px',
+    justifyContent: 'center',
+    alignItems: 'center',
+    m: 'auto',
+    textShadow: '0 0 5px',
+  },
+
+  hr: {
+    width: '50%',
+    margin: '1% auto 1%',
   },
 };
 

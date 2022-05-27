@@ -35,19 +35,3 @@ export async function getLastColumn(token: string, boardId: string) {
     return new Error(`${err}`);
   }
 }
-
-export async function getLastTask(token: string, boardId: string, columnId: string) {
-  try {
-    const res = await fetch(
-      `${URL}/${PATH.BOARDS}/${boardId}/${PATH.COLUMNS}/${columnId}/${PATH.TASKS}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return res.json();
-  } catch (err) {
-    return new Error(`${err}`);
-  }
-}
