@@ -1,13 +1,3 @@
-import {
-  Button,
-  CssBaseline,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-} from '@mui/material';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { ModalProps } from '../../types/types';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -15,7 +5,7 @@ import { createTask } from '../../api/task/createTask';
 import { getBoard } from '../../api/board/getBoard';
 import { getToken } from '../../utils';
 import { useRouter } from 'next/router';
-import UserList from './userList';
+import TaskModalForm from '../modals/taskModal';
 
 const TaskModal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
@@ -54,42 +44,18 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
   };
 
   return (
-    <Dialog open={active}>
-      <DialogTitle>Create task</DialogTitle>
-      <CssBaseline />
-      <DialogContent>
-        <TextField
-          margin="dense"
-          id="outlined-basic"
-          label="Task title"
-          variant="outlined"
-          style={{ width: 250 }}
-          value={title}
-          onChange={onTextChanged}
-        />
-      </DialogContent>
-      <UserList user={user} setUser={setUser} />
-      <DialogContent>
-        <TextareaAutosize
-          maxRows={4}
-          aria-label="maximum height"
-          placeholder="Description"
-          style={{ width: 250, height: 66, overflow: 'auto' }}
-          value={description}
-          onChange={onDescriptionChanged}
-        />
-      </DialogContent>
-      <DialogContent>
-        <DialogActions>
-          <Button variant="outlined" onClick={() => setActive(false)}>
-            Cancel
-          </Button>
-          <Button variant="contained" onClick={handleClick}>
-            Submit
-          </Button>
-        </DialogActions>
-      </DialogContent>
-    </Dialog>
+    <TaskModalForm
+      title="Create task"
+      text={title}
+      active={active}
+      user={user}
+      description={description}
+      onTextChanged={onTextChanged}
+      setUser={setUser}
+      setActive={setActive}
+      handleClick={handleClick}
+      onDescriptionChanged={onDescriptionChanged}
+    />
   );
 };
 

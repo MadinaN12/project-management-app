@@ -205,3 +205,16 @@ export type ConfirmProps = {
   setActive: (value: boolean) => void;
   handleClose: () => void;
 };
+
+export type TaskPropsModal = {
+  title: string;
+  text: string;
+  active: boolean;
+  user: string;
+  description: string;
+  onTextChanged: (e: React.ChangeEvent) => void;
+  setUser: (value: string) => void;
+  setActive: (value: boolean) => void;
+  handleClick: () => void;
+  onDescriptionChanged: (e: React.ChangeEvent) => void;
+};

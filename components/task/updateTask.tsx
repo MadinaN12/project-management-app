@@ -1,13 +1,3 @@
-import {
-  Button,
-  CssBaseline,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-} from '@mui/material';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { TaskModalProps } from '../../types/types';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -15,7 +5,7 @@ import { updateTask } from '../../api/task/updateTask';
 import { getBoard } from '../../api/board/getBoard';
 import { getToken } from '../../utils';
 import { useRouter } from 'next/router';
-import UserList from './userList';
+import TaskModalForm from '../modals/taskModal';
 
 const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
   const { colId, taskOrder } = useAppSelector((state) => state.boardReducer);
@@ -54,42 +44,18 @@ const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
   };
 
   return (
-    <Dialog open={active}>
-      <DialogTitle>Update task</DialogTitle>
-      <CssBaseline />
-      <DialogContent>
-        <TextField
-          margin="dense"
-          id="outlined-basic"
-          label="Task title"
-          variant="outlined"
-          style={{ width: 250 }}
-          value={title}
-          onChange={onTextChanged}
-        />
-      </DialogContent>
-      <UserList user={user} setUser={setUser} />
-      <DialogContent>
-        <TextareaAutosize
-          maxRows={4}
-          aria-label="maximum height"
-          placeholder="Description"
-          style={{ width: 250, height: 66, overflow: 'auto' }}
-          value={description}
-          onChange={onDescriptionChanged}
-        />
-      </DialogContent>
-      <DialogContent>
-        <DialogActions>
-          <Button variant="outlined" onClick={() => setActive(false)}>
-            Cancel
-          </Button>
-          <Button variant="contained" onClick={handleClick}>
-            Submit
-          </Button>
-        </DialogActions>
-      </DialogContent>
-    </Dialog>
+    <TaskModalForm
+      title="Update task"
+      text={title}
+      active={active}
+      user={user}
+      description={description}
+      onTextChanged={onTextChanged}
+      setUser={setUser}
+      setActive={setActive}
+      handleClick={handleClick}
+      onDescriptionChanged={onDescriptionChanged}
+    />
   );
 };
 
