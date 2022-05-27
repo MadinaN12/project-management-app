@@ -15,7 +15,7 @@ export default function StatisticsUser({ data = { name: 'Loading' } }: { data?: 
   return (
     <>
       <hr style={style.hr} />
-      <Typography variant="subtitle2">
+      <Typography variant="subtitle2" sx={{ m: '0 auto 3%' }}>
         {data?.name || 'User'} has boards:
         <Typography sx={style.boardCount}>{boardsCount || 0}</Typography>
       </Typography>

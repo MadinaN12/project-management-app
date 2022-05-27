@@ -70,7 +70,7 @@ export const style = {
     fontSize: '32px',
     justifyContent: 'center',
     alignItems: 'center',
-    m: 'auto',
+    m: '0 auto 6%',
     textShadow: '0 0 5px',
   },
 
