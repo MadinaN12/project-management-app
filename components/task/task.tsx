@@ -34,7 +34,7 @@ export const Task = ({ colId, order, atOrder, tasks, moveCard, findCard }: CardP
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type: ItemTypes.TASK,
-      item: { order, originalIndex },
+      item: { order, originalIndex, colId },
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
       }),
@@ -55,10 +55,12 @@ export const Task = ({ colId, order, atOrder, tasks, moveCard, findCard }: CardP
   const [, drop] = useDrop(
     () => ({
       accept: ItemTypes.TASK,
-      hover({ order: draggedId }: Item) {
+      hover({ order: draggedId, colId: columnId }: Item) {
         if (draggedId !== order) {
           const { index: overIndex } = findCard(order);
-          moveCard(draggedId, overIndex);
+          if (colId === columnId) {
+            moveCard(draggedId, overIndex);
+          }
         }
       },
     }),

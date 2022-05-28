@@ -32,4 +32,5 @@ export interface Columns {
 export interface Item {
   order: number;
   originalIndex: number;
+  colId: string;
 }
