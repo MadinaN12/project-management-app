@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 import { useDrop } from 'react-dnd';
 import { getBoard } from '../../api/board/getBoard';
-import BoardControls from '../../components/board/controls';
 import Modal from '../../components/board/modal';
 import ColumnList from '../../components/column/columnList';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -13,6 +12,7 @@ import { getToken } from '../../utils';
 import update from 'immutability-helper';
 import { ItemTypes } from '../../types/dndTypes';
 import { sortColumns } from '../../dndUtils.ts/tasksSort';
+import BoardControls from '../../components/board/controls';
 
 const Board = () => {
   const [modalActive, setModalActive] = useState(false);
@@ -63,7 +63,7 @@ const Board = () => {
 
   return (
     <>
-      <Grid container sx={{ backgroundColor: '#448aff', height: '100vh' }}>
+      <Grid container sx={column.mainGrid}>
         <BoardControls />
         <Grid container sx={column.boardGrid} ref={drop}>
           <ColumnList columns={cards} atOrder={order} moveCard={moveCard} findCard={findCard} />

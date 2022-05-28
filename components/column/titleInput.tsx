@@ -24,11 +24,11 @@ const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
   return (
     <>
       <Grid container sx={column.headerGrid}>
-        <Button variant="contained" sx={column.btn} onClick={() => setOpen(false)}>
+        <Button variant="outlined" sx={column.btn} onClick={() => setOpen(false)}>
           Close
         </Button>
         <Button
-          variant="contained"
+          variant="outlined"
           sx={column.btn}
           size="small"
           color="success"

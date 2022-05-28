@@ -1,17 +1,22 @@
 const spaceBetween = 'space-between';
 
 export const column = {
+  mainGrid: {
+    backgroundColor: '#448aff',
+    height: '100vh',
+    alignContent: 'flex-start',
+  },
   boardGrid: {
     gap: 2,
     backgroundColor: '#448aff',
     flexWrap: 'nowrap',
     maxWidth: '100vw',
     overflow: 'auto',
-    height: 'calc(100vh - 100px)',
+    height: '70%',
   },
   column: {
-    minWidth: '272px',
-    maxWidth: '272px',
+    minWidth: '280px',
+    maxWidth: '280px',
     borderRadius: 2,
     boxShadow: 'none',
     margin: '0 8px 0 8px',
@@ -31,6 +36,11 @@ export const column = {
   btn: {
     fontSize: '10px',
     maxWidth: '20px',
+    padding: '6px 0px',
+  },
+  bigBtn: {
+    fontSize: '10px',
+    width: '150px',
     padding: '6px 0px',
   },
   header: {
