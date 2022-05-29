@@ -6,7 +6,7 @@ const ColumnList = ({ columns, atOrder, moveCard, findCard }: Columns) => {
   return (
     <>
       {columns.map((item) => (
-        <Grid key={item.id} item>
+        <Grid key={item.id} sx={{ flexWrap: 'nowrap' }} item>
           <BoardColumn
             col={item}
             order={item.order}

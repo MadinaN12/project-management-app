@@ -3,8 +3,7 @@ const spaceBetween = 'space-between';
 export const column = {
   mainGrid: {
     backgroundColor: '#448aff',
-    height: '100vh',
-    alignContent: 'flex-start',
+    height: 'calc(100vh - 71px)',
   },
   boardGrid: {
     gap: 2,
@@ -12,7 +11,7 @@ export const column = {
     flexWrap: 'nowrap',
     maxWidth: '100vw',
     overflow: 'auto',
-    height: '70%',
+    height: 'calc(100vh - 100px)',
   },
   column: {
     minWidth: '280px',
@@ -24,7 +23,7 @@ export const column = {
     padding: 1,
   },
   columnInner: {
-    maxHeight: 'calc(100vh - 200px)',
+    maxHeight: 'calc(80vh - 200px)',
     overflow: 'auto',
   },
   bottom: {
