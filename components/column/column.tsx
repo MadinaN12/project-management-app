@@ -11,22 +11,37 @@ import { getToken } from '../../utils';
 import { useRouter } from 'next/router';
 import { updateColumn } from '../../api/column/updateColumn';
 import { getBoard } from '../../api/board/getBoard';
+import { useState } from 'react';
+import PopupNotification from '../PopupNotification';
 
 const BoardColumn = ({ col, order, atOrder, moveCard, findCard }: ColumnProps) => {
+  const [errorNotification, setErrorNotification] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useAppDispatch();
   const { setColumnId, setColOrder } = storeSlice.actions;
   const router = useRouter();
   const { id } = router.query;
 
   const updateOrder = async (droppedId: number) => {
-    const token = getToken();
-    if (token && id) {
-      const column = {
-        title: col.title,
-        order: droppedId + 1,
-      };
-      await updateColumn(column, col.id, id, token);
-      await dispatch(getBoard({ boardId: id, token: token }));
+    try {
+      const token = getToken();
+      if (token && id) {
+        const column = {
+          title: col.title,
+          order: droppedId + 1,
+        };
+        const response = await updateColumn(column, col.id, id, token);
+        await dispatch(getBoard({ boardId: id, token: token }));
+        if ('message' in response) {
+          setErrorMessage(`${response.statusCode} ${response.message}`);
+          throw new Error(response);
+        }
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setErrorNotification(true);
+        setTimeout(() => setErrorNotification(false), 3000);
+      }
     }
   };
 
@@ -73,18 +88,21 @@ const BoardColumn = ({ col, order, atOrder, moveCard, findCard }: ColumnProps) =
   };
 
   return (
-    <Grid
-      container
-      direction="column"
-      sx={column.column}
-      style={{ opacity: opacity }}
-      onClick={handleClick}
-      ref={(node) => drag(drop(node))}
-    >
-      <ColumnHeader title={col.title} />
-      <Box sx={column.columnInner}>{<TaskList col={col} />}</Box>
-      <ColumnFooter />
-    </Grid>
+    <>
+      <Grid
+        container
+        direction="column"
+        sx={column.column}
+        style={{ opacity: opacity }}
+        onClick={handleClick}
+        ref={(node) => drag(drop(node))}
+      >
+        <ColumnHeader title={col.title} />
+        <Box sx={column.columnInner}>{<TaskList col={col} />}</Box>
+        <ColumnFooter />
+      </Grid>
+      <PopupNotification errorNotification={errorNotification} errorMessage={errorMessage} />
+    </>
   );
 };
 

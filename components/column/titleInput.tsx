@@ -6,19 +6,36 @@ import { useAppSelector } from '../../hooks/redux';
 import { column } from '../../styles/board/styledBoard';
 import { getToken } from '../../utils';
 import { useRouter } from 'next/router';
+import PopupNotification from '../PopupNotification';
 
 const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
   const [titleInput, setTitleInput] = useState(title);
+  const [errorNotification, setErrorNotification] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const { colId, colOrder } = useAppSelector((state) => state.boardReducer);
   const router = useRouter();
   const { id } = router.query;
 
   const handleSubmit = async () => {
-    const column = { title: titleInput, order: colOrder };
-    const token = getToken();
-    token && id && (await updateColumn(column, colId, id, token));
     setNewTitle(titleInput);
-    setOpen(false);
+    try {
+      const column = { title: titleInput, order: colOrder };
+      const token = getToken();
+      if (token && id) {
+        const response = await updateColumn(column, colId, id, token);
+        if ('message' in response) {
+          setErrorMessage(`${response.statusCode} ${response.message}`);
+          throw new Error(response.message);
+        }
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setErrorNotification(true);
+        setTimeout(() => setErrorNotification(false), 3000);
+        setNewTitle(title);
+      }
+    }
+    setTimeout(() => setOpen(false), 1000);
   };
 
   return (
@@ -43,6 +60,7 @@ const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
         onChange={(e) => setTitleInput(e.target.value)}
         value={titleInput}
       />
+      <PopupNotification errorNotification={errorNotification} errorMessage={errorMessage} />
     </>
   );
 };
