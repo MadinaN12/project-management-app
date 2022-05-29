@@ -56,4 +56,16 @@ export const column = {
     displayFlex: spaceBetween,
     justifyContent: 'space-around',
   },
+  addBtn: {
+    minWidth: '272px',
+    maxWidth: '272px',
+    maxHeight: '40px',
+    margin: '0 8px 0 8px',
+    backgroundColor: '#eceff1',
+    padding: 1,
+    color: 'black',
+    ':hover': {
+      bgcolor: '#bbdefb',
+    },
+  },
 };

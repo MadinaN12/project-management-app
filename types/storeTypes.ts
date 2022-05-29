@@ -1,7 +1,11 @@
-import { ColumnResponse, TaskResponse } from './types';
+import { BoardResponse } from './types';
 
 export interface StoreState {
-  columns: ColumnResponse[];
-  tasks: TaskResponse[];
+  board: BoardResponse;
+  error: string;
+  colId: string;
+  colOrder: number;
+  isLoading: boolean;
   taskId: string;
+  taskOrder: number;
 }

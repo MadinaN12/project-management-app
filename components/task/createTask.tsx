@@ -1,37 +1,36 @@
-import {
-  Button,
-  CssBaseline,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-} from '@mui/material';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { ModalProps } from '../../types/types';
 import { useState } from 'react';
-import { storeSlice } from '../../store/reducers/storeSlice';
-import { useAppDispatch } from '../../hooks/redux';
-import { createTask } from '../../pages/api/createTask';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { createTask } from '../../api/task/createTask';
+import { getBoard } from '../../api/board/getBoard';
+import { getToken } from '../../utils';
+import { useRouter } from 'next/router';
+import TaskModalForm from '../modals/taskModal';
 
 const TaskModal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const { setTasks } = storeSlice.actions;
+  const [user, setUser] = useState('');
+  const { colId } = useAppSelector((state) => state.boardReducer);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const { id } = router.query;
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const task = {
       title: title,
-      order: 0,
       description: description,
-      userId: '1234',
+      userId: user,
     };
-    const res = createTask(task);
-    res && dispatch(setTasks(res));
+    const token = getToken();
+    if (token && id) {
+      await createTask(task, colId, id, token);
+      dispatch(getBoard({ boardId: id, token: token }));
+    }
     setActive(false);
     setTitle('');
     setDescription('');
+    setUser('');
   };
 
   const onTextChanged = (e: React.ChangeEvent) => {
@@ -45,41 +44,18 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
   };
 
   return (
-    <Dialog open={active}>
-      <DialogTitle>Create task</DialogTitle>
-      <CssBaseline />
-      <DialogContent>
-        <TextField
-          margin="dense"
-          id="outlined-basic"
-          label="Task title"
-          variant="outlined"
-          style={{ width: 250 }}
-          value={title}
-          onChange={onTextChanged}
-        />
-      </DialogContent>
-      <DialogContent>
-        <TextareaAutosize
-          maxRows={4}
-          aria-label="maximum height"
-          placeholder="Description"
-          style={{ width: 250, height: 66, overflow: 'auto' }}
-          value={description}
-          onChange={onDescriptionChanged}
-        />
-      </DialogContent>
-      <DialogContent>
-        <DialogActions>
-          <Button variant="outlined" onClick={() => setActive(false)}>
-            Cancel
-          </Button>
-          <Button variant="contained" onClick={handleClick}>
-            Submit
-          </Button>
-        </DialogActions>
-      </DialogContent>
-    </Dialog>
+    <TaskModalForm
+      title="Create task"
+      text={title}
+      active={active}
+      user={user}
+      description={description}
+      onTextChanged={onTextChanged}
+      setUser={setUser}
+      setActive={setActive}
+      handleClick={handleClick}
+      onDescriptionChanged={onDescriptionChanged}
+    />
   );
 };
 
