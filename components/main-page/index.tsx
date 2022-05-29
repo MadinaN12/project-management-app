@@ -6,6 +6,7 @@ import { Board, StoreMainPage } from '../../types/types';
 import { Typography, OutlinedInput } from '@mui/material';
 import { getBoards } from '../ApiController/getBoards';
 import { useRouter } from 'next/router';
+import { Box } from '@mui/system';
 
 export default function MainPageComponent() {
   const [data, setData] = useState([]);
@@ -45,7 +46,7 @@ export default function MainPageComponent() {
   };
 
   return (
-    <div className={styles.boards}>
+    <Box className={styles.boards}>
       <Typography variant="h6" sx={{ mt: 2 }}>
         Your Workspace
       </Typography>
@@ -59,6 +60,6 @@ export default function MainPageComponent() {
           ? filteredData.map((board) => <MainBoard board={board} key={(board as Board).id} />)
           : ''}
       </section>
-    </div>
+    </Box>
   );
 }
