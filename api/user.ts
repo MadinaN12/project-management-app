@@ -1,25 +1,25 @@
-import { ILoginResponse } from '../types/types';
-import { PATH, URL } from '../utils';
-
-const APP_JSON = 'application/json';
+import { ILoginResponse, ISignupResponse } from '../types/registrationTypes';
+import { URL, PATH } from '../utils';
 
 export const PostUser = async (name: string, login: string, password: string) => {
-  await fetch(`${URL}/${PATH.SIGNUP}`, {
+  const response = await fetch(`${URL}/${PATH.SIGNUP}`, {
     method: 'POST',
     headers: {
-      Accept: APP_JSON,
-      'Content-Type': APP_JSON,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ name, login, password }),
   });
+  const data: ISignupResponse = await response.json();
+  return data;
 };
 
 export const LoginUser = async (login: string, password: string): Promise<ILoginResponse> => {
   const response = await fetch(`${URL}/${PATH.SIGNIN}`, {
     method: 'POST',
     headers: {
-      Accept: APP_JSON,
-      'Content-Type': APP_JSON,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ login, password }),
   });
