@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
-import { WelcomeHeader } from '../components/welcome/WelcomeHeader';
 import { HeroSection } from '../components/welcome/HeroSection';
 import { ProductsSection } from '../components/welcome/ProductsSection';
+import { WelcomeHeader } from '../components/welcome/WelcomeHeader';
 
 const Welcome: NextPage = () => {
   return (

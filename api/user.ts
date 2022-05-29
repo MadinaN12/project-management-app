@@ -1,14 +1,8 @@
-import { ILoginResponse } from '../types/types';
-
-const API_URL = 'https://morning-spire-63546.herokuapp.com/';
-
-enum API_ENDPOINTS {
-  SIGNUP = 'signup',
-  SIGNIN = 'signin',
-}
+import { ILoginResponse, ISignupResponse } from '../types/registrationTypes';
+import { URL, PATH } from '../utils';
 
 export const PostUser = async (name: string, login: string, password: string) => {
-  const response = await fetch(`${API_URL}${API_ENDPOINTS.SIGNUP}`, {
+  const response = await fetch(`${URL}/${PATH.SIGNUP}`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -16,10 +10,12 @@ export const PostUser = async (name: string, login: string, password: string) =>
     },
     body: JSON.stringify({ name, login, password }),
   });
+  const data: ISignupResponse = await response.json();
+  return data;
 };
 
 export const LoginUser = async (login: string, password: string): Promise<ILoginResponse> => {
-  const response = await fetch(`${API_URL}${API_ENDPOINTS.SIGNIN}`, {
+  const response = await fetch(`${URL}/${PATH.SIGNIN}`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',

@@ -7,6 +7,7 @@ export const column = {
     flexWrap: 'nowrap',
     maxWidth: '100vw',
     overflow: 'auto',
+    height: 'calc(100vh - 100px)',
   },
   column: {
     minWidth: '272px',
@@ -54,5 +55,17 @@ export const column = {
   headerGrid: {
     displayFlex: spaceBetween,
     justifyContent: 'space-around',
+  },
+  addBtn: {
+    minWidth: '272px',
+    maxWidth: '272px',
+    maxHeight: '40px',
+    margin: '0 8px 0 8px',
+    backgroundColor: '#eceff1',
+    padding: 1,
+    color: 'black',
+    ':hover': {
+      bgcolor: '#bbdefb',
+    },
   },
 };

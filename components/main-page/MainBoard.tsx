@@ -19,10 +19,13 @@ export default function MainBoard({ board }: PropMain) {
     setStatusPop(true);
   };
 
-  const titleStyle = { fontSize: 16, fontWeight: '700', cursor: 'pointer' };
-
   // dynanmic route here !!!
-  const handleClickboard = () => router.push('/board');
+  const handleClickboard = (e: MouseEvent<HTMLButtonElement> | unknown) => {
+    !statusPop ? router.push('/board') : '';
+    (e as MouseEvent).stopPropagation();
+  };
+
+  const titleStyle = { fontSize: 16, fontWeight: '700', cursor: 'pointer' };
 
   useEffect(() => {
     dispatch(addBoard(board));
@@ -35,7 +38,7 @@ export default function MainBoard({ board }: PropMain) {
           {(board as Board).title}
         </Typography>
         <FontAwesomeIcon icon={faTrash} className={styles.trash} onClick={handleClickBin} />
-        {statusPop ? <DeleteBoardPopUp setStatus={setStatusPop} board={board as Board} /> : ''}
+        {statusPop && <DeleteBoardPopUp setStatus={setStatusPop} board={board as Board} />}
       </figure>
     </>
   );

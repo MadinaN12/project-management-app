@@ -9,6 +9,7 @@ import createEmotionCache from '../components/material-ui/createEmotionCache';
 import type { AppProps } from 'next/app';
 import { setUpStore } from '../store/store';
 import { Provider } from 'react-redux';
+import Footer from '../components/footer';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -29,6 +30,7 @@ export default function MyApp({
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Component {...pageProps} />
+          <Footer />
         </ThemeProvider>
       </CacheProvider>
     </Provider>

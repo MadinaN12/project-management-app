@@ -1,28 +1,26 @@
-import { Grid, Paper } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import ColumnFooter from './columnFooter';
 import ColumnHeader from './columnHeader';
-import { column } from '../../styles/styledBoard';
+import TaskList from '../task/taskList';
+import { Col } from '../../types/types';
+import { useAppDispatch } from '../../hooks/redux';
+import { storeSlice } from '../../store/reducers/storeSlice';
+import { column } from '../../styles/board/styledBoard';
 
-const BoardColumn = ({ title }: { title: string }) => {
+const BoardColumn = ({ col }: { col: Col }) => {
+  const dispatch = useAppDispatch();
+  const { setColumnId, setColOrder } = storeSlice.actions;
+
+  const handleClick = () => {
+    dispatch(setColumnId(col.id));
+    dispatch(setColOrder(col.order));
+  };
+
   return (
-    <Grid container direction="column" sx={column.column}>
-      <ColumnHeader title={title} />
-      <Paper sx={column.columnInner}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus odit dicta enim at impedit
-        velit commodi perspiciatis, earum aut fugiat veniam deserunt eos fugit laudantium, beatae
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus odit dicta enim at impedit
-        velit commodi perspiciatis, earum aut fugiat veniam deserunt eos fugit laudantium, beatae
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus odit dicta enim at impedit
-        velit commodi perspiciatis, earum aut fugiat veniam deserunt eos fugit laudantium, beatae
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus odit dicta enim at impedit
-        velit commodi perspiciatis, earum aut fugiat veniam deserunt eos fugit laudantium, beatae
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus odit dicta enim at impedit
-        velit commodi perspiciatis, earum aut fugiat veniam deserunt eos fugit laudantium, beatae
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus odit dicta enim at impedit
-        velit commodi perspiciatis, earum aut fugiat veniam deserunt eos fugit laudantium, beatae
-        incidunt, recusandae repellendus pariatur.
-      </Paper>
-      <ColumnFooter title={title} />
+    <Grid container direction="column" sx={column.column} onClick={handleClick}>
+      <ColumnHeader title={col.title} />
+      <Box sx={column.columnInner}>{<TaskList col={col} />}</Box>
+      <ColumnFooter />
     </Grid>
   );
 };

@@ -8,24 +8,28 @@ import {
   TextField,
 } from '@mui/material';
 import { ModalProps } from '../../types/types';
-import { useAppDispatch } from '../../hooks/redux';
-import { createColumn } from '../../pages/api/createColumn';
-import { storeSlice } from '../../store/reducers/storeSlice';
+import { createColumn } from '../../api/column/createColumn';
 import { useState } from 'react';
+import { useAppDispatch } from '../../hooks/redux';
+import { getBoard } from '../../api/board/getBoard';
+import { getToken } from '../../utils';
+import { useRouter } from 'next/router';
 
 const Modal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
-  const { setColumns } = storeSlice.actions;
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const { id } = router.query;
 
-  const handleClick = () => {
-    const column = {
-      title: title,
-      order: 1,
-    };
-    const res = createColumn(column);
-    res && dispatch(setColumns(res));
+  const handleClick = async () => {
+    const token = getToken();
+    const column = { title: title };
+    if (token && id) {
+      await createColumn(column, id, token);
+      dispatch(getBoard({ boardId: id, token: token }));
+    }
     setActive(false);
+    setTitle('');
   };
 
   const onTextChanged = (e: React.ChangeEvent) => {

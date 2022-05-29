@@ -24,9 +24,9 @@ export default function DeleteBoardPopUp({
 
   const boxStyle = {
     width: 400,
-    height: 200,
+    height: 160,
     backgroundColor: 'rgb(255 255 255)',
-    m: '10% auto',
+    m: '10% auto 1%',
   };
 
   const handleClose = () => setStatus(false);
@@ -46,7 +46,7 @@ export default function DeleteBoardPopUp({
           <Typography id="modal-modal-description" sx={{ mt: 2, mb: 2 }}>
             Are you sure to delete the current board?
           </Typography>
-          <Button variant="contained" onClick={handleSubmit}>
+          <Button color="error" variant="contained" onClick={handleSubmit}>
             DElete
           </Button>
         </Box>
