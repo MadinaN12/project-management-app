@@ -35,9 +35,8 @@ export default function MainPageComponent() {
     const elLength = e.target.value.length;
     if (elLength) {
       setFilteredData(
-        data.filter(
-          (el: Board) =>
-            (el.title as string).toLowerCase().slice(0, elLength) === e.target.value.toLowerCase()
+        data.filter((el: Board) =>
+          (el.title as string).toLowerCase().includes(e.target.value.toLowerCase())
         )
       );
     } else {
@@ -52,7 +51,7 @@ export default function MainPageComponent() {
       </Typography>
       <OutlinedInput
         placeholder="Search boards"
-        sx={{ mt: 2, mb: 2 }}
+        sx={{ m: '2% 0', width: '40%' }}
         onChange={handleChangeSearch}
       />
       <section>

@@ -11,13 +11,16 @@
     margin: 1% 0;
 
     h5 {
-      &:hover {
-        color: white;
-      }
+      color: #b8ceff;
+      font-size: 20px;
+      backdrop-filter: blur(2px);
+      text-transform: capitalize;
+      font-style: italic;
+      max-width: 50%;
     }
 
     &:hover {
-      box-shadow: 2px 2px 20px 4px;
+      box-shadow: 16px 8px 20px 1px;
     }
   }
 
@@ -37,7 +40,7 @@
 }
 
 .board {
-  width: 200px;
+  width: 90%;
   height: 100px;
   background: url('../images/bg-1.jpg') no-repeat center center;
   background-size: cover;
@@ -45,26 +48,38 @@
   border-radius: 10px;
   padding: 1%;
   margin-bottom: 1%;
+  cursor: pointer;
+  transition: 0.5s;
+
+  &:hover {
+    h5 {
+      color: white;
+    }
+    width: 100%;
+  }
 }
 
 .star,
 .trash {
-  opacity: 0.2;
+  opacity: 0.6;
   position: absolute;
   right: 9%;
   bottom: 12%;
   font-size: 20px;
   color: white;
-  transition: 0.2s;
+  transition: 0.3s;
   cursor: pointer;
 
   &:hover {
     opacity: 1;
+    transform: scale(1.2);
+    bottom: 16%;
+    right: 14%;
   }
 }
 
 .trash {
-  opacity: 0.2;
+  opacity: 0.6;
   left: 9%;
   padding: 6% 6% 0 0;
 }
