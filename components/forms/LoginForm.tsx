@@ -4,6 +4,7 @@ import { LoginUser } from '../../api/user';
 import AdditionalMenu from './AdditionalMenu';
 import PopupNotification from '../PopupNotification';
 import styles from '../../styles/form/Form.module.scss';
+import { useRouter } from 'next/router';
 
 const LoginForm = () => {
   const emailInput = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -12,6 +13,7 @@ const LoginForm = () => {
   const [emptyEmailError, setEmptyEmailError] = useState(false);
   const [errorNotification, setErrorNotification] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const router = useRouter();
 
   async function submitHandler(e: React.MouseEvent<HTMLElement>) {
     e.preventDefault();
@@ -24,6 +26,7 @@ const LoginForm = () => {
         throw new Error(response.message);
       }
       localStorage.setItem('token', response.token);
+      router.push('/boards');
     } catch (error) {
       if (error instanceof Error) {
         setErrorMessage(error.message);

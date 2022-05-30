@@ -147,7 +147,7 @@ export type TaskModalProps = {
 };
 
 export interface AuthProps {
-  children: JSX.Element;
+  children?: JSX.Element;
 }
 
 export type Users = {
