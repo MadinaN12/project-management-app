@@ -1,3 +1,94 @@
+import { ChangeEventHandler, Dispatch, SetStateAction } from 'react';
+
+export interface IEmailForm {
+  setEmailInput: Dispatch<SetStateAction<string>>;
+  emailInput: string;
+  handleSubmitBtn: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface ILogoInterface {
+  width: number;
+  height: number;
+  onClick: () => void;
+}
+
+export type ILoginResponse = ILoginError | ILoginSuccess;
+
+export interface ILoginError {
+  statusCode: number;
+  message: string;
+}
+
+export interface ILoginSuccess {
+  token: string;
+}
+
+export interface IValidator {
+  isValid: boolean;
+  validMessage: string;
+}
+
+export enum ErrorTypeKind {
+  name = 'name',
+  email = 'email',
+  password = 'password',
+}
+
+export type ErrorType = ErrorTypeKind.name | ErrorTypeKind.email | ErrorTypeKind.password;
+
+export interface IEmailForm {
+  setEmailInput: Dispatch<SetStateAction<string>>;
+  emailInput: string;
+  handleSubmitBtn: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface PropMain {
+  name?: string;
+  board?: Board;
+}
+
+export type UserProfile = {
+  id?: string;
+  name?: string;
+  login?: string;
+  password?: string;
+};
+
+export interface UserProfileData extends UserProfile {
+  token?: string;
+}
+
+export type UserProfileProps = {
+  data: UserProfile;
+  control: {
+    isEditing: boolean;
+    setIsEditing: (arg0: boolean) => void;
+    setData: (arg0: Array<object> | object) => void;
+    setIsRemoving?: (arg0: boolean) => void;
+    setRefresh?: (arg0: boolean) => void;
+  };
+};
+
+export type ConfigureUserMethods = {
+  handleChangeTitle?:
+    | VoidFunction
+    | ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+    | undefined;
+  handleChangeLogin?:
+    | VoidFunction
+    | ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+    | undefined;
+  handleChangePassword?:
+    | VoidFunction
+    | ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+    | undefined;
+};
+
+export type PartUserEditProps = {
+  userInfo: UserProfileData;
+  configureUser: ConfigureUserMethods;
+};
+
 export interface ILogoInterface {
   width: number;
   height: number;
