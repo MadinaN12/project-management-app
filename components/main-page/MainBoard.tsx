@@ -19,9 +19,8 @@ export default function MainBoard({ board }: PropMain) {
     setStatusPop(true);
   };
 
-  // dynanmic route here !!!
   const handleClickboard = (e: MouseEvent<HTMLButtonElement> | unknown) => {
-    !statusPop ? router.push('/board') : '';
+    !statusPop ? router.push(`/board/${(board as Board).id}`) : '';
     (e as MouseEvent).stopPropagation();
   };
 
