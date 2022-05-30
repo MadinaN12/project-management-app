@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
 
-@media (max-width: 1500px) {
+@media (max-width: 2500px) {
+
+  .container {
+  justify-content: space-around !important;
+  }
+}
+
+@media (max-width: 2500px) {
   #hero {
     background: linear-gradient(0deg, #fff, #eae6ff 100%);
     width: 100%;

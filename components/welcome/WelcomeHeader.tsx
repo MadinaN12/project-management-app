@@ -25,7 +25,7 @@ export const WelcomeHeader = () => {
     window.addEventListener('scroll', onScroll, { passive: true });
 
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [router, token]);
 
   return (
     <header className={`${styles.welcomeHeader} ${styles[headerTransparent]}`}>
