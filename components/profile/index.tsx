@@ -2,6 +2,7 @@ import { Box, Button } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { style } from '../../styles/user/UserProfile';
 import { getUserInfo } from '../ApiController/configureUserInfo';
+import { Header } from '../header/Header';
 import AlterUser from './alterUserInfo';
 import RemoveUser from './deleteUserInfo';
 import StatisticsUser from './StatisticsUser';
@@ -27,6 +28,7 @@ export default function UserComponent() {
 
   return (
     <>
+      <Header />
       <UserInfo data={data} setIsEditing={setIsEditing} />
       {!isEditing ? (
         ''
