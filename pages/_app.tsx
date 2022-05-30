@@ -10,6 +10,7 @@ import type { AppProps } from 'next/app';
 import { setUpStore } from '../store/store';
 import { Provider } from 'react-redux';
 import Footer from '../components/footer';
+import '../styles/welcome/welcome.scss';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

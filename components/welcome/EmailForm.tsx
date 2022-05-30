@@ -12,7 +12,7 @@ export const EmailForm = ({ setEmailInput, emailInput, handleSubmitBtn }: IEmail
         value={emailInput}
         onChange={(e) => setEmailInput(e.target.value)}
       />
-      <Button variant="contained" size="large" onClick={handleSubmitBtn}>
+      <Button className={styles.btn} variant="contained" size="large" onClick={handleSubmitBtn}>
         Sign up — it’s free!
       </Button>
     </form>

@@ -20,7 +20,7 @@ export const ProductsSection = () => {
           <Button variant="outlined" size="large" onClick={() => router.push('/signup')}>
             Start doing →
           </Button>
-          <Image src={BoardImage} alt="board"></Image>
+          <Image className={styles.prodName} src={BoardImage} alt="board"></Image>
         </div>
       </div>
     </section>
