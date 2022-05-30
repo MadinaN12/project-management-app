@@ -1,14 +1,15 @@
 export const footerStyle = {
   footer: {
-    height: '1%',
+    height: '70px',
     width: '100%',
-    background: 'grey',
+    background: '#283593',
     display: 'flex',
     justifyContent: 'space-between',
     padding: '1%',
     gap: '3%',
     fontSize: '16px',
-    color: 'black',
+    color: '#bbdefb',
+    marginTop: 'auto',
   },
 
   img: {},
@@ -27,7 +28,7 @@ export const footerStyle = {
   },
 
   link: {
-    color: 'black',
+    color: '#bbdefb',
     textDecoration: 'none',
     ml: '3%',
   },

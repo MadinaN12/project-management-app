@@ -5,12 +5,15 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { ModalProps } from '../../types/types';
 import { getToken } from '../../utils';
 import ConfirmDialog from '../modals/confirmModal';
+import { en } from '../../public/locales/en/common';
+import { ru } from '../../public/locales/ru/common';
 
 const ConfirmModal = ({ active, setActive }: ModalProps) => {
   const { colId } = useAppSelector((state) => state.boardReducer);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { id } = router.query;
+  const t = router.locale === 'en' ? en : ru;
 
   const handleClose = async () => {
     const token = getToken();
@@ -23,7 +26,7 @@ const ConfirmModal = ({ active, setActive }: ModalProps) => {
 
   return (
     <ConfirmDialog
-      title="You will delete not only the column, but also all the tasks attached to it"
+      title={t.board.confirmCol}
       active={active}
       setActive={setActive}
       handleClose={handleClose}

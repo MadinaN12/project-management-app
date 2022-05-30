@@ -28,7 +28,7 @@ export default function UserComponent() {
 
   return (
     <>
-      <Header />
+      <Header path="/profile" />
       <UserInfo data={data} setIsEditing={setIsEditing} />
       {!isEditing ? (
         ''

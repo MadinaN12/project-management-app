@@ -10,6 +10,9 @@ import {
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import UserList from '../task/userList';
 import { TaskPropsModal } from '../../types/types';
+import { en } from '../../public/locales/en/common';
+import { ru } from '../../public/locales/ru/common';
+import { useRouter } from 'next/router';
 
 const TaskModalForm = ({
   title,
@@ -23,6 +26,9 @@ const TaskModalForm = ({
   handleClick,
   onDescriptionChanged,
 }: TaskPropsModal) => {
+  const router = useRouter();
+  const t = router.locale === 'en' ? en : ru;
+
   return (
     <Dialog open={active}>
       <DialogTitle>{title}</DialogTitle>
@@ -31,7 +37,7 @@ const TaskModalForm = ({
         <TextField
           margin="dense"
           id="outlined-basic"
-          label="Task title"
+          label={t.board.taskTitle}
           variant="outlined"
           style={{ width: 250 }}
           value={text}
@@ -43,7 +49,7 @@ const TaskModalForm = ({
         <TextareaAutosize
           maxRows={4}
           aria-label="maximum height"
-          placeholder="Description"
+          placeholder={t.board.description}
           style={{ width: 250, height: 66, overflow: 'auto' }}
           value={description}
           onChange={onDescriptionChanged}
@@ -52,10 +58,10 @@ const TaskModalForm = ({
       <DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={() => setActive(false)}>
-            Cancel
+            {t.board.cancelBtn}
           </Button>
           <Button variant="contained" onClick={handleClick}>
-            Submit
+            {t.board.submitBtn}
           </Button>
         </DialogActions>
       </DialogContent>

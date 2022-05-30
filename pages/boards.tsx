@@ -5,7 +5,7 @@ import { Header } from '../components/header/Header';
 export default function MainPage() {
   return (
     <>
-      <Header />
+      <Header path="/boards" />
       <Container sx={{ mt: '50px' }}>
         <MainPageComponent />
       </Container>

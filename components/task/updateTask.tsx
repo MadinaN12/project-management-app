@@ -6,6 +6,8 @@ import { getBoard } from '../../api/board/getBoard';
 import { getToken } from '../../utils';
 import { useRouter } from 'next/router';
 import TaskModalForm from '../modals/taskModal';
+import { en } from '../../public/locales/en/common';
+import { ru } from '../../public/locales/ru/common';
 
 const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
   const { colId, taskOrder } = useAppSelector((state) => state.boardReducer);
@@ -15,6 +17,7 @@ const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { id } = router.query;
+  const t = router.locale === 'en' ? en : ru;
 
   const handleClick = async () => {
     const token = getToken();
@@ -45,7 +48,7 @@ const UpdateTask = ({ tasks, active, setActive }: TaskModalProps) => {
 
   return (
     <TaskModalForm
-      title="Update task"
+      title={t.board.updateTask}
       text={title}
       active={active}
       user={user}

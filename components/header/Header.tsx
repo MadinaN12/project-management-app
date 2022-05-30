@@ -8,8 +8,9 @@ import { StoreMainPage } from '../../types/types';
 import { refreshBoard } from '../../stores/boards/slices';
 import Logo from '../Logo';
 import HeaderBtns from './HeaderBtns';
+import LocalSwitcher from '../localSwitcher';
 
-export const Header = () => {
+export const Header = ({ path }: { path: string }) => {
   const [headerTransparent, setHeaderTransparent] = useState('');
   const refreshHeader = useSelector((state) => (state as StoreMainPage).refreshBoard);
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ export const Header = () => {
         <Logo width={126} height={36} onClick={() => {}} />
         <CreateBtn />
       </Box>
+      <LocalSwitcher path={path} />
       <div className={styles.logBtns}>
         <HeaderBtns handleSignOut={handleSignOut} />
       </div>

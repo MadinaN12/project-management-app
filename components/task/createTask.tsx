@@ -6,6 +6,8 @@ import { getBoard } from '../../api/board/getBoard';
 import { getToken } from '../../utils';
 import { useRouter } from 'next/router';
 import TaskModalForm from '../modals/taskModal';
+import { en } from '../../public/locales/en/common';
+import { ru } from '../../public/locales/ru/common';
 
 const TaskModal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
@@ -15,6 +17,7 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { id } = router.query;
+  const t = router.locale === 'en' ? en : ru;
 
   const handleClick = async () => {
     const task = {
@@ -45,7 +48,7 @@ const TaskModal = ({ active, setActive }: ModalProps) => {
 
   return (
     <TaskModalForm
-      title="Create task"
+      title={t.board.createTask}
       text={title}
       active={active}
       user={user}

@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { style } from '../../styles/user/UserProfile';
 import { UserProfile } from '../../types/types';
 
@@ -9,7 +9,7 @@ export default function UserInfo({
   setIsEditing: (arg0: boolean) => void;
 }) {
   return (
-    <>
+    <Grid sx={{ margin: '80px' }}>
       {data.name ? (
         <>
           <Box sx={style.box}>
@@ -29,6 +29,6 @@ export default function UserInfo({
           Loading
         </Typography>
       )}
-    </>
+    </Grid>
   );
 }

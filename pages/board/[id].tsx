@@ -13,6 +13,9 @@ import update from 'immutability-helper';
 import { ItemTypes } from '../../types/dndTypes';
 import { sortColumns } from '../../dndUtils.ts/tasksSort';
 import BoardControls from '../../components/board/controls';
+import { en } from '../../public/locales/en/common';
+import { ru } from '../../public/locales/ru/common';
+import { Header } from '../../components/header/Header';
 
 const Board = () => {
   const [modalActive, setModalActive] = useState(false);
@@ -22,6 +25,7 @@ const Board = () => {
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useAppDispatch();
+  const t = router.locale === 'en' ? en : ru;
 
   useEffect(() => {
     const token = getToken();
@@ -63,12 +67,13 @@ const Board = () => {
 
   return (
     <>
+      <Header path={`/board/${id}`} />
       <Grid container sx={column.mainGrid}>
         <BoardControls />
         <Grid container sx={column.boardGrid} ref={drop}>
           <ColumnList columns={cards} atOrder={order} moveCard={moveCard} findCard={findCard} />
           <Button variant="contained" onClick={() => setModalActive(true)} sx={column.addBtn}>
-            + add column
+            {t.board.addBtn}
           </Button>
         </Grid>
       </Grid>

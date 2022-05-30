@@ -6,6 +6,9 @@ import { postDataBoard } from '../ApiController/PostNewBoard';
 import { InputRef } from '../../types/types';
 import { useDispatch } from 'react-redux';
 import { refreshBoard } from '../../stores/boards/slices';
+import { en } from '../../public/locales/en/common';
+import { ru } from '../../public/locales/ru/common';
+import { useRouter } from 'next/router';
 
 export default function CreateBoardPopUp({
   setPopUpStatus,
@@ -17,6 +20,8 @@ export default function CreateBoardPopUp({
   const textAreaRef = useRef(null);
   const [token, setToken] = useState('');
   const dispatch = useDispatch();
+  const router = useRouter();
+  const t = router.locale === 'en' ? en : ru;
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     (e.target as HTMLInputElement).value.length < 1 ? setIsEmpty(true) : setIsEmpty(false);
@@ -48,12 +53,12 @@ export default function CreateBoardPopUp({
   return (
     <div className={styles.pop_up}>
       <form onSubmit={handleSubmit}>
-        <h2 color="error">Create a board</h2>
-        <p>Boost your productivity by giving your team members easy access to the board.</p>
+        <h2 color="error">{t.boards.createTitle}</h2>
+        <p>{t.boards.createPh}</p>
 
         <InputLabel htmlFor="my-input">
           <Input
-            placeholder="Title"
+            placeholder={t.boards.titlePl}
             className={styles.input}
             margin="dense"
             type="text"
@@ -64,14 +69,14 @@ export default function CreateBoardPopUp({
             error={isEmpty ? true : false}
           />
           <FormHelperText>
-            {isEmpty && 'Enter the name of your team, company or organization.'}
-            {!isEmpty && 'Please enter a title'}
+            {isEmpty && t.boards.ifEmpty}
+            {!isEmpty && t.boards.titleOpt}
           </FormHelperText>
         </InputLabel>
 
         <InputLabelPart textAreaRef={textAreaRef} />
         <Button type="submit" variant="contained">
-          Create
+          {t.boards.createBtn}
         </Button>
       </form>
       <pre onClick={handleCloseBtn}></pre>
