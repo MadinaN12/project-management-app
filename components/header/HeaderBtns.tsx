@@ -12,7 +12,7 @@ export default function HeaderBtns({ handleSignOut }: { handleSignOut: VoidFunct
       <Button variant="text" size="small" onClick={() => router.push('/profile')}>
         {t.boards.editBtn}
       </Button>
-      <Button variant="contained" size="small" onClick={handleSignOut}>
+      <Button variant="contained" size="small" sx={{ mr: 2 }} onClick={handleSignOut}>
         {t.boards.signOut}
       </Button>
     </>
