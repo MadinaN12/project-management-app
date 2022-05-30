@@ -14,14 +14,13 @@ export default function DeleteBoardPopUp({
   setStatus: React.Dispatch<React.SetStateAction<boolean>>;
   board: Board;
 }) {
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNTc5ZWIwMC01ODk1LTQ0YWUtOWQ4NC1iYjMxYjgwZjQzYmQiLCJsb2dpbiI6Im5hbWUiLCJpYXQiOjE2NTE4ODY4MjF9.uh1bOO9rPHP7N03ok0DRPMUO1EVwtil5ALbi9VTQmgI';
+  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
   const router = useRouter();
   const t = router.locale === 'en' ? en : ru;
 
   const handleSubmit = () => {
-    deleteBoard(board, token);
+    deleteBoard(board, token as string);
     setStatus(false);
     dispatch(refreshBoard('a'));
     setTimeout(() => dispatch(refreshBoard('a')), 500);
@@ -29,9 +28,9 @@ export default function DeleteBoardPopUp({
 
   const boxStyle = {
     width: 400,
-    height: 200,
+    height: 160,
     backgroundColor: 'rgb(255 255 255)',
-    m: '10% auto',
+    m: '10% auto 1%',
   };
 
   const handleClose = () => setStatus(false);
@@ -51,7 +50,7 @@ export default function DeleteBoardPopUp({
           <Typography id="modal-modal-description" sx={{ mt: 2, mb: 2 }}>
             {t.boards.modalPh}
           </Typography>
-          <Button variant="contained" onClick={handleSubmit}>
+          <Button color="error" variant="contained" onClick={handleSubmit}>
             {t.boards.modalBtn}
           </Button>
         </Box>

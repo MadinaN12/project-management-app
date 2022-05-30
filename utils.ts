@@ -4,9 +4,9 @@ export enum PATH {
   BOARDS = 'boards',
   COLUMNS = 'columns',
   TASKS = 'tasks',
+  USERS = 'users',
   SIGNUP = 'signup',
   SIGNIN = 'signin',
-  USERS = 'users',
 }
 
 export function getToken() {

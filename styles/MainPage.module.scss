@@ -11,13 +11,16 @@
     margin: 1% 0;
 
     h5 {
-      &:hover {
-        color: white;
-      }
+      color: #ffffff;
+      font-size: 17px;
+      backdrop-filter: blur(2px);
+      text-transform: capitalize;
+      font-style: italic;
+      max-width: 50%;
     }
 
     &:hover {
-      box-shadow: 2px 2px 20px 4px;
+      box-shadow: 16px 8px 20px 1px;
     }
   }
 
@@ -27,6 +30,8 @@
     gap: 2%;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: flex-start;
+    min-height: 63vh;
   }
 }
 
@@ -37,35 +42,48 @@
 }
 
 .board {
-  width: 200px;
+  width: 90%;
   height: 100px;
-  background: url('../images/bg-1.jpg') no-repeat center center;
+  background-color: #556cd6;
+  background: linear-gradient(90deg, rgba(85, 108, 214, 1) 20%, rgba(255, 255, 255, 1) 110%);
   background-size: cover;
   position: relative;
   border-radius: 10px;
   padding: 1%;
   margin-bottom: 1%;
+  cursor: pointer;
+  transition: 0.5s;
+
+  &:hover {
+    h5 {
+      color: white;
+    }
+    width: 100%;
+  }
 }
 
 .star,
 .trash {
-  opacity: 0.2;
+  opacity: 0.6;
   position: absolute;
   right: 9%;
   bottom: 12%;
   font-size: 20px;
-  color: white;
-  transition: 0.2s;
+  color: rgb(35, 27, 151);
+  transition: 0.3s;
   cursor: pointer;
 
   &:hover {
     opacity: 1;
+    right: 1.5%;
+    transform: scale(1.2);
+    bottom: 16%;
   }
 }
 
 .trash {
-  opacity: 0.2;
-  left: 9%;
+  opacity: 0.6;
+  right: 2%;
   padding: 6% 6% 0 0;
 }
 

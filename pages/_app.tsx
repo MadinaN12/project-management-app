@@ -12,7 +12,6 @@ import { Provider } from 'react-redux';
 import Footer from '../components/footer';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import Loading from '../components/Loading';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -25,22 +24,20 @@ export default function MyApp({
   pageProps,
 }: MyAppProp) {
   return (
-    <React.Suspense fallback={<Loading />}>
-      <Provider store={store}>
-        <DndProvider backend={HTML5Backend}>
-          <CacheProvider value={emotionCache}>
-            <Head>
-              <meta name="viewport" content="initial-scale=1, width=device-width" />
-            </Head>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <Component {...pageProps} />
-              <Footer />
-            </ThemeProvider>
-          </CacheProvider>
-        </DndProvider>
-      </Provider>
-    </React.Suspense>
+    <Provider store={store}>
+      <DndProvider backend={HTML5Backend}>
+        <CacheProvider value={emotionCache}>
+          <Head>
+            <meta name="viewport" content="initial-scale=1, width=device-width" />
+          </Head>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Component {...pageProps} />
+            <Footer />
+          </ThemeProvider>
+        </CacheProvider>
+      </DndProvider>
+    </Provider>
   );
 }
 
