@@ -4,9 +4,8 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Board, StoreMainPage } from '../../types/types';
 import { Typography, OutlinedInput } from '@mui/material';
-import { getBoards } from '../ApiController/getBoards';
+import { getBoards } from '../ApiController/userBoards';
 import { useRouter } from 'next/router';
-import { Box } from '@mui/system';
 
 export default function MainPageComponent() {
   const [data, setData] = useState([]);
@@ -36,8 +35,9 @@ export default function MainPageComponent() {
     const elLength = e.target.value.length;
     if (elLength) {
       setFilteredData(
-        data.filter((el: Board) =>
-          (el.title as string).toLowerCase().includes(e.target.value.toLowerCase())
+        data.filter(
+          (el: Board) =>
+            (el.title as string).toLowerCase().slice(0, elLength) === e.target.value.toLowerCase()
         )
       );
     } else {
@@ -46,13 +46,13 @@ export default function MainPageComponent() {
   };
 
   return (
-    <Box className={styles.boards}>
+    <div className={styles.boards}>
       <Typography variant="h6" sx={{ mt: 2 }}>
         Your Workspace
       </Typography>
       <OutlinedInput
         placeholder="Search boards"
-        sx={{ m: '2% 0', width: '40%' }}
+        sx={{ mt: 2, mb: 2 }}
         onChange={handleChangeSearch}
       />
       <section>
@@ -60,6 +60,6 @@ export default function MainPageComponent() {
           ? filteredData.map((board) => <MainBoard board={board} key={(board as Board).id} />)
           : ''}
       </section>
-    </Box>
+    </div>
   );
 }

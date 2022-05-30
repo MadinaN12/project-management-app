@@ -16,7 +16,7 @@ const ConfirmModal = ({ active, setActive }: ModalProps) => {
     const token = getToken();
     if (token && id) {
       await deleteColumn(colId, id, token);
-      dispatch(getBoard({ boardId: id, token: token }));
+      await dispatch(getBoard({ boardId: id, token: token }));
     }
     setActive(false);
   };

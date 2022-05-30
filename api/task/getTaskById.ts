@@ -1,9 +1,14 @@
 import { PATH, URL } from '../../utils';
 
-export async function getTasks(columnId: string, boardId: string | string[], token: string) {
+export async function getTaskById(
+  boardId: string | string[],
+  columnId: string,
+  taskId: string,
+  token: string
+) {
   try {
     const response = await fetch(
-      `${URL}/${PATH.BOARDS}/${boardId}/${PATH.COLUMNS}/${columnId}/${PATH.TASKS}`,
+      `${URL}/${PATH.BOARDS}/${boardId}/${PATH.COLUMNS}/${columnId}/${PATH.TASKS}/${taskId}`,
       {
         method: 'GET',
         headers: {
