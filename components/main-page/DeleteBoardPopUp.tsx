@@ -11,12 +11,11 @@ export default function DeleteBoardPopUp({
   setStatus: React.Dispatch<React.SetStateAction<boolean>>;
   board: Board;
 }) {
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzNTc5ZWIwMC01ODk1LTQ0YWUtOWQ4NC1iYjMxYjgwZjQzYmQiLCJsb2dpbiI6Im5hbWUiLCJpYXQiOjE2NTE4ODY4MjF9.uh1bOO9rPHP7N03ok0DRPMUO1EVwtil5ALbi9VTQmgI';
+  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    deleteBoard(board, token);
+    deleteBoard(board, token as string);
     setStatus(false);
     dispatch(refreshBoard('a'));
     setTimeout(() => dispatch(refreshBoard('a')), 500);
