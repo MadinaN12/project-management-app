@@ -24,6 +24,6 @@ export const teamMembers = [
     role: 'Developer',
     github: '@ButterBrot359',
     gitLink: 'https://github.com/ButerBrot359',
-    responsibility: 'Welcome page, welcome page header, sign in & sign Up',
+    responsibility: 'Welcome page and header, sign in & sign up',
   },
 ];
