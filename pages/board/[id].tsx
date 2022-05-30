@@ -67,7 +67,7 @@ const Board = () => {
 
   return (
     <>
-      <Header />
+      <Header path={`/board/${id}`} />
       <Grid container sx={column.mainGrid}>
         <BoardControls />
         <Grid container sx={column.boardGrid} ref={drop}>

@@ -73,5 +73,6 @@ export const ru = {
     assign: 'Подписать',
     description: 'Описание',
     taskTitle: 'Название таска',
+    boardTitle: 'Название доски',
   },
 };

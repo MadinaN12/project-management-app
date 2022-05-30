@@ -73,5 +73,6 @@ export const en = {
     assign: 'Assign',
     description: 'Description',
     taskTitle: 'Task title',
+    boardTitle: 'Board title',
   },
 };

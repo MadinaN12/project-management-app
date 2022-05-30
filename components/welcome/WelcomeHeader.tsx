@@ -30,7 +30,7 @@ export const WelcomeHeader = () => {
   return (
     <header className={`${styles.welcomeHeader} ${styles[headerTransparent]}`}>
       <Image src={TrelloImage} width={126} height={36} alt="trello"></Image>
-      <LocalSwitcher />
+      <LocalSwitcher path="/" />
       <div className={styles.logBtns}>
         <Button
           className={styles.logBtn}
