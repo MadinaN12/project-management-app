@@ -10,6 +10,8 @@ import type { AppProps } from 'next/app';
 import { setUpStore } from '../store/store';
 import { Provider } from 'react-redux';
 import Footer from '../components/footer';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -23,16 +25,18 @@ export default function MyApp({
 }: MyAppProp) {
   return (
     <Provider store={store}>
-      <CacheProvider value={emotionCache}>
-        <Head>
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
-        </Head>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Component {...pageProps} />
-          <Footer />
-        </ThemeProvider>
-      </CacheProvider>
+      <DndProvider backend={HTML5Backend}>
+        <CacheProvider value={emotionCache}>
+          <Head>
+            <meta name="viewport" content="initial-scale=1, width=device-width" />
+          </Head>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Component {...pageProps} />
+            <Footer />
+          </ThemeProvider>
+        </CacheProvider>
+      </DndProvider>
     </Provider>
   );
 }
