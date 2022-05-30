@@ -15,6 +15,7 @@ import { sortColumns } from '../../dndUtils.ts/tasksSort';
 import BoardControls from '../../components/board/controls';
 import { en } from '../../public/locales/en/common';
 import { ru } from '../../public/locales/ru/common';
+import { Header } from '../../components/header/Header';
 
 const Board = () => {
   const [modalActive, setModalActive] = useState(false);
@@ -66,6 +67,7 @@ const Board = () => {
 
   return (
     <>
+      <Header />
       <Grid container sx={column.mainGrid}>
         <BoardControls />
         <Grid container sx={column.boardGrid} ref={drop}>

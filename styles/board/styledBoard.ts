@@ -4,6 +4,7 @@ export const column = {
   mainGrid: {
     backgroundColor: '#448aff',
     height: 'calc(100vh - 71px)',
+    alignContent: 'end',
   },
   boardGrid: {
     gap: 2,
@@ -11,7 +12,8 @@ export const column = {
     flexWrap: 'nowrap',
     maxWidth: '100vw',
     overflow: 'auto',
-    height: 'calc(100vh - 100px)',
+    height: 'calc(100vh - 215px)',
+    marginLeft: '10px',
   },
   column: {
     minWidth: '280px',
@@ -76,5 +78,14 @@ export const column = {
     ':hover': {
       bgcolor: '#bbdefb',
     },
+  },
+  toolbar: {
+    padding: '10px',
+    height: '50px',
+    margin: '10px',
+  },
+  boardTitle: {
+    alignSelf: 'center',
+    color: '#e3f2fd',
   },
 };

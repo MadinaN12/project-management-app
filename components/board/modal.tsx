@@ -66,6 +66,7 @@ const Modal = ({ active, setActive }: ModalProps) => {
             label={t.boards.titlePl}
             variant="outlined"
             value={title}
+            required
             onChange={onTextChanged}
           />
         </DialogContent>

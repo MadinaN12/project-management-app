@@ -18,7 +18,7 @@ export default function CreateBtn() {
     <>
       <Button
         variant="contained"
-        sx={{ ml: 2, background: 'rgb(0 190 255)' }}
+        sx={{ ml: 2, background: '#1769aa' }}
         size="small"
         onClick={handleCreateBtnClick}
       >

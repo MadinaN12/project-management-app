@@ -60,6 +60,7 @@ const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
       <InputBase
         sx={column.input}
         autoFocus
+        required
         onChange={(e) => setTitleInput(e.target.value)}
         value={titleInput}
       />
