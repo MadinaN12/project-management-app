@@ -7,6 +7,8 @@ import { column } from '../../styles/board/styledBoard';
 import { getToken } from '../../utils';
 import { useRouter } from 'next/router';
 import PopupNotification from '../PopupNotification';
+import { en } from '../../public/locales/en/common';
+import { ru } from '../../public/locales/ru/common';
 
 const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
   const [titleInput, setTitleInput] = useState(title);
@@ -15,6 +17,7 @@ const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
   const { colId, colOrder } = useAppSelector((state) => state.boardReducer);
   const router = useRouter();
   const { id } = router.query;
+  const t = router.locale === 'en' ? en : ru;
 
   const handleSubmit = async () => {
     setNewTitle(titleInput);
@@ -42,7 +45,7 @@ const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
     <>
       <Grid container sx={column.headerGrid}>
         <Button variant="outlined" sx={column.btn} onClick={() => setOpen(false)}>
-          Close
+          {t.board.closeBtn}
         </Button>
         <Button
           variant="outlined"
@@ -51,7 +54,7 @@ const TitleInput = ({ title, setOpen, setNewTitle }: TitleInputProps) => {
           color="success"
           onClick={handleSubmit}
         >
-          Submit
+          {t.board.submitBtn}
         </Button>
       </Grid>
       <InputBase

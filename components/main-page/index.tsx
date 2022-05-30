@@ -6,12 +6,15 @@ import { Board, StoreMainPage } from '../../types/types';
 import { Typography, OutlinedInput } from '@mui/material';
 import { getBoards } from '../ApiController/getBoards';
 import { useRouter } from 'next/router';
+import { en } from '../../public/locales/en/common';
+import { ru } from '../../public/locales/ru/common';
 
 export default function MainPageComponent() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const select = useSelector((state) => (state as StoreMainPage).refreshBoard);
   const router = useRouter();
+  const t = router.locale === 'en' ? en : ru;
   let token = '';
 
   if (typeof window !== 'undefined') {
@@ -48,10 +51,10 @@ export default function MainPageComponent() {
   return (
     <div className={styles.boards}>
       <Typography variant="h6" sx={{ mt: 2 }}>
-        Your Workspace
+        {t.boards.title}
       </Typography>
       <OutlinedInput
-        placeholder="Search boards"
+        placeholder={t.boards.search}
         sx={{ mt: 2, mb: 2 }}
         onChange={handleChangeSearch}
       />

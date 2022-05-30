@@ -3,9 +3,14 @@ import { useEffect, useState } from 'react';
 import { getAllUsers } from '../../api/users/getAllUsers';
 import { SelectProps, Users } from '../../types/types';
 import { getToken } from '../../utils';
+import { en } from '../../public/locales/en/common';
+import { ru } from '../../public/locales/ru/common';
+import { useRouter } from 'next/router';
 
 const UserList = ({ user, setUser }: SelectProps) => {
   const [users, setUsers] = useState<Users[]>();
+  const router = useRouter();
+  const t = router.locale === 'en' ? en : ru;
 
   useEffect(() => {
     const token = getToken();
@@ -21,7 +26,7 @@ const UserList = ({ user, setUser }: SelectProps) => {
 
   return (
     <FormControl style={{ width: 250, alignSelf: 'center' }}>
-      <InputLabel id="demo-simple-select-label">Assign</InputLabel>
+      <InputLabel id="demo-simple-select-label">{t.board.assign}</InputLabel>
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"

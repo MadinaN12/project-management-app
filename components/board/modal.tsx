@@ -15,6 +15,8 @@ import { getBoard } from '../../api/board/getBoard';
 import { getToken } from '../../utils';
 import { useRouter } from 'next/router';
 import PopupNotification from '../PopupNotification';
+import { en } from '../../public/locales/en/common';
+import { ru } from '../../public/locales/ru/common';
 
 const Modal = ({ active, setActive }: ModalProps) => {
   const [title, setTitle] = useState('');
@@ -23,6 +25,7 @@ const Modal = ({ active, setActive }: ModalProps) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { id } = router.query;
+  const t = router.locale === 'en' ? en : ru;
 
   const handleClick = async () => {
     try {
@@ -54,13 +57,13 @@ const Modal = ({ active, setActive }: ModalProps) => {
   return (
     <>
       <Dialog open={active}>
-        <DialogTitle>Create column</DialogTitle>
+        <DialogTitle>{t.board.createCol}</DialogTitle>
         <CssBaseline />
         <DialogContent>
           <TextField
             margin="dense"
             id="outlined-basic"
-            label="Title"
+            label={t.boards.titlePl}
             variant="outlined"
             value={title}
             onChange={onTextChanged}
@@ -69,10 +72,10 @@ const Modal = ({ active, setActive }: ModalProps) => {
         <DialogContent>
           <DialogActions>
             <Button variant="outlined" onClick={() => setActive(false)}>
-              Cancel
+              {t.board.cancelBtn}
             </Button>
             <Button variant="contained" onClick={handleClick}>
-              Submit
+              {t.board.submitBtn}
             </Button>
           </DialogActions>
         </DialogContent>
