@@ -1,13 +1,13 @@
 import { Grid } from '@mui/material';
-import { TaskResponse } from '../../types/types';
-import { task } from '../../styles/styledTask';
+import { task } from '../../styles/board/styledTask';
 import Task from './task';
+import { Col } from '../../types/types';
 
-const TaskList = ({ tasks }: { tasks: TaskResponse[] }) => {
+const TaskList = ({ col }: { col: Col }) => {
   return (
     <Grid container sx={task.taskGrid}>
-      {tasks.map(({ id, title }) => (
-        <Task key={id} title={title} />
+      {col.tasks.map((item) => (
+        <Task key={item.id} tasks={item} />
       ))}
     </Grid>
   );

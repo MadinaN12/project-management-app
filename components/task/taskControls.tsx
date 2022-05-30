@@ -4,8 +4,9 @@ import { faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import ConfirmTask from './confirmTask';
 import { useState } from 'react';
 import UpdateTask from './updateTask';
+import { TaskProps } from '../../types/types';
 
-const TaskControls = () => {
+const TaskControls = ({ tasks }: { tasks: TaskProps }) => {
   const [confirmActive, setConfirmActive] = useState(false);
   const [updateActive, setUpdateActive] = useState(false);
 
@@ -23,8 +24,8 @@ const TaskControls = () => {
           </IconButton>
         </Tooltip>
       </Grid>
-      <ConfirmTask active={confirmActive} setActive={setConfirmActive} />
-      <UpdateTask active={updateActive} setActive={setUpdateActive} />
+      <ConfirmTask tasks={tasks} active={confirmActive} setActive={setConfirmActive} />
+      <UpdateTask tasks={tasks} active={updateActive} setActive={setUpdateActive} />
     </>
   );
 };

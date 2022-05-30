@@ -25,6 +25,8 @@
     "eslint-plugin-sonarjs": "^0.13.0",
     "next": "12.1.5",
     "react": "18.1.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "18.1.0",
     "react-redux": "^8.0.1",
     "sass": "^1.51.0"

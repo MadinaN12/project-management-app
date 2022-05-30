@@ -1,7 +1,8 @@
-import Link from 'next/link';
 import { useRef, useState } from 'react';
-import { Alert, AlertTitle, Button, Collapse, Slide, TextField, Typography } from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 import { LoginUser } from '../../api/user';
+import AdditionalMenu from './AdditionalMenu';
+import PopupNotification from '../PopupNotification';
 import styles from '../../styles/form/Form.module.scss';
 
 const LoginForm = () => {
@@ -78,21 +79,8 @@ const LoginForm = () => {
         Log in
       </Button>
       <hr className={styles.separateLine} />
-      <ul className={styles.formLinks}>
-        <li className={styles.formLinkText}>Don&apos;t have an account ?</li>
-        <li className={styles.formLinkText}>
-          <Link href={'/signup'}>Sign up</Link>
-        </li>
-      </ul>
-      <Collapse in={errorNotification}>
-        <Slide in={errorNotification} direction="left">
-          <Alert severity="error" style={{ position: 'fixed', top: 20, right: 20 }}>
-            <AlertTitle>
-              <strong>Error: </strong> {errorMessage}
-            </AlertTitle>
-          </Alert>
-        </Slide>
-      </Collapse>
+      <AdditionalMenu isLogin={true}>Don&apos;t have an account ?</AdditionalMenu>
+      <PopupNotification errorNotification={errorNotification} errorMessage={errorMessage} />
     </form>
   );
 };

@@ -10,6 +10,9 @@
   align-items: center;
   transition: background 1s ease 0s;
   background-color: rgba(255, 255, 255, 0);
+  .logBtn {
+    margin-right: 10px;
+  }
 }
 .white {
   background-color: white;

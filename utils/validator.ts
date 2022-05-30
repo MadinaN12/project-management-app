@@ -1,4 +1,5 @@
-import { IValidator } from '../types/types';
+import { IEmtyErrorsInputs, ISignupInputs } from '../types/registrationTypes';
+import { IValidator } from '../types/utilsTypes';
 
 export function passwordValidator(pass: string, rePass: string): IValidator {
   if (pass.length === 0) return generateValidatorAnswer(false, 'Please, enter password');
@@ -28,4 +29,21 @@ export function nameValidator(name: string): IValidator {
 
 function generateValidatorAnswer(isValid: boolean, message: string): IValidator {
   return { isValid, validMessage: message };
+}
+
+export function checkEmptyFields(inputs: ISignupInputs): [IEmtyErrorsInputs, boolean] {
+  const errorsObj: IEmtyErrorsInputs = {
+    nameInput: false,
+    emailInput: false,
+    passwordInput: false,
+    rePasswordInput: false,
+  };
+  let isError = false;
+  for (let key in inputs) {
+    if (inputs[key] === '') {
+      errorsObj[key] = true;
+      isError = true;
+    }
+  }
+  return [errorsObj, isError];
 }
