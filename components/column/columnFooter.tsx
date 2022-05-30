@@ -12,14 +12,14 @@ const ColumnFooter = () => {
     <>
       <Grid container sx={column.bottom}>
         <Button
-          variant="contained"
-          sx={column.btn}
+          variant="outlined"
           color="error"
+          sx={column.btn}
           onClick={() => setModalActive(true)}
         >
           Delete
         </Button>
-        <Button variant="contained" sx={column.btn} onClick={() => setTaskModalActive(true)}>
+        <Button variant="outlined" sx={column.bigBtn} onClick={() => setTaskModalActive(true)}>
           + Add task
         </Button>
       </Grid>
