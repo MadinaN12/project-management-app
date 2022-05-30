@@ -7,13 +7,17 @@ import styles from '../../styles/welcome/WelcomeHeader.module.scss';
 import LocalSwitcher from '../localSwitcher';
 import { en } from '../../public/locales/en/common';
 import { ru } from '../../public/locales/ru/common';
+import { getToken } from '../../utils';
 
 export const WelcomeHeader = () => {
   const [headerTransparent, setHeaderTransparent] = useState('');
   const router = useRouter();
   const t = router.locale === 'en' ? en : ru;
+  const token = getToken();
 
   useEffect(() => {
+    if (typeof window !== 'undefined' && token !== null) router.push('/boards');
+
     const onScroll = () => {
       if (window.pageYOffset > 70) {
         setHeaderTransparent('white');
@@ -25,7 +29,7 @@ export const WelcomeHeader = () => {
     window.addEventListener('scroll', onScroll, { passive: true });
 
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [router, token]);
 
   return (
     <header className={`${styles.welcomeHeader} ${styles[headerTransparent]}`}>

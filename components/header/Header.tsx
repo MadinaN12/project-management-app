@@ -1,5 +1,5 @@
 import { Box } from '@mui/system';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/header/Header.module.scss';
@@ -14,8 +14,13 @@ export const Header = ({ path }: { path: string }) => {
   const [headerTransparent, setHeaderTransparent] = useState('');
   const refreshHeader = useSelector((state) => (state as StoreMainPage).refreshBoard);
   const dispatch = useDispatch();
+  const router = useRouter();
+  let token;
 
   useEffect(() => {
+    token = localStorage.getItem('token');
+    if (!token) router.push('/');
+
     const onScroll = () => {
       if (window.pageYOffset > 70) setHeaderTransparent('white');
       else setHeaderTransparent('blue');
