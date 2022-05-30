@@ -2,7 +2,7 @@
 
 #products {
   .container {
-    width: 1140px;
+    width: 100%;
     padding: 80px 15px;
     .products__topPart {
       display: flex;
@@ -29,5 +29,23 @@
         color: #091e42;
       }
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 5% 0 !important;
+  }
+
+  .topPart_title {
+    font-size: 22px !important;
+  }
+
+  .topPart_paragraph {
+    font-size: 16px !important;
+  }
+
+  .prodName {
+  margin: 5% auto !important;
   }
 }
