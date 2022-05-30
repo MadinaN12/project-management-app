@@ -1,6 +1,6 @@
 export const teamMembers = [
   {
-    id: 1,
+    id: 0,
     name: 'Shamshod',
     avatar: '/shamshod.jpg',
     role: 'Developer',
@@ -9,7 +9,7 @@ export const teamMembers = [
     responsibility: 'Main route, footer, header, user route',
   },
   {
-    id: 2,
+    id: 1,
     name: 'Madina',
     avatar: '/madina.jpg',
     role: 'Team Lead',
@@ -18,7 +18,7 @@ export const teamMembers = [
     responsibility: 'Board route, backend deployment, localization',
   },
   {
-    id: 3,
+    id: 2,
     name: 'Batyrkhan',
     avatar: '/batyr.jpg',
     role: 'Developer',

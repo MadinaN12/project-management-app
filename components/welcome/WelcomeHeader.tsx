@@ -1,12 +1,17 @@
 import { Button } from '@mui/material';
 import Image from 'next/image';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import TrelloImage from '../../images/Trello.svg';
 import styles from '../../styles/welcome/WelcomeHeader.module.scss';
+import LocalSwitcher from '../localSwitcher';
+import { en } from '../../public/locales/en/common';
+import { ru } from '../../public/locales/ru/common';
 
 export const WelcomeHeader = () => {
   const [headerTransparent, setHeaderTransparent] = useState('');
+  const router = useRouter();
+  const t = router.locale === 'en' ? en : ru;
 
   useEffect(() => {
     const onScroll = () => {
@@ -25,6 +30,7 @@ export const WelcomeHeader = () => {
   return (
     <header className={`${styles.welcomeHeader} ${styles[headerTransparent]}`}>
       <Image src={TrelloImage} width={126} height={36} alt="trello"></Image>
+      <LocalSwitcher />
       <div className={styles.logBtns}>
         <Button
           className={styles.logBtn}
@@ -32,10 +38,10 @@ export const WelcomeHeader = () => {
           size="small"
           onClick={() => router.push('/login')}
         >
-          Log in
+          {t.welcome.login}
         </Button>
         <Button variant="contained" size="small" onClick={() => router.push('/signup')}>
-          Sign up
+          {t.welcome.signUp}
         </Button>
       </div>
     </header>
