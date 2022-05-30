@@ -1,6 +1,10 @@
 const spaceBetween = 'space-between';
 
 export const column = {
+  mainGrid: {
+    backgroundColor: '#448aff',
+    height: 'calc(100vh - 71px)',
+  },
   boardGrid: {
     gap: 2,
     backgroundColor: '#448aff',
@@ -10,8 +14,8 @@ export const column = {
     height: 'calc(100vh - 100px)',
   },
   column: {
-    minWidth: '272px',
-    maxWidth: '272px',
+    minWidth: '280px',
+    maxWidth: '280px',
     borderRadius: 2,
     boxShadow: 'none',
     margin: '0 8px 0 8px',
@@ -19,7 +23,7 @@ export const column = {
     padding: 1,
   },
   columnInner: {
-    maxHeight: 'calc(100vh - 200px)',
+    maxHeight: 'calc(80vh - 200px)',
     overflow: 'auto',
   },
   bottom: {
@@ -31,6 +35,11 @@ export const column = {
   btn: {
     fontSize: '10px',
     maxWidth: '20px',
+    padding: '6px 0px',
+  },
+  bigBtn: {
+    fontSize: '10px',
+    width: '150px',
     padding: '6px 0px',
   },
   header: {

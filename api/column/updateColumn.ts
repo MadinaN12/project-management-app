@@ -7,16 +7,13 @@ export async function updateColumn(
   boardId: string | string[],
   token: string
 ) {
-  try {
-    await fetch(`${URL}/${PATH.BOARDS}/${boardId}/${PATH.COLUMNS}/${columnId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(column),
-    });
-  } catch (error) {
-    throw new Error('not found');
-  }
+  const response = await fetch(`${URL}/${PATH.BOARDS}/${boardId}/${PATH.COLUMNS}/${columnId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(column),
+  });
+  return await response.json();
 }

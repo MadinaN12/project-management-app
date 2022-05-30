@@ -69,6 +69,7 @@ export type TaskResponse = {
 export type BoardResponse = {
   id: string;
   title: string;
+  description: string;
   columns: [
     {
       id: string;
@@ -79,7 +80,6 @@ export type BoardResponse = {
           id: string;
           title: string;
           order: number;
-          done: boolean;
           description: string;
           userId: string;
           files: [
@@ -103,7 +103,6 @@ export type Col = {
       id: string;
       title: string;
       order: number;
-      done: boolean;
       description: string;
       userId: string;
       files: [
@@ -129,7 +128,6 @@ export type TaskProps = {
   id: string;
   title: string;
   order: number;
-  done: boolean;
   description: string;
   userId: string;
   files: [
