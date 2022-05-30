@@ -1,16 +1,17 @@
-import { AppBar, Toolbar } from '@mui/material';
-import Logo from '../Logo';
+import { IconButton, Toolbar } from '@mui/material';
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const BoardControls = () => {
   const router = useRouter();
 
   return (
-    <AppBar sx={{ bgcolor: '#bbdefb', maxHeight: '55px' }} position="static">
-      <Toolbar variant="dense">
-        <Logo width={126} height={36} onClick={() => router.push('/')} />
-      </Toolbar>
-    </AppBar>
+    <Toolbar variant="dense" sx={{ padding: '10px' }}>
+      <IconButton size="medium" sx={{ color: 'white' }} onClick={() => router.push('/boards')}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </IconButton>
+    </Toolbar>
   );
 };
 

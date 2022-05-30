@@ -6,6 +6,7 @@ import { BoardResponse } from '../../types/types';
 const initBoard: BoardResponse = {
   id: '',
   title: '',
+  description: '',
   columns: [
     {
       id: '',
@@ -16,7 +17,6 @@ const initBoard: BoardResponse = {
           id: '',
           title: '',
           order: 1,
-          done: false,
           description: '',
           userId: '',
           files: [

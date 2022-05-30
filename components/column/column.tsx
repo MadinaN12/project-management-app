@@ -2,14 +2,85 @@ import { Grid, Box } from '@mui/material';
 import ColumnFooter from './columnFooter';
 import ColumnHeader from './columnHeader';
 import TaskList from '../task/taskList';
-import { Col } from '../../types/types';
 import { useAppDispatch } from '../../hooks/redux';
 import { storeSlice } from '../../store/reducers/storeSlice';
 import { column } from '../../styles/board/styledBoard';
+import { ColumnProps, Item, ItemTypes } from '../../types/dndTypes';
+import { useDrag, useDrop } from 'react-dnd';
+import { getToken } from '../../utils';
+import { useRouter } from 'next/router';
+import { updateColumn } from '../../api/column/updateColumn';
+import { getBoard } from '../../api/board/getBoard';
+import { useState } from 'react';
+import PopupNotification from '../PopupNotification';
 
-const BoardColumn = ({ col }: { col: Col }) => {
+const BoardColumn = ({ col, order, atOrder, moveCard, findCard }: ColumnProps) => {
+  const [errorNotification, setErrorNotification] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useAppDispatch();
   const { setColumnId, setColOrder } = storeSlice.actions;
+  const router = useRouter();
+  const { id } = router.query;
+
+  const updateOrder = async (droppedId: number) => {
+    try {
+      const token = getToken();
+      if (token && id) {
+        const column = {
+          title: col.title,
+          order: droppedId + 1,
+        };
+        const response = await updateColumn(column, col.id, id, token);
+        await dispatch(getBoard({ boardId: id, token: token }));
+        if ('message' in response) {
+          setErrorMessage(`${response.statusCode} ${response.message}`);
+          throw new Error(response);
+        }
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setErrorNotification(true);
+        setTimeout(() => setErrorNotification(false), 3000);
+      }
+    }
+  };
+
+  const originalIndex = findCard(order).index;
+  const [{ isDragging }, drag] = useDrag(
+    () => ({
+      type: ItemTypes.COLUMN,
+      item: { order, originalIndex },
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging(),
+      }),
+      end: (item, monitor) => {
+        const { order: droppedId, originalIndex } = item;
+        const didDrop = monitor.didDrop();
+        if (!didDrop) {
+          moveCard(droppedId, originalIndex);
+        }
+        if (didDrop) {
+          updateOrder(atOrder);
+        }
+      },
+    }),
+    [order, originalIndex, moveCard]
+  );
+
+  const [, drop] = useDrop(
+    () => ({
+      accept: ItemTypes.COLUMN,
+      hover({ order: draggedId }: Item) {
+        if (draggedId !== order) {
+          const { index: overIndex } = findCard(order);
+          moveCard(draggedId, overIndex);
+        }
+      },
+    }),
+    [findCard, moveCard]
+  );
+
+  const opacity = isDragging ? 0 : 1;
 
   const handleClick = () => {
     dispatch(setColumnId(col.id));
@@ -17,11 +88,21 @@ const BoardColumn = ({ col }: { col: Col }) => {
   };
 
   return (
-    <Grid container direction="column" sx={column.column} onClick={handleClick}>
-      <ColumnHeader title={col.title} />
-      <Box sx={column.columnInner}>{<TaskList col={col} />}</Box>
-      <ColumnFooter />
-    </Grid>
+    <>
+      <Grid
+        container
+        direction="column"
+        sx={column.column}
+        style={{ opacity: opacity }}
+        onClick={handleClick}
+        ref={(node) => drag(drop(node))}
+      >
+        <ColumnHeader title={col.title} />
+        <Box sx={column.columnInner}>{<TaskList col={col} />}</Box>
+        <ColumnFooter />
+      </Grid>
+      <PopupNotification errorNotification={errorNotification} errorMessage={errorMessage} />
+    </>
   );
 };
 

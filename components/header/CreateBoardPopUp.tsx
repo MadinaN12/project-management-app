@@ -25,6 +25,7 @@ export default function CreateBoardPopUp({
     e.preventDefault();
     const newBoard = {
       title: ((inputRef.current as unknown as InputRef).firstChild as HTMLInputElement).value,
+      description: (textAreaRef.current as unknown as HTMLInputElement).value,
     };
 
     if (token) {
